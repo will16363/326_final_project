@@ -8,3 +8,5 @@ x = 5
 y = 5
 z = x + y
 print(z)
+
+print(f'{x} plus {y} is equal to {z}.')
