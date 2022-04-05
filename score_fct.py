@@ -4,6 +4,9 @@ def score(player_score, #result of attack method):
 	Args:
 		player_score (int): The player's score before the round starts
 	
+	Side effects:
+		Prints information to the terminal during a round of Zombie Rolls.
+	
 	Returns:
 		new_score (int): The player's score after the completion of the round.
 	"""
