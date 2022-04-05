@@ -10,3 +10,5 @@ z = x + y
 print(z)
 
 print(f'{x} plus {y} is equal to {z}.')
+
+print("Test")
