@@ -1,3 +1,5 @@
+# f-strings
+
 def score(player_score, #result of attack method):
 	"""Keeps track of the player's score upon completion of the round.
 
