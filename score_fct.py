@@ -8,9 +8,11 @@ def score(player_score, #result of attack method):
 		new_score (int): The player's score after the completion of the round.
 	"""
 	survives_round = 25
-	dies_to_zomb = -10
+	dies_to_zomb = 10
 	# if the player survives the round/beats the zombie (take the result of the attack method):
 		new_score = player_score + survives_round
+		print(f"You earned {survives_round} points for defeating the zombie!")
 	# elif the player dies to the zombie (take result of the attack method):
-		new_score = player_score + dies_to_zomb
+		new_score = player_score - dies_to_zomb
+		print(f"You lost {dies_to_zomb} for dying to the zombie!")
 	return new_score
