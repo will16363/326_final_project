@@ -1,4 +1,4 @@
-# list comprehension
+# custom list sorting using lambda
 
 def ranked_scores(score_file):
 	"""Sort the high score file and returns top 5 overall scores.
@@ -17,4 +17,3 @@ def ranked_scores(score_file):
 		ranked_dict=(sorted(high_score_dict.items(), key=lambda x:x[1], 
 			reverse=True)[:5])
 		print(ranked_dict)
-
