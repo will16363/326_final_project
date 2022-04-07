@@ -1,18 +1,16 @@
-# with statements/data visualization pyplot/list sorting
+# with statements
 
-def high_score(new_score):
+def high_score(player_name, new_score, score_file):
 	"""Compares the score of the player to the top 5 scores overall by creating
 	   and modifying a file.
 
 	Args:
 		new_score (int): Score of the player at the end of the game.
+		player_name (str): Name of the player (maybe use self.name?)
+		score_file (str): File path for the high score file.
 
 	Side effects:
-		Creates or modifies a file that high scores are kept in.
-		Prints information to the terminal.
+		Modifies a file that high scores are kept in.
 	"""
-	# use with statement to create and open a file 
-	# in the file, make a dictionary that keeps track of user's scores/names
-	# pass the file back in and sort it
-	# if the user beats one of the high scores, re-sort them
-	# print the top 5 overall scores to the terminal
+	with open(score_file, 'a') as f:
+		f.write('{player_name}:{new_score}')
