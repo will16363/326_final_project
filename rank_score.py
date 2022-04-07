@@ -12,13 +12,9 @@ def ranked_scores(score_file):
 	high_score_dict = {}
 	with open(score_file, 'r', encoding='utf-8') as f:
 		for line in f:
-			line.split(':')
-			high_score_dict[line[0]]=line[1]
-		ranked_dict=(sorted(high_score_dict, key=high_score_dict.get, 
+			name, score=line.split(':')
+			high_score_dict[name]=int(score)
+		ranked_dict=(sorted(high_score_dict.items(), key=lambda x:x[1], 
 			reverse=True)[:5])
 		print(ranked_dict)
 
-ranked_scores("scores.txt")
-
-#want the top 5 players' names and their scores to be printed
-#rn it's only printing the first letter of the first three entries in the file
