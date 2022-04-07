@@ -19,3 +19,6 @@ def ranked_scores(score_file):
 		print(ranked_dict)
 
 ranked_scores("scores.txt")
+
+#want the top 5 players' names and their scores to be printed
+#rn it's only printing the first letter of the first three entries in the file
