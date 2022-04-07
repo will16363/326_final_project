@@ -13,4 +13,4 @@ def high_score(player_name, new_score, score_file):
 		Modifies a file that high scores are kept in.
 	"""
 	with open(score_file, 'a') as f:
-		f.write('{player_name}:{new_score}')
+		f.write(f'{player_name}:{new_score}\n')
