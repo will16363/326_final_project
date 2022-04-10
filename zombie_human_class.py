@@ -3,6 +3,7 @@ from random import choice
 """Need to figure out how players will only attack zombies with > 0 health and vice versa.
 Probably need to do something similar to Mancala's functions: validate_move(), get_move()"""
 # definitely work in progress!
+# hi there
 
 class Zombie:
     """Action of one zombie.
@@ -54,7 +55,7 @@ class BossZombie(Zombie):
     """Action of boss zombie.
     
         Attributes:
-            player_list (list): list of players.    
+            player_list (list): list of players.   
     """
     def __init__(self, player_list):
         """Initialize boss zombie.
