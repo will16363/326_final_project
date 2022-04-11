@@ -1,8 +1,7 @@
 # with statements
 
 def high_score(player_name, new_score, score_file):
-	"""Compares the score of the player to the top 5 scores overall by creating
-	   and modifying a file.
+	"""Writes the player's score to a high score file.
 
 	Args:
 		new_score (int): Score of the player at the end of the game.
