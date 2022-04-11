@@ -9,7 +9,7 @@ def round_fct(round_number, skip_supply="False"):
 
 	Args:
 		round_number (int): The current round number
-		skip_supply (bool, optional): Allows the player to skip the supply run 
+		skip_supply (str, optional): Allows the player to skip the supply run 
 			round and skips straight to the Zombie fight. Defaults to False.
 	
 	Side effects: 
