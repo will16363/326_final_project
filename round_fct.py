@@ -23,6 +23,8 @@ def round_fct(round_number, skip_supply="False"):
 		print(f"You have skipped your supply run. Now prepare for the "
 			"Zombie fight!")
 		return round_num
+		# include the fighting round here Zombie(attack) so that it skips the 
+		# supply run round.
 	else:
 		round_num = round_number + 1
 		print("You may now gather supplies!")
