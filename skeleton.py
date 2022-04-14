@@ -26,7 +26,9 @@
 	Writes the player's score to a high score file. This method takes the 
 	player's name from the game class, the player's score from the score() 
 	method, and a file name. It then appends the player's name and score to the
-	file.
+	file. The format will be "{player_name}:{new_score}\n". Each line will 
+	consist of a player's name and their score. The file will be encoded in 
+	UTF-8. 
 
 	Args:
 		player_name (str): Name of the player (maybe use self.name?)
@@ -41,10 +43,11 @@
 """ Ranked Score (custom list sorting using lambda) """
 """def ranked_scores(score_file):
 	Sort the high score file and returns top 5 overall scores. This method 
-	takes the high score file and creates an empty dictionary. It then opens the
-	score file and splits each line so that the player's name and score are 
-	added to the dictionary. A lambda function is then used to sort and print 
-	the top 5 scores to the terminal.
+	takes the file from the high_score() method and creates an empty dictionary. 
+	It then opens the score file and splits each line that consists of a 
+	player's name and score so that the player's name and score are added to 
+	the dictionary. A lambda function is then used to sort and print the top 5 
+	scores to the terminal. The file will be encoded in UTF-8. 
 	
 	Args:
 		score_file (str): File path for the high score file
@@ -58,7 +61,7 @@
 """ def play_music(path):
 	Plays music during the game. This method opens an mp3 file and uses both 
 	the playsound and glob modules to play the music during a game of Zombie
-	Rolls.
+	Rolls. 
 	
 	Args:
 		path (str): Path to the music file
@@ -69,14 +72,15 @@
 
 
 """ Round Method (optional parameters) """
-""" def round_fct(round_number, skip_supply="False"):
+""" def game_round(round_number, skip_supply="False"):
 	Keeps track of the round within a game of Zombie Rolls. This method takes
 	the round number from the main() method which has an initial value of 0. 
 	This method then adds 1 to the round number and returns it so that the 
 	round can be tracked. This method also prints messages to the terminal 
-	for the player. The player has the ability to skip the supply runs, which 
-	are even rounds from 0-13. If the player skips the supply run, they go 
-	straight to the Zombie fight and the message that is played reflects that.
+	for the player. The optional parameter allows the player to skip their 
+	supply run if they choose to do so; these rounds are the even round from 
+	0-13. If the player skips the supply run, they go straight to the Zombie 
+	fight and a message is printed that reflects this.
 	
 	Args:
 		round_number (int): The current round number
@@ -91,12 +95,13 @@
 		round_num (int): the number correspoding to the round in the game
 """
 
+
 """ Game Over Method """
 """def game_over(health, round_num):
     Determines when the game of Zombie Rolls is officially over. This method 
-	will take the health from the Health() method and the round number from the 
-	Round() method. The game is considered over if the player has no health left 
-	or has defeated the final zombie at round 13. 
+	will take the health from the health() method and the round number from the 
+	game_round() method. The game is considered over if the player has no 
+	health left or has defeated the final zombie at round 13. 
     
     Args:
         health (int): The health of the player expressed as an integer
@@ -107,13 +112,14 @@
             otherwise False.
 """
 
+
 """ Health function """
-"""Def print_status_bar(percent):
-	The health function is suppsed to keep track of the health of the both 
-	players, it starts with a 100 and can gain health depending on your roll 
-	within gathering supplies function. It can also lose health depending on 
-	your zombie fight. The level of injury depends on the type of weapon that 
-	gets used.
+"""def print_status_bar(percent):
+	The health function is used to keep track of the health of the player. It 
+	starts with a 100 and can gain health depending on your roll within 
+	gathering supplies function. It can also lose health depending on your 
+	zombie fight. The level of injury depends on the type of weapon that gets 
+	used.
 
 	Args: 
 		def health_function():
