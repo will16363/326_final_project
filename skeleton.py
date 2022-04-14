@@ -4,10 +4,10 @@
 """def score(self, player_score, attack_results):
 	Keeps track of the player's score upon completion of the round. This 
 	method will use the results of the attack() method which returns 
-	True or False. This method will have variables containing points for 
-	beating the Zombie or losing to the Zombie. This will then add the 
-	corresponding amount of points to the player's score which is being passed
-	in from the previous round.
+	True (beats zombie) or False (loses to zombie). This method will have 
+	variables containing points for beating the Zombie or losing to the Zombie. 
+	This will then add the corresponding amount of points to the player's score 
+	which is being passed in from the previous round.
 
 	Args:
 		player_score (int): The player's score before the round starts
