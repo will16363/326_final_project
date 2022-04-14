@@ -113,20 +113,90 @@
 """
 
 
+
+"""Gathering Supplies """
+"""
+   Get players to roll and assign an item.
+       The player will need to roll two dyes and the supplies
+       the get will be depending on what number the dice rolls on.
+       This logic also applies to the weapons in this game.
+   Args:
+       dice_roll(int): this variable represents the sum of the two dices that each player rolls
+    Side Effects: Player will get a weapon or an item in their inventory
+ 
+"""
+ 
+"""Print Status Bar"""
+"""
+   returns a display depending on the players health
+       This function gets the players health and keeps track of it using
+       percentage represented as a bar. Each player will gain or lose a bar
+       depending on how they are performing in the game. The status bar equals
+       to 100.
+   Returns:
+       string: returns the health status bar based on the players health
+    Side Effects: player health status bar is available for printing
+ 
+"""
+ 
+""" Game Over Method """
+"""def game_over(health, round_num):
+   Determines when the game of Zombie Rolls is officially over. This method
+   will take the health from the health() method and the round number from the
+   game_round() method. The game is considered over if the player has no
+   health left or has defeated the final zombie at round 13.
+  
+   Args:
+       health (int): The health of the player expressed as an integer
+       round_num (int): The round number expressed as an integer
+ 
+   Returns:
+       game_status (bool): The status of the game, True if the game is over,
+           otherwise False.
+"""
+ 
+ 
 """ Health function """
 """def print_status_bar(percent):
-	The health function is used to keep track of the health of the player. It 
-	starts with a 100 and can gain health depending on your roll within 
-	gathering supplies function. It can also lose health depending on your 
-	zombie fight. The level of injury depends on the type of weapon that gets 
-	used.
-
-	Args: 
-		def health_function():
-	
-	Returns: 
-		if weapon == '': 
-		this.player.max_health=int
+   The health function is used to keep track of the health of the player. It
+   starts with a 100 and can gain health depending on your roll within
+   gathering supplies function. It can also lose health depending on your
+   zombie fight. The level of injury depends on the type of weapon that gets
+   used.
+ 
+   Args:
+       def health_function():
+  
+   Returns:
+       if weapon == '':
+       this.player.max_health=int
 """
+ 
+ 
+"""decrease health"""
+"""keeps track of the health lost by each players"
+   Args:
+       damage(int): represents the damage the players took
+   
+  
+   Side Effects: player loses health and if the health is 0 or less
+                   the function calls the game_over() function
+"""
+ 
+"""increase_health"""
+"""keeps track of the health gained by each players"
+   Args:
+       heal(int): represents how much the player healed
+  
+   Side Effects: player gains health up to 100
+"""
+"""use_supply"""
+"""keeps track of the health gained by each players"
+   Args:
+       item(int): represents the supplies the player can use ranging from weapons to supplies.
+  
+   Side Effects: It calls the increase or decrease of health function
+"""
+
    
 
