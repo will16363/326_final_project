@@ -106,3 +106,15 @@
         game_status (bool): The status of the game, True if the game is over, 
             otherwise False.
 """
+"""Health function """
+"""Def print_status_bar ( percent):"""
+"""The health function is suppsed to keep track of the health of the both players,
+It starts with a 100 and can gain health depending on your roll within gathering supplies function.
+It can also lose health depending on your zombie fight. The level of injury depends on the type of weapon that gets used.
+
+Args: def health_function():
+returns: if weapon == '': 
+   this.player.max_health=int
+   
+   
+
