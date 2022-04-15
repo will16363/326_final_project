@@ -476,3 +476,33 @@
 	Side effects:
  		Prints statements of items found by player. Adjusts inventory dict.
 """        
+
+""" def __main__(playerName,supplyChoice,weaponChoice):
+runs a game of humans vs. zombies
+
+Args:
+	playerName (str): name of player
+	supplyChoice(bool): whether player choices to re-supply or not
+	weaponChoice(str): players choosen weapon
+
+Returns:
+
+Side Effects:
+	high score board will be printed to the terminal
+	player and zombies health will be printed to the terminal in the form of strings
+	current round number will be printed as an int
+	Dice roll results will be printed to the terminal
+	Damage taken to each player will be printed
+"""
+
+"""def parse_args(argList):
+Parse command line arguments.
+
+3 arguments are expected (this number may grow). players name, supply skip option, and players weapon choice. 
+
+Args:
+	argsList (list of str): List of arguments the user will insert into the command line terminal
+
+Returns:
+	namespace: containts a name attribute for the name of the player as a string,  
+"""
