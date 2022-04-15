@@ -198,5 +198,19 @@
    Side Effects: It calls the increase or decrease of health function
 """
 
-   
+"""Dice Class"""
+"""A dice having 6 sides
+	Attributes:
+			sides (int): The number of sides on the dice
+ 	"""
+"""roll method"""
+"""Picks a random integer between 1-6 and assigns it to a variable. This is done 
+again and then the two varables are added together."""
+"""Side effects:
+			Assigns a value of 1-6 to the sides
+   Returns: Returns the sum of the two dice rolls
+"""
+"""printResult method"""
+"""Displays the resulting roll"""
+"Prints: prints the sum of the dice rolls to the console."""
 
