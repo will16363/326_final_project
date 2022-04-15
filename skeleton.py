@@ -378,56 +378,68 @@ Side effects:
 	)
 """
 
-
-class Player:
-    """Action of player.  Attack zombies during the night and can make a selection between supply run
-    or attack zombie during the day.  During the attack sequence, player chooses which zombie they would
-    like to attack from the zombie_list, then the DiceRoll Class is called to initiate the dice roll for
+""" Player Class """
+"""class Player:
+    Action of player. Attack zombies during the night and can make a selection 
+    between supply run or attack zombie during the day. During the attack 
+    sequence, player chooses which zombie they would like to attack from the 
+    zombie_list, then the DiceRoll Class is called to initiate the dice roll for
     the player and the zombie.  
      
     Attributes:
-        weapon (str): player's weapon.  Limited to string types.
-        player (str): name of player.  Limited to string types.
-        zombie (str): zombie the player is attacking.  Limited to string types.
-        boss_zombie (str): default is set to None.  In the final round, the attribute can be set
-                           to boss zombie to allow the player to select and attack.
-        damage (int): amount of damage done by player using weapon; damage value is pulled from the
-                      inventory dict.  Damage is set to 0 if the player's attack attempt is not succesful.
+        weapon (str): player's weapon
+        player (str): name of player
+        zombie (str): zombie the player is attacking
+        boss_zombie (str): default is set to None. In the final round, the
+        	attribute can be set to boss zombie to allow the player to select 
+         	and attack.
+        damage (int): amount of damage done by player using weapon; damage value 
+        	is pulled from the inventory dict. Damage is set to 0 if the 
+         	player's attack attempt is not succesful.
     """
-    def __init__(self, player):
-        """Initalize player object.
-        
-        Args:
-            player (str): name of player.
-            
-        Side effects: prints statements for the dice roll results, amount of damage taken, and amount of 
-                      life for the zombies/boss zombie.
+    
+# Fix this one
+""" Player Class init Method """
+"""def __init__(self, player):
+	Initalize player object.
+	
+	Args:
+		player (str): name of player
+		
+	Side effects: 
+ 		Prints statements for the dice roll results, amount of damage taken, and 
+   		amount of life for the zombies/boss zombie.
 
-        """
-        self.weapon = "" 
-        self.player = player 
-        self.zombie = ""
-        boss_zombie = ""
-        self.damage = weapon_inv[weapon]
-        
-    def attack(self, zombie_list, boss_zombie_list=None):
-        """Attacks of player on the zombie.  Allows player to make a weapon selection.  DiceRoll Class is
-        called to determine whether the attack succeeds or not.  Attack is succesful if the result of the
-        dice roll is higher than the zombie's dice roll.  If the result of the dice roll is lower, the
-        attack misses.  Zombie receives full damage of the weapon upon success of attack.
-        
-        Args:
-            zombie_list (list of str): list containing the zombies.
-            boss_zombie_list (list of str): list contaiing the boss zombie.  Default set to None until
-            last round.
-            
-        Side effects: prints statements for the dice roll results, amount of damage taken, and amount of 
-                      life the zombies have left.
+	
+	self.weapon = "" 
+	self.player = player 
+	self.zombie = ""
+	boss_zombie = ""
+	self.damage = weapon_inv[weapon]
+"""
 
-        Returns:
-            bool: True if the attack succeeds (dice roll of player is higher than zombie's).
-                  False if the attack fails (dice roll of player is lower than zombie's).
-        """
+""" Player Class Attack Method """
+"""def attack(self, zombie_list, boss_zombie_list=None):
+	Attacks of player on the zombie.  Allows player to make a weapon selection.  
+ 	DiceRoll Class is called to determine whether the attack succeeds or not.
+  	Attack is succesful if the result of the dice roll is higher than the 
+   	zombie's dice roll.  If the result of the dice roll is lower, the attack 
+    misses. Zombie receives full damage of the weapon upon success of attack.
+	
+	Args:
+		zombie_list (list of str): list containing the zombies
+		boss_zombie_list (list of str): list contaiing the boss zombie. 
+  		Default set to None until last round.
+		
+	Side effects:
+ 		Prints statements for the dice roll results, amount of damage taken, and 
+   		amount of life the zombies have left.
+
+	Returns:
+		is_true (bool): True if the attack succeeds (dice roll of player is 
+  			higher than zombie's). False if the attack fails (dice roll of 
+     		player is lower than zombie's).
+	"""
         
     def supply_run(self):
         """Supply runs can only happen during the day and if the player input is False to the question
