@@ -112,12 +112,12 @@
             otherwise False.
 """
 
-# Fix this one
+
 """ Gathering Supplies Method """
-"""
-   Get players to roll and assign an item. The player will need to roll two dyes 
-	and the supplies the get will be depending on what number the dice rolls on.
-	This logic also applies to the weapons in this game.
+"""def gather_supplies(dice_roll):
+   Get players to roll and assign an item. The player will need to roll two dyes
+   and the supplies the get will be depending on what number the dice rolls on.
+   This logic also applies to the weapons in this game.
 
    Args:
        dice_roll(int): this variable represents the sum of the two dices that 
@@ -127,14 +127,19 @@
     	Player will get a weapon or an item in their inventory
 """
  
-# Fix this one 
+
 """ Print Status Bar """
-"""
+"""def print_status_bar(percent):
 	Returns a display depending on the players health. This function gets the 
- 	players health and keeps track of it using percentage represented as a bar. 
-  	Each player will gain or lose a bar depending on how they are performing in 
-   	the game. The status bar equals 100.
+	players health and keeps track of it using percentage represented by 
+	individual bars ex- = is 10% == is 20%. Each player will gain or lose a bar
+    depending on how they are performing in the game. The status bars add up
+    to 100. There are also weapons and supplies in this game worth different
+    amount of points. So the player's health level will change based on that.
    
+   Args:
+		percent (int): Player's health represented as an int, i.e. 10, 70, etc.
+
    Returns:
        health_stat_bar (str): Returns the health status bar based on the players 
        		health
@@ -143,45 +148,33 @@
     	Player health status bar is available for printing
 """
  
-# Fix this one
+
 """ Health function """
-"""def print_status_bar(percent):
-   This function gets the players health and keeps track of it using
-      percentage represented by individual bars
-      ex- = is 10% == is 20%. Each player will gain or lose a bar
-      depending on how they are performing in the game. The status bars add up
-      to 100. There are also weapons and supplies in this game worth different
-      amount of points. So the player's health level will change based on that.
-  Args:
-   This function gets the players health and keeps track of it using
-      percentage represented by individual bars ex- = is 10% == is 20%. Each player
-      will gain or lose a bar depending on how they are
-      performing in the game. The status bars add up
-      to 100.
-  
-   def health_function():Keeps track of the players health depending on their performance
-   Returns:
-      if weapon == '': Each weapon and supply is worth
-      different point and this is where you plug that in
-      this.player.max_health=int this shows what the current
-      health of the player is depending on the attack
-      they went through or the supplies they got.
+"""def health_function():
+	Keeps track of the players health depending on their performance
+ 	
+	Returns:
+		if weapon == '': Each weapon and supply is worth a different amount of 
+		points and this is where you plug that in. this.player.max_health=int 
+		this shows what the current health of the player is depending on the 
+		attack they went through or the supplies they got.
 """
 
-# Fix this one
 """ decrease health """
-"""keeps track of the health lost by each players
+"""def decrease_health(damage):
+	Keeps track of the health lost by each players
    
    Args:
        damage(int): represents the damage the players took
    
-   Side Effects: player loses health and if the health is 0 or less
-                  the function calls the game_over() function
+   Side Effects: 
+   		player loses health and if the health is 0 or less the function 
+		   calls the game_over() function
 """
  
- # Fix this one
 """ increase_health """
-"""Keeps track of the health gained by each players
+"""def increase_health(heal):
+	Keeps track of the health gained by the player
   
    Args:
        heal(int): represents how much the player healed
@@ -190,9 +183,10 @@
    		Player gains health up to 100
 """
 
-# Fix this one
 """ use_supply """
-"""Keeps track of the health gained by each players
+"""def use_supply(item):
+	Keeps track of the health gained by the player after they have used an item
+	that was collected during a supply run.
    
    Args:
        item (int): represents the supplies the player can use ranging from 
@@ -200,12 +194,6 @@
   
    Side Effects: 
    		Calls the increase or decrease of health function
-  	
-   Args:
-    	item(int): represents the supplies the player can use ranging from 
-     		weapons to supplies.
-   
-   Side Effects: It calls the increase or decrease of health function
 """
 
 """ Dice Class """
@@ -215,10 +203,10 @@
 		sides (int): The number of sides on the dice
 """
   
-# Fix this one
 """ Dice Class Roll Method """
-"""Picks a random integer between 1-6 and assigns it to a variable. This is done 
-	again and then the two varables are added together.
+"""def roll():	
+	Picks a random integer between 1-6 and assigns it to a variable. This is 
+	done again and then the two varables are added together.
 
 	Side effects:
 			Assigns a value of 1-6 to the sides
@@ -227,19 +215,21 @@
     	Returns the sum of the two dice rolls
 """
 
-""" printResult method """
-"""Displays the resulting roll
+""" Print Result Method """
+"""def print_result():
+	Displays the resulting roll of the dice.
 
 	Side effects: 
  		Prints the sum of the dice rolls to the console.
 """
 
-# Fix this one
 """ Inventory Function (Pandas Dataframe) """
 """Viewable pandas dataframe for the player visually see what is in their 
 	inventoryA CSV file in UTF-8 encoding with columns 'Weapon' (str), 'Food' 
  	(str), '\n' 'Round' (str). The first row of the file contains column 
-  	headers; each subsequent row describes the item and its value.
+  	headers; each subsequent row describes the item and its value. We will know
+	more about how this function operates and what exactly it does once we 
+	have learned about Pandas next week.
 """
 
 
@@ -357,18 +347,12 @@
  		taken, and amount of life the player has left.
 """
 
-# Fix this one
 """ Zombie Boss init Method """
 """def __init__(self):
 	Initialize boss zombie. There is only one boss zombie for this game.
-	
-	self.boss_zombie = ""
-	self.player = ""
-	self.special_dmg = ""
-	self.damage = ""
-	self.roll1 = ""
-	self.roll2 = ""
-	self.roll3 = ""
+
+	Side effects:
+		Initializes the boss Zombie's attributes
 """
 
 """ Boss Zombie Attack Method """        
@@ -389,15 +373,12 @@
 # Fix this one
 """ Boss Zombie repr Method """	
 """def __repr__(self):
-	Returns a form representation of damage taken by the player from the 
- 	special attack
-  	return (
-		f"{self.player} took {self.roll1} damage from the first attack.\n"
-		f"{self.player} took {self.roll2} damage from the second attack.\n"
-		f"{self.player} took {self.roll3} damage from the third attack.\n"
-		f"{self.player} took a combined total of {self.special_dmg} damage from 
-  			the boss zombie attack!"
-	)
+	Returns a formal representation of damage taken by the player from the 
+ 	boss Zombie's special attack.
+  	
+	Side effects: 
+		Prints the formal representation of damage taken by the player from the
+			boss Zombie's special attack
 """
 
 
@@ -421,7 +402,6 @@
          	player's attack attempt is not succesful.
     """
     
-# Fix this one
 """ Player Class init Method """
 """def __init__(self, player):
 	Initalize player object.
@@ -432,13 +412,6 @@
 	Side effects: 
  		Prints statements for the dice roll results, amount of damage taken, and 
    		amount of life for the zombies/boss zombie.
-
-	
-	self.weapon = "" 
-	self.player = player 
-	self.zombie = ""
-	boss_zombie = ""
-	self.damage = weapon_inv[weapon]
 """
 
 """ Player Class Attack Method """
@@ -467,42 +440,44 @@
 
 """ Supply Run Method """
 """def supply_run(self):
-	Supply runs can only happen during the day and if the player input is False 
- 	to the question whether the player would like to skip the supply run during
-  	the round().  If the player does not skip the supply run, the 
-   	gather_supply() is called to initiate supply run.  The inventory() is called
-	to update it with the item found by the player.
+	Supply runs can only happen during the day (even rounds) and if the player 
+	input is False to the question whether the player would like to skip the 
+	supply run during the round() method.  If the player does not skip the 
+	supply run, the gather_supply() method is called to initiate supply run. 
+	The inventory() method is called to update it with the item found by the 
+	player.
 		
 	Side effects:
  		Prints statements of items found by player. Adjusts inventory dict.
 """        
 
-""" def __main__(playerName,supplyChoice,weaponChoice):
-runs a game of humans vs. zombies
 
-Args:
-	playerName (str): name of player
-	supplyChoice(bool): whether player choices to re-supply or not
-	weaponChoice(str): players choosen weapon
+""" Main Game Function"""
+"""def __main__(playerName,supplyChoice,weaponChoice):
+	Runs a game of Zombie Rolls.
 
-Returns:
+	Args:
+		playerName (str): name of player
+		supplyChoice(bool): whether player choices to re-supply or not
+		weaponChoice(str): players choosen weapon	
 
-Side Effects:
-	high score board will be printed to the terminal
-	player and zombies health will be printed to the terminal in the form of strings
-	current round number will be printed as an int
-	Dice roll results will be printed to the terminal
-	Damage taken to each player will be printed
+	Side Effects:
+		High score board will be printed to the terminal. Player and zombies' 
+		health will be printed to the terminal in the form of strings. The 
+		current round number will be printed as an int. Dice roll results will 
+		be printed to the terminal. Damage taken to the player will be printed
 """
 
+""" ArgumentParser Function	"""
 """def parse_args(argList):
-Parse command line arguments.
+	Parse command line arguments. 3 arguments are expected (this number may 
+	grow). Players name, supply skip option, and players weapon choice. 
 
-3 arguments are expected (this number may grow). players name, supply skip option, and players weapon choice. 
+	Args:
+		argsList (list of str): List of arguments the user will insert into the 
+			command line terminal
 
-Args:
-	argsList (list of str): List of arguments the user will insert into the command line terminal
-
-Returns:
-	namespace: containts a name attribute for the name of the player as a string,  
-"""
+	Returns:
+		namespace: containts a name attribute for the name of the player as a 
+			string,  
+	"""
