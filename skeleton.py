@@ -221,10 +221,11 @@ Side effects:
   	headers; each subsequent row describes the item and its value."""
 
 
-""" Zombie Class"""
-"""Action of one zombie.  In the game, the zombies will only be capable of 
-   attempting to attack the player once during the night round. During the day, 
-   they wander aimlessly and are harmless. 
+""" Zombie Class """
+"""class Zombie:
+	Action of one zombie.  In the game, the zombies will only be capable of 
+   	attempting to attack the player once during the night round. During the day, 
+   	they wander aimlessly and are harmless. 
    
 	Attributes:
 		zombie (str): zombie and the number associated with the zombie (zombie#) 
@@ -263,7 +264,7 @@ Side effects:
 		self.player = ""
 		self.damage = ""
 	"""
-        
+          
 """ Zombie Attack Method """
 """def attack(self, zombie_list, player):
 	Attack of one zombie on the player.  The method will iterate through the 
@@ -285,79 +286,99 @@ Side effects:
 	"""
         
 
-class BossZombie(Zombie):
-    """Action of boss zombie.  Different from regular zombie in that it first launches three consecutive
-    attacks in addition to one normal zombie attack.  Appears on the final night of the game which is
-    determined by using the round().  A list will be used to contain the boss zombie for the code to 
+""" Boss Zombie Class """
+"""class BossZombie(Zombie):
+    Action of boss zombie.  Different from regular zombie in that it first 
+    launches three consecutive attacks in addition to one normal zombie attack. 
+    Appears on the final night of the game which is determined by using the 
+    round().  A list will be used to contain the boss zombie for the code to 
     work within the inherited attack method.
     
-        Attributes:
-            boss_zombie (str): boss zombie and the number associated with the boss_zombie (boss_zombie#).
-                          For the game, there will be a list containing the one boss zombie and it will 
-                          appear on the final night of the game, which is determined by using the round().
-                          Unlike for the Zombie Class, there is no need to call the health() as it only
-                          appears for one turn and will take a turn before the player, allowing it to
-                           always be 'alive' to take a turn.  Limited to string types.     
-            player (str): name of player zombie is attacking.  This is a single player game, therefore
-                          only one player name will exist per game.  Limited to string types.
-            special_dmg (int): represents the amount of total damage done by the three consecutive attacks
-                               performed by the boss zombie.  Limited to integer types to work with numbers
-                               only.
-            damage (int): represents the amount of the 'normal zombie' attack done by the boss zombie.
-                          The method will be inherited by using the super() and will iterate through the
-                          boss_zombie_list as it did for the zombie_list, and go through all the rest of
-                          the code to attempt to attack the player.Limited to integer types to work with 
-                          numbers only.
-            roll1 (int): 1st roll of the boss zombie attack.  The player is unable to evade this attack and
-                         will take a damage based on a single die roll.  The minimum value is 1 and the
-                         maximum value is 6, which are the lowest and highest roll possible on a regular
-                         6-sided die.  Limited to integer types to work with numbers only.
-            roll2 (int): 2nd roll of the boss zombie attack.  The player is unable to evade this attack and
-                         will take a damage based on a single die roll.  The minimum value is 1 and the
-                         maximum value is 6, which are the lowest and highest roll possible on a regular
-                         6-sided die.  Limited to integer types to work with numbers only.
-            roll3 (int): 3rd roll of the boss zombie attack.  The player is unable to evade this attack and
-                         will take a damage based on a single die roll.  The minimum value is 1 and the
-                         maximum value is 6, which are the lowest and highest roll possible on a regular
-                         6-sided die.  Limited to integer types to work with numbers only.
+	Attributes:
+		boss_zombie (str): boss zombie and the number associated with the 
+  			boss_zombie (boss_zombie#). For the game, there will be a list
+     		containing the one boss zombie and it will appear on the final night 
+       		of the game, which is determined by using the round(). Unlike for 
+         	the Zombie Class, there is no need to call the health() as it only
+			appears for one turn and will take a turn before the player, 
+   			allowing it to always be 'alive' to take a turn.  Limited to string 
+      		types.     
+		player (str): name of player zombie is attacking. This is a single 
+  			player game, therefore only one player name will exist per game. 
+     		Limited to string types.
+		special_dmg (int): represents the amount of total damage done by the 
+  			three consecutive attacks performed by the boss zombie. Limited to 
+     		integer types to work with numbers only.
+		damage (int): represents the amount of the 'normal zombie' attack done 
+  			by the boss zombie. The method will be inherited by using the 
+     		super() and will iterate through the boss_zombie_list as it did for 
+       		the zombie_list, and go through all the rest of the code to attempt 
+         	to attack the player.Limited to integer types to work with numbers 
+          	only.
+		roll1 (int): 1st roll of the boss zombie attack. The player is unable to 
+  			evade this attack and will take a damage based on a single die roll.
+     		The minimum value is 1 and the maximum value is 6, which are the 
+       		lowest and highest roll possible on a regular 6-sided die. 
+         	Limited to integer types to work with numbers only.
+		roll2 (int): 2nd roll of the boss zombie attack. The player is unable to 	
+  			evade this attack and will take a damage based on a single die roll. 
+     		The minimum value is 1 and the maximum value is 6, which are the 
+       		lowest and highest roll possible on a regular 6-sided die.
+         	Limited to integer types to work with numbers only.
+		roll3 (int): 3rd roll of the boss zombie attack. The player is unable to 
+  			evade this attack and will take a damage based on a single die roll.  
+     		The minimum value is 1 and the maximum value is 6, which are the 
+       		lowest and highest roll possible on a regular 6-sided die.
+         	Limited to integer types to work with numbers only.
 
-        Side effects: prints statements for the dice roll results, amount of damage taken, and amount of 
-                      life the player has left.
-
+	Side effects: prints statements for the dice roll results, amount of damage 
+ 		taken, and amount of life the player has left.
     """
-    def __init__(self):
-        """Initialize boss zombie.  There is only one boss zombie for this game."""
-        
-        self.boss_zombie = ""
-        self.player = ""
-        self.special_dmg = ""
-        self.damage = ""
-        self.roll1 = ""
-        self.roll2 = ""
-        self.roll3 = ""
-        
-    def attack(self, boss_zombie_list, player):
-        """Boss zombie performs three consecutive attacks on player.  The attacks cannot be dodged.
-        The DiceRoll Class is called for each of the three attacks and rolls a number between one and six.
-        The player receives damage equivalent to the result of the dice roll and health() is called to 
-        update player's health.  Super() is used to inherit the attack method from the parent Zombie Class.
-        Doing so will allow the boss zombie to execute a normal zombie attack after it's special attack.
-        Boss zombie is contained in a list.
-        
-        Args:
-            boss_zombie_list (list of str): list containing the boss zombie.
-            player (str): name of player.
-        """     
-        
-    def __repr__(self):
-        """Returns a form representation of damage taken by the player from the special attack."""
-        return (
-            f"{self.player} took {self.roll1} damage from the first attack.\n"
-            f"{self.player} took {self.roll2} damage from the second attack.\n"
-            f"{self.player} took {self.roll3} damage from the third attack.\n"
-            f"{self.player} took a combined total of {self.special_dmg} damage from the boss zombie attack!"
-        )
-   
+
+# Fix this one
+""" Zombie Boss init Method """
+"""def __init__(self):
+	Initialize boss zombie. There is only one boss zombie for this game.
+	
+	self.boss_zombie = ""
+	self.player = ""
+	self.special_dmg = ""
+	self.damage = ""
+	self.roll1 = ""
+	self.roll2 = ""
+	self.roll3 = ""
+	"""
+
+""" Boss Zombie Attack Method """        
+"""def attack(self, boss_zombie_list, player):
+	Boss zombie performs three consecutive attacks on player. The attacks cannot 
+ 	be dodged. The DiceRoll Class is called for each of the three attacks and 
+  	rolls a number between one and six. The player receives damage equivalent to 
+   	the result of the dice roll and health() is called to update player's 
+    health.  Super() is used to inherit the attack method from the parent Zombie 
+    Class. Doing so will allow the boss zombie to execute a normal zombie attack 
+    after it's special attack. Boss zombie is contained in a list.
+	
+	Args:
+		boss_zombie_list (list of str): list containing the boss zombie
+		player (str): name of player
+	"""     
+
+# Fix this one
+""" Boss Zombie repr Method """	
+"""def __repr__(self):
+	Returns a form representation of damage taken by the player from the 
+ 	special attack
+  	return (
+		f"{self.player} took {self.roll1} damage from the first attack.\n"
+		f"{self.player} took {self.roll2} damage from the second attack.\n"
+		f"{self.player} took {self.roll3} damage from the third attack.\n"
+		f"{self.player} took a combined total of {self.special_dmg} damage from 
+  			the boss zombie attack!"
+	)
+"""
+
+
 class Player:
     """Action of player.  Attack zombies during the night and can make a selection between supply run
     or attack zombie during the day.  During the attack sequence, player chooses which zombie they would
