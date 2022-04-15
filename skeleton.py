@@ -221,56 +221,68 @@ Side effects:
   	headers; each subsequent row describes the item and its value."""
 
 
-class Zombie:
-    """Action of one zombie.  In the game, the zombies will only be capable of attempting to attack the
-       player once during the night round.  During the day, they wander aimlessly and are harmless. 
-    
-        Attributes:
-            zombie (str): zombie and the number associated with the zombie (zombie#) doing the attacking.
-                          For the game, there will be a list containng three zombies and each zombie will 
-                          take action in the order of the index per turn as long as they are "alive".
-                          To determine the status of the zombie, the health() will be called at the 
-                          start of the round of each of the zombies' turns.  If their health is not 0,
-                          then they will be allowed to attack.  Limited to string types.
-            player (str): name of player zombie is attacking.  This is a single player game, therefore
-                          only one player name will exist per game.  Limited to string types.
-            damage (int): represents the amount of damage done by zombie.  The round() will be called to
-                          determine if it's night or day.  If it's night, the DiceRoll Class 
-                          will be called and the amount of damage will be determined based on a dice roll
-                          of the zombie and a dice roll of the player which are automatically executed
-                          per attack for both zombie and player.  The exact amount of damage done by
-                          the zombie on the player will be calculted by subtracting the result of the dice
-                          roll of the player from the result of the dice roll of the zombie.  For these
-                          dice rolls, we will be using two 6-sided dice.  If the player's dice roll is
-                          higher than the zombie's, the attack fails and damage is set to 0.
-                          The health() will be called each time the player takes damage to update the
-                          health of the player.  The minimum value is 0 should the player succeed in evading
-                          the attack.  The maximum value is 10, which is calculated by taking the lowest 
-                          roll possible of 2 and subtracting the number from the highest role possible of 12.
-                          Limited to integer types to work with numbers only.
-    """
-    def __init__(self):   
-        """Initialize new zombie object."""
+""" Zombie Class"""
+"""Action of one zombie.  In the game, the zombies will only be capable of 
+   attempting to attack the player once during the night round. During the day, 
+   they wander aimlessly and are harmless. 
+   
+	Attributes:
+		zombie (str): zombie and the number associated with the zombie (zombie#) 
+  			doing the attacking. For the game, there will be a list containng 
+     		three zombies and each zombie will take action in the order of the 
+       		index per turn as long as they are "alive". To determine the status 
+         	of the zombie, the health() will be called at the start of the round 
+          	of each of the zombies' turns.  If their health is not 0, then they 
+           	will be allowed to attack.  Limited to string types.
+		player (str): name of player zombie is attacking.  This is a single 
+  			player game, therefore only one player name will exist per game. 
+     		Limited to string types.
+		damage (int): represents the amount of damage done by zombie. The 
+  			round() will be called to determine if it's night or day. 
+     		If it's night, the DiceRoll Class will be called and the amount of
+       		damage will be determined based on a dice roll of the zombie and a 
+         	dice roll of the player which are automatically executed per attack 
+          	for both zombie and player.  The exact amount of damage done by the 	
+           	zombie on the player will be calculted by subtracting the result of 
+            the dice roll of the player from the result of the dice roll of the 
+            zombie. For these dice rolls, we will be using two 6-sided dice. If 
+            the player's dice roll is higher than the zombie's, the attack fails 
+            and damage is set to 0. The health() method will be called each time 
+            the player takes damage to update the health of the player. The 
+            minimum value is 0 should the player succeed in evading the attack. 
+            The maximum value is 10, which is calculated by taking the lowest 
+            roll possible of 2 and subtracting the number from the highest role
+            possible of 12. Limited to integer types to work with numbers only.
+	"""
+ 
+""" Zombie Init Method """
+"""def __init__(self):   
+	Initialize new zombie object.
+		
+		self.zombie = ""
+		self.player = ""
+		self.damage = ""
+	"""
         
-        self.zombie = ""
-        self.player = ""
-        self.damage = ""
-        
-    def attack(self, zombie_list, player):
-        """Attack of one zombie on the player.  The method will iterate through the list of zombies, which will
-        allow each zombie to attempt to attack the player one time each, as long as they are 'alive'.  
-        
-        Args:
-            zombie_list (list of str): list containing the zombies.
-            player (str): player's name.
-            
-        Side effects: prints statements for the dice roll results, amount of damage taken, and amount of 
-                      life the player has left.
-        
-        Returns:
-            bool: True if the attack succeeds (dice roll of zombie is higher than player's).
-                  False if the attack fails (dice roll of the zombie is lower than player's).
-        """
+""" Zombie Attack Method """
+"""def attack(self, zombie_list, player):
+	Attack of one zombie on the player.  The method will iterate through the 
+ 	list of zombies, which will	allow each zombie to attempt to attack the 
+  	player one time each, as long as they are 'alive'.  
+
+	Args:
+		zombie_list (list of str): list containing the zombies
+		player (str): player's name
+		
+	Side effects: 
+ 		Prints statements for the dice roll results, amount of damage taken, and 
+   		amount of life the player has left.
+
+	Returns:
+		is_true (bool): True if the attack succeeds (dice roll of zombie is 
+  			higher than player's). False if the attack fails (dice roll of the
+     		zombie is lower than player's).
+	"""
         
 
 class BossZombie(Zombie):
