@@ -57,7 +57,7 @@
 """
 
 
-""" Music """
+""" Music Function """
 """ def play_music(path):
 	Plays music during the game. This method opens an mp3 file and uses both 
 	the playsound and glob modules to play the music during a game of Zombie
@@ -112,36 +112,38 @@
             otherwise False.
 """
 
-
+# Fix this one
 """ Gathering Supplies Method """
 """
-   Get players to roll and assign an item.
-       The player will need to roll two dyes and the supplies
-       the get will be depending on what number the dice rolls on.
-       This logic also applies to the weapons in this game.
-   
+   Get players to roll and assign an item. The player will need to roll two dyes 
+	and the supplies the get will be depending on what number the dice rolls on.
+	This logic also applies to the weapons in this game.
+
    Args:
-       dice_roll(int): this variable represents the sum of the two dices that each player rolls
-    Side Effects: Player will get a weapon or an item in their inventory
- 
+       dice_roll(int): this variable represents the sum of the two dices that 
+       		each player rolls
+    
+    Side Effects: 
+    	Player will get a weapon or an item in their inventory
 """
  
- 
+# Fix this one 
 """ Print Status Bar """
 """
-   returns a display depending on the players health
-       This function gets the players health and keeps track of it using
-       percentage represented as a bar. Each player will gain or lose a bar
-       depending on how they are performing in the game. The status bar equals
-       to 100.
+	Returns a display depending on the players health. This function gets the 
+ 	players health and keeps track of it using percentage represented as a bar. 
+  	Each player will gain or lose a bar depending on how they are performing in 
+   	the game. The status bar equals 100.
    
    Returns:
-       string: returns the health status bar based on the players health
-    Side Effects: player health status bar is available for printing
- 
+       health_stat_bar (str): Returns the health status bar based on the players 
+       		health
+    
+    Side Effects: 
+    	Player health status bar is available for printing
 """
  
- 
+# Fix this one
 """ Health function """
 """def print_status_bar(percent):
    The health function is used to keep track of the health of the player. It
@@ -158,7 +160,7 @@
        this.player.max_health=int
 """
  
- 
+# Fix this one
 """ decrease health """
 """keeps track of the health lost by each players
    
@@ -169,25 +171,27 @@
                    the function calls the game_over() function
 """
  
- 
+ # Fix this one
 """ increase_health """
 """Keeps track of the health gained by each players
   
    Args:
        heal(int): represents how much the player healed
   
-   Side Effects: player gains health up to 100
+   Side Effects: 
+   		Player gains health up to 100
 """
 
-
+# Fix this one
 """ use_supply """
 """Keeps track of the health gained by each players
    
    Args:
-       item(int): represents the supplies the player can use ranging from 
+       item (int): represents the supplies the player can use ranging from 
        		weapons to supplies.
   
-   Side Effects: It calls the increase or decrease of health function
+   Side Effects: 
+   		Calls the increase or decrease of health function
 """
 
 
@@ -196,29 +200,34 @@
 	
  Attributes:
 		sides (int): The number of sides on the dice
- 	"""
+"""
   
-""" roll method """
+# Fix this one
+""" Dice Class Roll Method """
 """Picks a random integer between 1-6 and assigns it to a variable. This is done 
 	again and then the two varables are added together.
 
-Side effects:
+	Side effects:
 			Assigns a value of 1-6 to the sides
-   Returns: Returns the sum of the two dice rolls
+   	
+    Returns: 
+    	Returns the sum of the two dice rolls
 """
-
 
 """ printResult method """
 """Displays the resulting roll
 
 	Side effects: 
- 		Prints the sum of the dice rolls to the console."""
+ 		Prints the sum of the dice rolls to the console.
+"""
 
-""" Inventory Function """
+# Fix this one
+""" Inventory Function (Pandas Dataframe) """
 """Viewable pandas dataframe for the player visually see what is in their 
 	inventoryA CSV file in UTF-8 encoding with columns 'Weapon' (str), 'Food' 
  	(str), '\n' 'Round' (str). The first row of the file contains column 
-  	headers; each subsequent row describes the item and its value."""
+  	headers; each subsequent row describes the item and its value.
+"""
 
 
 """ Zombie Class """
@@ -254,7 +263,7 @@ Side effects:
             The maximum value is 10, which is calculated by taking the lowest 
             roll possible of 2 and subtracting the number from the highest role
             possible of 12. Limited to integer types to work with numbers only.
-	"""
+"""
  
 """ Zombie Init Method """
 """def __init__(self):   
@@ -263,7 +272,7 @@ Side effects:
 		self.zombie = ""
 		self.player = ""
 		self.damage = ""
-	"""
+"""
           
 """ Zombie Attack Method """
 """def attack(self, zombie_list, player):
@@ -283,7 +292,7 @@ Side effects:
 		is_true (bool): True if the attack succeeds (dice roll of zombie is 
   			higher than player's). False if the attack fails (dice roll of the
      		zombie is lower than player's).
-	"""
+"""
         
 
 """ Boss Zombie Class """
@@ -333,7 +342,7 @@ Side effects:
 
 	Side effects: prints statements for the dice roll results, amount of damage 
  		taken, and amount of life the player has left.
-    """
+"""
 
 # Fix this one
 """ Zombie Boss init Method """
@@ -347,7 +356,7 @@ Side effects:
 	self.roll1 = ""
 	self.roll2 = ""
 	self.roll3 = ""
-	"""
+"""
 
 """ Boss Zombie Attack Method """        
 """def attack(self, boss_zombie_list, player):
@@ -362,7 +371,7 @@ Side effects:
 	Args:
 		boss_zombie_list (list of str): list containing the boss zombie
 		player (str): name of player
-	"""     
+"""     
 
 # Fix this one
 """ Boss Zombie repr Method """	
@@ -377,6 +386,7 @@ Side effects:
   			the boss zombie attack!"
 	)
 """
+
 
 """ Player Class """
 """class Player:
@@ -439,7 +449,7 @@ Side effects:
 		is_true (bool): True if the attack succeeds (dice roll of player is 
   			higher than zombie's). False if the attack fails (dice roll of 
      		player is lower than zombie's).
-	"""
+"""
         
 
 """ Supply Run Method """
@@ -452,4 +462,4 @@ Side effects:
 		
 	Side effects:
  		Prints statements of items found by player. Adjusts inventory dict.
-	"""        
+"""        
