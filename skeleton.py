@@ -370,7 +370,6 @@
 		player (str): name of player
 """     
 
-# Fix this one
 """ Boss Zombie repr Method """	
 """def __repr__(self):
 	Returns a formal representation of damage taken by the player from the 
