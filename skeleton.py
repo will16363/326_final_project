@@ -146,20 +146,28 @@
 # Fix this one
 """ Health function """
 """def print_status_bar(percent):
-   The health function is used to keep track of the health of the player. It
-   starts with a 100 and can gain health depending on your roll within
-   gathering supplies function. It can also lose health depending on your
-   zombie fight. The level of injury depends on the type of weapon that gets
-   used.
- 
-   Args:
-       def health_function():
+   This function gets the players health and keeps track of it using
+      percentage represented by individual bars
+      ex- = is 10% == is 20%. Each player will gain or lose a bar
+      depending on how they are performing in the game. The status bars add up
+      to 100. There are also weapons and supplies in this game worth different
+      amount of points. So the player's health level will change based on that.
+  Args:
+   This function gets the players health and keeps track of it using
+      percentage represented by individual bars ex- = is 10% == is 20%. Each player
+      will gain or lose a bar depending on how they are
+      performing in the game. The status bars add up
+      to 100.
   
+   def health_function():Keeps track of the players health depending on their performance
    Returns:
-       if weapon == '':
-       this.player.max_health=int
+      if weapon == '': Each weapon and supply is worth
+      different point and this is where you plug that in
+      this.player.max_health=int this shows what the current
+      health of the player is depending on the attack
+      they went through or the supplies they got.
 """
- 
+
 # Fix this one
 """ decrease health """
 """keeps track of the health lost by each players
@@ -168,7 +176,7 @@
        damage(int): represents the damage the players took
    
    Side Effects: player loses health and if the health is 0 or less
-                   the function calls the game_over() function
+                  the function calls the game_over() function
 """
  
  # Fix this one
@@ -192,8 +200,13 @@
   
    Side Effects: 
    		Calls the increase or decrease of health function
+  	
+   Args:
+    	item(int): represents the supplies the player can use ranging from 
+     		weapons to supplies.
+   
+   Side Effects: It calls the increase or decrease of health function
 """
-
 
 """ Dice Class """
 """A dice having 6 sides
