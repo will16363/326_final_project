@@ -441,11 +441,15 @@ Side effects:
      		player is lower than zombie's).
 	"""
         
-    def supply_run(self):
-        """Supply runs can only happen during the day and if the player input is False to the question
-        whether the player would like to skip the supply run during the round().  If the player does not
-        skip the supply run, the gather_supply() is called to initiate supply run.  The inventory() is called
-        to update it with the item found by the player.
-            
-        Side effects: prints statements of items found by player.  Adjusts inventory dict.
-        """        
+
+""" Supply Run Method """
+"""def supply_run(self):
+	Supply runs can only happen during the day and if the player input is False 
+ 	to the question whether the player would like to skip the supply run during
+  	the round().  If the player does not skip the supply run, the 
+   	gather_supply() is called to initiate supply run.  The inventory() is called
+	to update it with the item found by the player.
+		
+	Side effects:
+ 		Prints statements of items found by player. Adjusts inventory dict.
+	"""        
