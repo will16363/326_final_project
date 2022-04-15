@@ -113,20 +113,77 @@
 """
 
 
+
+"""Gathering Supplies """
+"""
+   Get players to roll and assign an item.
+       The player will need to roll two dyes and the supplies
+       the get will be depending on what number the dice rolls on.
+       This logic also applies to the weapons in this game.
+   Args:
+       dice_roll(int): this variable represents the sum of the two 
+       dices that each player rolls
+    Side Effects: Player will get a weapon or an item in their 
+    inventory
+ """
+ 
+
 """ Health function """
 """def print_status_bar(percent):
-	The health function is used to keep track of the health of the player. It 
-	starts with a 100 and can gain health depending on your roll within 
-	gathering supplies function. It can also lose health depending on your 
-	zombie fight. The level of injury depends on the type of weapon that gets 
-	used.
-
-	Args: 
-		def health_function():
-	
-	Returns: 
-		if weapon == '': 
-		this.player.max_health=int
+   	This function gets the players health and keeps track of it using
+       percentage represented by individual bars 
+       ex- = is 10% == is 20%. Each player will gain or lose a bar
+       depending on how they are performing in the game. The status bars add up
+       to 100. There are also weapons and supplies in this game worth diffrent 
+       amount of point. So the players health level will change based on that. 
+ 
+   Args:
+   	This function gets the players health and keeps track of it using
+       percentage represented by individual bars ex- = is 10% == is 20%. Each player 
+       will gain or lose a bar depending on how they are 
+       performing in the game. The status bars add up
+       to 100.
+    
+    def health_function():Keps track of the players health depedning on their performance
+  
+   Returns:
+       if weapon == '': Each weapon and supply is worth 
+       diffrent point and this is where you plug that in
+       this.player.max_health=int this shows what the current 
+       health of the player is depending on the attack 
+       they went through or the supplies they got.
 """
+ 
+ 
+"""decrease health"""
+"""This keeps track of the health lost by each players. 
+There are diffrent types of weapons in this games such as bats 
+ans shot gun. WIth this we will be able to see how much points 
+were lost depending on the tool they used to attack."
+   Args:
+       damage(int): represents the damage the players took due to an attack. 
+   
+  
+   Side Effects: player loses health and if the health is 0 or less
+                   the function calls the game_over() function
+"""
+ 
+"""increase_health"""
+"""This keeps track of the health gained by each players. 
+Player is able to collect supplies throughout the game such as
+water, food, shoes and so on. When they collect these things this their 
+health points are increased."
+   Args:
+       heal(int): represents how much the player healed based on the supplies they were able to collect.
+  
+   Side Effects: player gains health up to 100
+"""
+"""
+   Args:
+       item(int): represents the supplies the player can use ranging from weapons to supplies.
+  
+   Side Effects: It calls the increase or decrease of health function
+"""
+
    
 
