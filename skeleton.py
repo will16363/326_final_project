@@ -214,3 +214,9 @@ again and then the two varables are added together."""
 """Displays the resulting roll"""
 "Prints: prints the sum of the dice rolls to the console."""
 
+"""Inventory Function"""
+"""Viewable pandas dataframe for the player visually see what is in their 
+inventory"""
+"""A CSV file in UTF-8 encoding with columns 'Weapon' (str), 'Food' (str), '\n'
+'Round' (str). The first row of the file contains column headers; each 
+subsequent row describes the item and its value."""
