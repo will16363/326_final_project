@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/main
 # work in progress
 
 class Zombie:
@@ -242,4 +246,8 @@ class Player:
         # determined by round()
         # call gather_supply()
         # prints out something like "you found [item]!"
+<<<<<<< HEAD
         # adds item to dictionary, if item is already in dict, then does not get added.
+=======
+        # adds item to dictionary, if item is already in dict, then does not get added.
+=======
