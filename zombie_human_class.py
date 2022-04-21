@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/main
 # work in progress
 
 class Zombie:
@@ -37,6 +33,7 @@ class Zombie:
         
         self.zombie = ""
         self.player = ""
+        self.player.health = ""
         self.damage = ""
         
     def attack(self, zombie_list, player):
@@ -87,8 +84,13 @@ class Zombie:
                     zombie_index += 1
                     return False
 
-        health(self.player, self.damage)             # call health function to update health
-        print(f"{self.player} has {health_dict([self.player])} left")
+        decrease_health(self.player, self.damage)                 # call health function to update health
+        self.player.health = {health.self.player.max_health}
+        print(f"{self.player} has {health.self.player.max_health} left")
+        
+        if zombie_num == 0:
+            print("There are no zombies left.  Go to next round.")
+            # call round() to skip round.
 
 class BossZombie(Zombie):
     """Action of boss zombie.  Different from regular zombie in that it first launches three consecutive
@@ -160,7 +162,8 @@ class BossZombie(Zombie):
         total_dmg = (self.roll1) + (self.roll2) + (self.roll3)
         
         self.special_dmg = total_dmg
-        health(self.player, self.special_dmg)    # call health() to update
+        decrease_health(self.player, self.special_dmg)    # call health() to update
+        print(f"{self.player} has {health.self.player.max_health} left")
     
         super().attack(boss_zombie_list, player)     
         # this should perform a normal zombie attack on one player.
@@ -200,10 +203,11 @@ class Player:
 
         """
         self.weapon = "" 
-        self.player = player 
+        self.player = player
+        self.player.health = {health.function.self.player.max_health}
         self.zombie = ""
         boss_zombie = ""
-        self.damage = weapon_inv[weapon]
+        self.damage = weapon_inv[self.weapon]
         
     def attack(self, zombie_list, boss_zombie_list=None):
         """Attacks of player on the zombie.  Allows player to make a weapon selection.  DiceRoll Class is
@@ -223,19 +227,50 @@ class Player:
             bool: True if the attack succeeds (dice roll of player is higher than zombie's).
                   False if the attack fails (dice roll of player is lower than zombie's).
         """
-        """Ask for player input which zombie they would like to attack.
-           or make it easier and only allow the player to take out zombies one by one starting with zombie1.
-           self.zombie = input
-           Initiate DiceRoll()
-           return True if attack executes.  False if it does not.
-           update health of zombie using health().
-           print something like "You did xx dmg on zombie."
-        """
-        # if boss_zombie_list == None, set self.boss_zombie to None, else set it to boss_zombie_list[index]
+        if boss_zombie_list == None:
+            self.boss_zombie = None
+        else:
+            self.boss_zombie = boss_zombie_list[0]
+        
+        if len(zombie_list) != 0:                     # as long as there's at least ONE zombie left...
+            print(f"{len(zombie_list)} zombie(s) left.")
+            print("Choose your weapon.")
+            print(weapon_dict)
+            weap_choice = input()
+            
+            if weap_choice not in weapon_dict:
+                print('Please type your weapon of choice.')
+                weap_choice = input()
+            else:
+                self.weapon = weap_choice
+            
+            self.zombie = zombie_list[0]              # attack zombie in index 0
+            zombie_roll = self.zombie.DiceRoll()
+            player_roll = self.player.DiceRoll()
+            
+            if  player_roll >= zombie_roll:              
+                print(f"You attacked {self.zombie} with {self.weapon}."
+                      f"It took {self.damage} damage.")
+                decrease_health(self.zombie, self.damage)
+                print(f"{self.zombie} has {health.self.zombie.max_health} left")
+                return True
+
+            else:
+                print('The attack was unsuccesful.')
+                self.damage = 0
+                return False
+            
+        if {health.self.zombie.max_health} <= 0:
+            zombie_list.pop(0)
+            
+        if len(zombie_list) == 0:
+            print("You have defeated all zombies.  Go to next round.")
+            # if there are no zombies left, then the game should not execute the entire attack method in the 1st place.
+            # I created this "if" statement as a failsafe.
+            # call round() to skip round()?
         
         
-        
-    def supply_run(self):
+    def supply_run(self):    # I probably don't need to do this?
         """Supply runs can only happen during the day and if the player input is False to the question
         whether the player would like to skip the supply run during the round().  If the player does not
         skip the supply run, the gather_supply() is called to initiate supply run.  The inventory() is called
@@ -246,8 +281,4 @@ class Player:
         # determined by round()
         # call gather_supply()
         # prints out something like "you found [item]!"
-<<<<<<< HEAD
         # adds item to dictionary, if item is already in dict, then does not get added.
-=======
-        # adds item to dictionary, if item is already in dict, then does not get added.
-=======
