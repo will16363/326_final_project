@@ -13,6 +13,9 @@ class Zombie:
                           then they will be allowed to attack.  Limited to string types.
             player (str): name of player zombie is attacking.  This is a single player game, therefore
                           only one player name will exist per game.  Limited to string types.
+            player.health (int): represents the health of the player.  Set after the attacks of the zombies
+                                 and after health() is called to reflect the damage done on the player.
+                                 Limited to interger types to work with numbers only.
             damage (int): represents the amount of damage done by zombie.  The round() will be called to
                           determine if it's night or day.  If it's night, the DiceRoll Class 
                           will be called and the amount of damage will be determined based on a dice roll
@@ -52,7 +55,7 @@ class Zombie:
                   False if the attack fails (dice roll of the zombie is lower than player's).
         """
         # while loop to iterate through the zombie list and each zombie will execute attack as long as they are 'alive'.
-        # work in progress!
+        # I think it works?
         self.player = player
         
         count = 1
@@ -86,7 +89,7 @@ class Zombie:
 
         decrease_health(self.player, self.damage)                 # call health function to update health
         self.player.health = {health.self.player.max_health}
-        print(f"{self.player} has {health.self.player.max_health} left")
+        print(f"{self.player} has {health.self.player.max_health} left.")
         
         if zombie_num == 0:
             print("There are no zombies left.  Go to next round.")
@@ -156,20 +159,31 @@ class BossZombie(Zombie):
             player (str): name of player.
         """
         # do while loop similar to Zombie Class to set self.boss_zombie = boss_zombie[index]
-        self.roll1 = DiceRoll()    # roll just 1 die.  so damage is 1-6 per roll.
-        self.roll2 = DiceRoll()
-        self.roll3 = DiceRoll()
-        total_dmg = (self.roll1) + (self.roll2) + (self.roll3)
+        count = 1
+        boss_zombie_index = 0
+        boss_zombie_num = len[boss_zombie_list]
         
-        self.special_dmg = total_dmg
-        decrease_health(self.player, self.special_dmg)    # call health() to update
-        print(f"{self.player} has {health.self.player.max_health} left")
-    
+        while count < boss_zombie_num:
+            for boss_zombie in boss_zombie_list:
+                self.boss_zombie = boss_zombie[boss_zombie_index]
+            
+            # No need to check for boss zombie health since it spawns last round and attacks before player.
+            self.roll1 = DiceRoll()    # roll just 1 die.  so damage is 1-6 per roll.
+            self.roll2 = DiceRoll()
+            self.roll3 = DiceRoll()
+            total_dmg = (self.roll1) + (self.roll2) + (self.roll3)
+            
+            self.special_dmg = total_dmg
+            decrease_health(self.player, self.special_dmg)    # call health() to update
+            print(f"{self.player} has {health.self.player.max_health} left.")
+            count += 1
+            boss_zombie_index += 1
+            
         super().attack(boss_zombie_list, player)     
-        # this should perform a normal zombie attack on one player.
+        # this should perform a normal zombie attack on one player by using attack method from Zombie Class.
                
     def __repr__(self):       # put __repr__ before super()?
-        """Returns a form representation of damage taken by the player from the special attack."""
+        """Returns a formal representation of damage taken by the player from the special attack."""
         return (
             f"{self.player} took {self.roll1} damage from the first attack.\n"
             f"{self.player} took {self.roll2} damage from the second attack.\n"
@@ -207,7 +221,7 @@ class Player:
         self.player.health = {health.function.self.player.max_health}
         self.zombie = ""
         boss_zombie = ""
-        self.damage = weapon_inv[self.weapon]
+        self.damage = weapon_dict[self.weapon]
         
     def attack(self, zombie_list, boss_zombie_list=None):
         """Attacks of player on the zombie.  Allows player to make a weapon selection.  DiceRoll Class is
@@ -227,6 +241,9 @@ class Player:
             bool: True if the attack succeeds (dice roll of player is higher than zombie's).
                   False if the attack fails (dice roll of player is lower than zombie's).
         """
+        # the attack method should allow player to attack both regular zombie and boss zombie in the final
+        # round if player was unable to kill all zombies by final round.
+        
         if boss_zombie_list == None:
             self.boss_zombie = None
         else:
@@ -236,7 +253,7 @@ class Player:
             print(f"{len(zombie_list)} zombie(s) left.")
             print("Choose your weapon.")
             print(weapon_dict)
-            weap_choice = input()
+            weap_choice = input()                     # could also do lower.input() to make lowercase
             
             if weap_choice not in weapon_dict:
                 print('Please type your weapon of choice.')
@@ -252,7 +269,7 @@ class Player:
                 print(f"You attacked {self.zombie} with {self.weapon}."
                       f"It took {self.damage} damage.")
                 decrease_health(self.zombie, self.damage)
-                print(f"{self.zombie} has {health.self.zombie.max_health} left")
+                print(f"{self.zombie} has {health.self.zombie.max_health} left.")
                 return True
 
             else:
@@ -262,13 +279,39 @@ class Player:
             
         if {health.self.zombie.max_health} <= 0:
             zombie_list.pop(0)
+            print(f"There are {len(zombie.list)} left.")
             
         if len(zombie_list) == 0:
             print("You have defeated all zombies.  Go to next round.")
             # if there are no zombies left, then the game should not execute the entire attack method in the 1st place.
+            # Because round would be skipped during the zombie's attack because they attack first.
             # I created this "if" statement as a failsafe.
             # call round() to skip round()?
+            
+        if self.boss_zombie != None:
+            print(f"{len(boss_zombie_list)} boss zombie to defeat!")
+            print("Choose your weapon.")
+            print(weapon_dict)
+            weap_choice = input()                     # could also do lower.input() to make lowercase
+            
+            if weap_choice not in weapon_dict:
+                print('Please type your weapon of choice.')
+                weap_choice = input()
+            else:
+                self.weapon = weap_choice    
+            
+            boss_zombie_roll = self.boss_zombie.DiceRoll()
+            player_roll = self.player.DiceRoll()       
         
+            if  player_roll >= boss_zombie_roll:              
+                print(f"You attacked {self.boss_zombie} with {self.weapon}."
+                      f"It took {self.damage} damage.")
+                decrease_health(self.boss_zombie, self.damage)
+                print(f"{self.boss_zombie} has {health.self.boss_zombie.max_health} left.")
+
+            else:
+                print('The attack was unsuccesful.')
+                self.damage = 0
         
     def supply_run(self):    # I probably don't need to do this?
         """Supply runs can only happen during the day and if the player input is False to the question
