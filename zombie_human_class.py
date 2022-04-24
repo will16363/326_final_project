@@ -1,4 +1,11 @@
 # work in progress
+# Create zombie list function?
+"""
+def create_list(num):
+    zombs_list = list(['zombie' + str(n) for n in range(int(num))])
+    
+    return zombs_list
+    """
 
 class Zombie:
     """Action of one zombie.  In the game, the zombies will only be capable of attempting to attack the
@@ -36,8 +43,8 @@ class Zombie:
         
         self.zombie = ""
         self.player = ""
-        self.player.health = ""
-        self.damage = ""
+        self.player.health = {health.function.self.player.max_health}
+        self.damage = 0
         
     def attack(self, zombie_list, player):
         """Attack of one zombie on the player.  The method will iterate through the list of zombies, which will
@@ -87,9 +94,9 @@ class Zombie:
                     zombie_index += 1
                     return False
 
-        decrease_health(self.player, self.damage)                 # call health function to update health
-        self.player.health = {health.self.player.max_health}
-        print(f"{self.player} has {health.self.player.max_health} left.")
+            decrease_health(self.player, self.damage)                 # call health function to update health
+            self.player.health = {health.self.player.max_health}
+            print(f"{self.player} has {health.self.player.max_health} left.")
         
         if zombie_num == 0:
             print("There are no zombies left.  Go to next round.")
@@ -140,11 +147,11 @@ class BossZombie(Zombie):
         
         self.boss_zombie = ""
         self.player = ""
-        self.special_dmg = ""
-        self.damage = ""
-        self.roll1 = ""
-        self.roll2 = ""
-        self.roll3 = ""
+        self.special_dmg = 0
+        self.damage = 0
+        self.roll1 = 0
+        self.roll2 = 0
+        self.roll3 = 0
         
     def attack(self, boss_zombie_list, player):
         """Boss zombie performs three consecutive attacks on player.  The attacks cannot be dodged.
@@ -279,7 +286,7 @@ class Player:
             
         if {health.self.zombie.max_health} <= 0:
             zombie_list.pop(0)
-            print(f"There are {len(zombie.list)} left.")
+            print(f"There are {len(zombie.list)} zombies left.")
             
         if len(zombie_list) == 0:
             print("You have defeated all zombies.  Go to next round.")
