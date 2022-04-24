@@ -86,7 +86,6 @@ def ranked_scores(score_file):
 		print(ranked_dict)
 
 # optional parameters
-
 current_round = 7
 player_input = input("Would you like to skip your supply run? Type False for no"
                      " or True for yes: ")
@@ -484,3 +483,175 @@ class Player:
 
 
 weaponInventory[supply_name] = supply_value
+
+
+Def print_status_bar (self):
+	If self.player.health == 100:
+    Return “100% [==========]” 
+Elif self.player.health == 90:
+  	    Return “90% [=========  ]”
+	Elif self.player.health == 80:
+  	    Return “80% [========    ]”
+	Elif self.player.health == 70:
+  	    Return “70% [=======      ]”
+	Elif self.player.health == 60:
+	    Return “60% [======        ]”
+Elif self.player.health == 50:  
+    Return “50% [=====          ]”
+Elif self.player.health == 40:
+    Return “40% [====            ]”
+Elif self.player.health == 30:
+    Return “30% [===              ]”
+Elif self.player.health == 20:
+    Return “20% [==                ]”
+Elif self.player.health == 10:
+    Return “10% [=                  ]”
+Elif self.player.health == 0:
+    Return “0% [                    ]”
+
+def decrease_health(self, damage):
+    If self.player.health - damage <= 0:
+        gameover(self);
+    else:
+        self.player.health -= damage
+
+Def increase_health(self, heal)
+    If self.player.health + heal >= 100:
+        Self.player.health = 100
+    Else:
+        Self.player.health += heal
+
+
+def use_supply(self, item):
+if item == 'pistol': 
+   decrease_health(self, 20)
+
+elif item == 'shotgun': 
+   decrease_health(self, 30)
+
+elif item == 'golf club': 
+   decrease_health(self, 10)
+
+elif item == 'axe': 
+   decrease_health(self, 10)
+
+elif item == 'baseball bat': 
+   decrease_health(self, 10)
+
+elif item == 'watert': 
+   increase_health(self, 40)
+
+elif item == 'shoes': 
+   increase_health(self, 30)
+
+elif item == 'food': 
+   increase_health(self, 40)
+
+elif item == 'medical supplies': 
+   increase_health(self, 40)
+
+elif item == 'lighter': 
+   increase_health(self, 30)
+
+elif item == 'gloves': 
+   increase_health(self, 30)
+
+Class Supplies:
+
+Inventory[]
+
+
+Weapon
+Pistol-20
+knife- 10 
+axe-10
+baseball bat-10
+golf club- 10
+shotgun- 30
+
+Supplies
+Water- 40
+Shoes-30
+Food-40
+Medical supplies- 40
+Lighter-30 
+Gloves-30  
+
+
+Def gather_supplies(self, dice_roll):
+If dice_roll == 1:
+    self.player.Invetory.append(“pistol”)
+elif dice_roll == 2:
+      self.player.Invetory.append(“water”)
+elif dice_roll == 3:
+       self.player.Invetory.append(“knife”)
+elif dice_roll == 4:
+       self.player.Invetory.append(“shoes”)
+elif dice_roll == 5:
+       self.player.Invetory.append(“axe”)
+elif dice_roll == 6:
+       self.player.Invetory.append(“food”)
+elif dice_roll == 7:
+       self.player.Invetory.append(“baseball bat”)
+elif dice_roll == 8:
+       self.player.Invetory.append(“medical_supplies”)
+elif dice_roll == 9:
+       self.player.Invetory.append(“golf club”)
+elif dice_roll == 10:
+      self.player.Invetory.append(“lighter”)
+elif dice_roll == 11:
+      self.player.Invetory.append(“shotgun”)
+elif dice_roll == 12:
+      self.player.Invetory.append(“gloves”)
+
+
+def __init__(self, player): 
+  Self.player = player
+  def gather_supplies(self, dice_roll)  
+  def use_supply(self, item)
+  Def game_over(self)
+  Def print_status_bar(self, percent)
+
+import pandas as pd
+from round_fct import current_round
+health=[100]
+current_round=[7]
+weaponInventory={"Sword": 15}
+#weaponInventory.update({"Sword": 15})
+weaponInventory["Sword"] = 15
+foodInventory={"Bread": 5}
+
+def pandasInventory():
+    newWeapon = weaponInventory
+    for key,value in newWeapon.items():
+        k=key
+        v=value
+
+    weaponsDict={"Weapon": k}
+    damageDict={"Weapon Damage": v}
+  
+    dfWeapon=pd.DataFrame(weaponsDict, index=[0])
+    dfDamage=pd.DataFrame(damageDict, index=[0])
+
+     
+    food=foodInventory
+    for key,value in food.items():
+        a=key
+        s=value
+
+    
+    foodDict=[{"Food":a}]
+    buffDict=[{"Food Buff": s}]
+   
+    dfFood=pd.DataFrame(foodDict, index=[0])
+    dfBuff=pd.DataFrame(buffDict, index=[0])
+
+    healthData={"Health": health}
+    dfHealth=pd.DataFrame(healthData, index=[0])
+
+    roundData={"Round": current_round}
+    dfRound=pd.DataFrame(roundData, index=[0])
+
+    df1=pd.concat([dfHealth, dfRound, dfWeapon, dfDamage, dfFood,dfBuff], axis=1)
+    return df1
+pandasInventory()
