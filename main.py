@@ -522,7 +522,7 @@ def score(player_score, Zombie.attack(), Player.attack()):
 	Returns:
 		new_score (int): The player's score after the completion of the round.
 	"""
-	survives_round = 25
+	survives_round = # damage the player did to the zombie to keep scores different
 	dies_to_zomb = 50
 	if Player.attack == 'True' and Zombie.attack == 'False':
 		new_score = player_score + survives_round
