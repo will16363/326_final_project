@@ -45,7 +45,7 @@ play_music("music_file.mp3")
 current_round = 7
 player_input = input("Would you like to skip your supply run? Type False for no"
                      " or True for yes: ")
-def round_fct(round_number, skip_supply="False"):
+def round_fct(round_num, skip_supply="False"):
     """Keeps track of the round within a game of Zombie Rolls.
 
     Args:
@@ -60,13 +60,13 @@ def round_fct(round_number, skip_supply="False"):
         round_num (int): the number correspoding to the round in the game
     """
     if skip_supply == "True":
-        round_num = round_number + 1
+        round_num += 1
         print(f"You have skipped your supply run. Now prepare for the "
               "Zombie fight!")
         return round_num
         Zombie.attack(zombs_list, Zombie.self.player)
     else:
-        round_num = round_number + 1
+        round_num += 1
         print("You may now gather supplies!")
         return round_num
 round_fct(current_round)
