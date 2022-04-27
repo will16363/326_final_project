@@ -40,7 +40,6 @@ def play_music(path):
 	"""
 	for song in glob.glob(path):
 		playsound(song)
-play_music("music_file.mp3")
 
 
 # optional parameters (below are just test variables for round_fct())
