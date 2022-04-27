@@ -17,8 +17,8 @@ class Dice:
         self.sides= sides
         
     def roll(self):
-        sideValue=(1, 2, 3, 4, 5, 6)
-        side1, side2, side3, side4, side5, side6= sideValue
+        sideValue = (1, 2, 3, 4, 5, 6)
+        side1, side2, side3, side4, side5, side6 = sideValue
         self.sides=sideValue
         result1=random.randint(side1, side6)
         result2=random.randint(side1, side6)
@@ -42,7 +42,7 @@ def play_music(path):
 		playsound(song)
 
 
-# optional parameters (below are just test variables for round_fct())
+# optional parameters
 def round_fct(round_num, skip_supply="False"):
     """Keeps track of the round within a game of Zombie Rolls.
 
@@ -52,10 +52,10 @@ def round_fct(round_num, skip_supply="False"):
                 round and skips straight to the Zombie fight. Defaults to False.
 
     Side effects: 
-        Prints information to the terminal
+        Prints information to the terminal.
 
     Returns:
-        round_num (int): the number correspoding to the round in the game
+        round_num (int): The number correspoding to the round in the game.
     """
     if skip_supply == "True":
         round_num += round_num + 1
@@ -210,11 +210,13 @@ def pandasInventory():
 
 
 # f-strings
-def score(player_score, Zombie_Player.attack()):
+def score(player_score, true_false):
 	"""Keeps track of the player's score upon completion of the round.
 
 	Args:
 		player_score (int): The player's score before the round starts
+        true_false (str): A string representing true if the player defeats the
+            zombie and false if they die
 	
 	Side effects:
 		Prints information to the terminal during a round of Zombie Rolls.
@@ -223,11 +225,11 @@ def score(player_score, Zombie_Player.attack()):
 		new_score (int): The player's score after the completion of the round.
 	"""
 	survives_round = 25
-	dies_to_zomb = 10
-	if Player.attack == 'True' and Zombie.attack == 'False':
+	dies_to_zomb = 50
+	if true_false == 'True':
 		new_score = player_score + survives_round
 		print(f"You earned {survives_round} points for defeating the zombie!")
-    if Zombie.attack == 'True' and Player.attack == 'False':
+    if true_false == 'False':
 		new_score = player_score - dies_to_zomb
 		print(f"You lost {dies_to_zomb} for dying to the zombie!")
 	return new_score
@@ -274,12 +276,12 @@ class Zombie_Player:
         """Initialize new zombie and player object."""
         self.zombie = ""
         self.player = ""
-        self.player.health = {health.function.self.player.max_health}
-        self.zombie.health = {health.function.self.zombie.max_health}
+        self.player_health = {health.function.self.player.max_health}
+        self.zombie_health = {health.function.self.zombie.max_health}
         self.damage = 0
 
     def attack(self, self.zombie, self.player):
-        while self.zombie.health > 0 and self.player.health > 0:
+        while self.zombie_health > 0 and self.player_health > 0:
             zombie_roll = self.zombie.DiceRoll()
             player_roll = self.player.DiceRoll()
             print(f"{self.zombie} rolled a {zombie_roll}. {self.player} rolled 
@@ -296,6 +298,7 @@ class Zombie_Player:
                 print_status_bar(self)
         if self.zombie.health <= 0:
             score(player_score, 'True')
+            print(f"You have beaten the Zombie!")
             player_input = input("Would you like to skip your supply run? Type"
                " False for no or True for yes: ")
             round_fct(round_num, player_input)
