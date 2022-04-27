@@ -2,13 +2,14 @@ import random
 from playsound import playsound
 import glob
 import pandas as pd
-# from round_fct import current_round
+
 
 weapons = {"pistol":20, 'knife':10, 'axe':10, 'baseball bat': 10, 
             'golf club':10, 'shotgun':30}
 supplies = {"water":40, 'shoes':30, 'food':40, 'medical supplies': 40, 
             'lighter':30, 'gloves':30}
 score_file = 'score.txt'
+music_file = "music_file.mp3"
 
 
 class Dice:
