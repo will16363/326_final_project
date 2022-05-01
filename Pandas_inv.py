@@ -1,43 +1,21 @@
+from re import A
 import pandas as pd
+import numpy as np
 from round_fct import current_round
 health=[100]
 current_round=[7]
-weaponInventory={"Sword": 15}
-#weaponInventory.update({"Sword": 15})
-weaponInventory["Sword"] = 15
-foodInventory={"Bread": 5}
+items=[]
+weapon=[]
 
+weapon.append({"gun":50})
+weapon.append({"sword":25})
+#pandas
 def pandasInventory():
-    newWeapon = weaponInventory
-    for key,value in newWeapon.items():
-        k=key
-        v=value
-
-    weaponsDict={"Weapon": k}
-    damageDict={"Weapon Damage": v}
-  
-    dfWeapon=pd.DataFrame(weaponsDict, index=[0])
-    dfDamage=pd.DataFrame(damageDict, index=[0])
-
-     
-    food=foodInventory
-    for key,value in food.items():
-        a=key
-        s=value
-
-    
-    foodDict=[{"Food":a}]
-    buffDict=[{"Food Buff": s}]
-   
-    dfFood=pd.DataFrame(foodDict, index=[0])
-    dfBuff=pd.DataFrame(buffDict, index=[0])
-
-    healthData={"Health": health}
-    dfHealth=pd.DataFrame(healthData, index=[0])
-
-    roundData={"Round": current_round}
-    dfRound=pd.DataFrame(roundData, index=[0])
-
-    df1=pd.concat([dfHealth, dfRound, dfWeapon, dfDamage, dfFood,dfBuff], axis=1)
-    return df1
+    inventory = {"Player Health":health, "Current Round": current_round, 
+             "Weapon": weapon, "Items": items}
+    pandasInv=pd.DataFrame.from_dict(inventory, orient='index')
+    pandasInv=pandasInv.transpose()
+    return pandasInv
 pandasInventory()
+
+mylist=[health, current_round, weapon, items]
