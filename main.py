@@ -194,8 +194,8 @@ def score(player_score, true_false):
 	Returns:
 		new_score (int): The player's score after the completion of the round.
 	"""
-	survives_round = 25
-	dies_to_zomb = 50
+    survives_round = 25
+    dies_to_zomb = 50
 	if true_false == 'True':
         new_score = player_score + survives_round
         print(f"You earned {survives_round} points for defeating the zombie!")
@@ -206,7 +206,7 @@ def score(player_score, true_false):
 
 
 # with statements
-def high_score(Player.self.player, new_score, score_file):
+def high_score(Zombie_Player, new_score, score_file):
 	"""Writes the player's score to a high score file.
 
 	Args:
@@ -242,13 +242,14 @@ def ranked_scores(score_file):
 
 
 class Zombie_Player:
-     def __init__(self):   
+     def __init__(self, chosen_weapon):   
         """Initialize new zombie and player object."""
         self.zombie = ""
         self.player = ""
         self.player_health = {health.function.self.player.max_health}
         self.zombie_health = {health.function.self.zombie.max_health}
         self.damage = 0
+        self.weapon = chosen_weapon
 
     def attack(self, self.zombie, self.player):
         while self.zombie_health > 0 and self.player_health > 0:
