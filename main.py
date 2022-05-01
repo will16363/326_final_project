@@ -2,31 +2,35 @@ import random
 from playsound import playsound
 import glob
 import pandas as pd
+from unittest import result
 
 
-weapons = {"pistol":20, 'knife':10, 'axe':10, 'baseball bat': 10, 
-            'golf club':10, 'shotgun':30}
-supplies = {"water":40, 'shoes':30, 'food':40, 'medical supplies': 40, 
-            'lighter':30, 'gloves':30}
+weapons = [{"pistol":20, 'knife':10, 'axe':10, 'baseball bat': 10, 
+            'golf club':10, 'shotgun':30}]
+supplies = [{"water":40, 'shoes':30, 'food':40, 'medical supplies': 40, 
+            'lighter':30, 'gloves':30}]
+player_weapons = []
+player_supplies = []
 score_file = 'score.txt'
 music_file = "music_file.mp3"
 
 
-class Dice:
-    def __init__(self, sides=6):
+class Dice():
+    #set operations
+    def __init__(self, sides):
         self.sides= sides
-        
+        sides=()
+        sides.update(6)
+     
+    #Sequence unpacking   
     def roll(self):
-        sideValue = (1, 2, 3, 4, 5, 6)
-        side1, side2, side3, side4, side5, side6 = sideValue
-        self.sides=sideValue
+        sideValue=(1, 2, 3, 4, 5, 6)
+        side1=sideValue[0]
+        side6=sideValue[5]
         result1=random.randint(side1, side6)
         result2=random.randint(side1, side6)
         result = result1+result2
         return result
-    
-    def printResult(result):
-        print(f"The sum of your dice rolls is {result}")
 
 
 def play_music(path):
@@ -68,46 +72,48 @@ def round_fct(round_num, skip_supply="False"):
         return round_num
 
 
-def print_status_bar(self):
-    if self.player.health == 100:
+def print_status_bar(Zombie_Player):
+    if Zombie_Player.player_health == 100:
         print("100% [==========]")                             
-    elif self.player.health < 100 and self.player.health >= 90:
+    elif Zombie_Player.player_health < 100 and Zombie_Player.player_health >= 90:
         print("90% [========= ]")
-    elif self.player.health < 90 and self.player.health >= 80:
+    elif Zombie_Player.player_health < 90 and Zombie_Player.player_health >= 80:
         print("80% [========  ]")
-    elif self.player.health < 80 and self.player.health >= 70:
+    elif Zombie_Player.player_health < 80 and Zombie_Player.player_health >= 70:
         print("70% [=======   ]")
-    elif self.player.health < 70 and self.player.health >= 60:
+    elif Zombie_Player.player_health < 70 and Zombie_Player.player_health >= 60:
         print("60% [======    ]")
-    elif self.player.health < 60 and self.player.health >= 50:
+    elif Zombie_Player.player_health < 60 and Zombie_Player.player_health >= 50:
         print("50% [=====     ]")
-    elif self.player.health < 50 and self.player.health >= 40:
+    elif Zombie_Player.health < 50 and Zombie_Player.player_health >= 40:
        print("40% [====      ]")
-    elif self.player.health < 40 and self.player.health >= 30:
+    elif Zombie_Player.player_health < 40 and Zombie_Player.player_health >= 30:
         print("30% [===       ]")
-    elif self.player.health < 30 and self.player.health >= 20:
+    elif Zombie_Player.player_health < 30 and Zombie_Player.player_health >= 20:
         print("20% [==        ]")
-    elif self.player.health < 20 and self.player.health >= 10:
+    elif Zombie_Player.player_health < 20 and Zombie_Player.player_health >= 10:
         print("10% [=         ]")
-    elif self.player.health < 10 and self.player.health >= 0:
+    elif Zombie_Player.player_health < 10 and Zombie_Player.player_health >= 0:
         print("0% [          ]")
 
 
-def decrease_health(self, damage):
-    if self.player.health - damage <= 0:
-        self.game_over()
+def decrease_health(Zombie_Player, damage):
+    if Zombie_Player.player_health - damage <= 0:
+        game_over()
     else:
-        self.player.health -= damage
+        Zombie_Player.player.health -= damage
+    if Zombie_Player.zombie_health - damage <= 0:
+        Zombie_Player.zombie_health = 0
+        
 
-
-def increase_health(self, heal):
-    if self.player.health + heal >= 100:
-        self.player.health = 100
+def increase_health(Zombie_Player, heal):
+    if Zombie_Player.player_health + heal >= 100:
+        Zombie_Player.player_health = 100
     else:
-        self.player.health += heal
+        Zombie_Player.player_health += heal
 
 
-def game_over(Player.self.health, round_num):                
+def game_over(Zombie_Player, round_num):                
     """Determines when the game of Zombie Rolls is officially over. The game is 
        considered over if the player has no health left or has defeated the 
        final zombie at round 13.
@@ -120,93 +126,57 @@ def game_over(Player.self.health, round_num):
         game_status (bool): The status of the game, True if the game is over, 
             otherwise False.
     """
-    return Player.self.health <= 0 or round_num == 13
+    return Zombie_Player.player_health <= 0 or round_num == 13
 
 
-def use_supply(self, item):
-    if item == 'pistol': 
-        decrease_health(self, 20)
-    elif item == 'shotgun': 
-        decrease_health(self, 30)
-    elif item == 'golf club': 
-        decrease_health(self, 10)
-    elif item == 'axe': 
-        decrease_health(self, 10)
-    elif item == 'baseball bat': 
-        decrease_health(self, 10)
-    elif item == 'watert': 
-        increase_health(self, 40)
+def use_supply(Zombie_Player, item):
+    if item == 'water': 
+        increase_health(Zombie_Player, 40)
     elif item == 'shoes': 
-        increase_health(self, 30)
+        increase_health(Zombie_Player, 30)
     elif item == 'food': 
-        increase_health(self, 40)
+        increase_health(Zombie_Player, 40)
     elif item == 'medical supplies': 
-        increase_health(self, 40)
+        increase_health(Zombie_Player, 40)
     elif item == 'lighter': 
-        increase_health(self, 30)
+        increase_health(Zombie_Player, 30)
     elif item == 'gloves': 
-        increase_health(self, 30)
+        increase_health(Zombie_Player, 30)
 
 
-def gather_supplies(self, Dice.roll()):
-    if dice_roll == 1:
-        self.player.Invetory.append(“pistol”)
-    elif dice_roll == 2:
-        self.player.Invetory.append(“water”)
-    elif dice_roll == 3:
-        self.player.Invetory.append(“knife”)
-    elif dice_roll == 4:
-        self.player.Invetory.append(“shoes”)
-    elif dice_roll == 5:
-        self.player.Invetory.append(“axe”)
-    elif dice_roll == 6:
-        self.player.Invetory.append(“food”)
-    elif dice_roll == 7:
-        self.player.Invetory.append(“baseball bat”)
-    elif dice_roll == 8:
-        self.player.Invetory.append(“medical supplies”)
-    elif dice_roll == 9:
-        self.player.Invetory.append(“golf club”)
-    elif dice_roll == 10:
-        self.player.Invetory.append(“lighter”)
-    elif dice_roll == 11:
-        self.player.Invetory.append(“shotgun”)
-    elif dice_roll == 12:
-        self.player.Invetory.append(“gloves”)
-
-
-
-# health=[100]
-# current_round=[7]
-# weaponInventory={"Sword": 15}
-# weaponInventory.update({"Sword": 15}) --> working on figuring this out
-# weaponInventory["Sword"] = 15
-# foodInventory={"Bread": 5}
+def gather_supplies(Zombie_Player, Dice):
+    if Dice.roll() == 1:
+        player_weapons.append({'water':0})
+    elif Dice.roll() == 2:
+        player_supplies.append({'water':40})
+    elif Dice.roll() == 3:
+        player_weapons.append({'knife':10})
+    elif Dice.roll() == 4:
+        player_supplies.append({'shoes':30})
+    elif Dice.roll() == 5:
+        player_weapons.append({'axe':10})
+    elif Dice.roll() == 6:
+        player_supplies.append({'food':40})
+    elif Dice.roll() == 7:
+        player_weapons.append({'baseball bat':10})
+    elif Dice.roll() == 8:
+        player_supplies.append({'medical supplies':40})
+    elif Dice.roll() == 9:
+        player_weapons.append({'golf club':10})
+    elif Dice.roll() == 10:
+        player_supplies.append({'lighter':30})
+    elif Dice.roll() == 11:
+        player_weapons.append({'shotgun':30})
+    elif Dice.roll() == 12:
+        player_supplies.append({'gloves':30})
 
 # pandas dataframe
-def pandasInventory():
-    newWeapon = weaponInventory
-    for key,value in newWeapon.items():
-        k=key
-        v=value
-    weaponsDict={"Weapon": k}
-    damageDict={"Weapon Damage": v}
-    dfWeapon=pd.DataFrame(weaponsDict, index=[0])
-    dfDamage=pd.DataFrame(damageDict, index=[0])
-    food=foodInventory
-    for key,value in food.items():
-        a=key
-        s=value
-    foodDict=[{"Food":a}]
-    buffDict=[{"Food Buff": s}]
-    dfFood=pd.DataFrame(foodDict, index=[0])
-    dfBuff=pd.DataFrame(buffDict, index=[0])
-    healthData={"Health": health}
-    dfHealth=pd.DataFrame(healthData, index=[0])
-    roundData={"Round": current_round}
-    dfRound=pd.DataFrame(roundData, index=[0])
-    df1=pd.concat([dfHealth, dfRound, dfWeapon, dfDamage, dfFood,dfBuff], axis=1)
-    return df1
+def pandasInventory(Zombie_Player, round_num):
+    inventory = {"Player Health":Zombie_Player.health, "Current Round": round_num, 
+             "Weapon": player_weapons, "Items": player_supplies}
+    pandasInv=pd.DataFrame.from_dict(inventory, orient='index')
+    pandasInv=pandasInv.transpose()
+    return pandasInv
 
 
 # f-strings
@@ -227,8 +197,8 @@ def score(player_score, true_false):
 	survives_round = 25
 	dies_to_zomb = 50
 	if true_false == 'True':
-		new_score = player_score + survives_round
-		print(f"You earned {survives_round} points for defeating the zombie!")
+        new_score = player_score + survives_round
+        print(f"You earned {survives_round} points for defeating the zombie!")
     if true_false == 'False':
 		new_score = player_score - dies_to_zomb
 		print(f"You lost {dies_to_zomb} for dying to the zombie!")
