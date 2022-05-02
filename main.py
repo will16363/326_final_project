@@ -207,18 +207,18 @@ def score(player_score, true_false):
 
 # with statements
 def high_score(Zombie_Player, new_score, score_file):
-	"""Writes the player's score to a high score file.
+    """Writes the player's score to a high score file.
 
-	Args:
-		new_score (int): Score of the player at the end of the game.
-		player_name (str): Name of the player (maybe use self.name?)
-		score_file (str): File path for the high score file.
+    Args:
+        new_score (int): Score of the player at the end of the game.
+        player_name (str): Name of the player (maybe use self.name?)
+        score_file (str): File path for the high score file.
 
-	Side effects:
-		Modifies a file that high scores are kept in.
-	"""
-	with open(score_file, 'a') as f:
-		f.write(f'{self.player}:{new_score}\n')
+    Side effects:
+        Modifies a file that high scores are kept in.
+    """
+    with open(score_file, 'a') as f:
+        f.write(f'{Zombie_Player.player}:{new_score}\n')
 
 
 # custom list sorting using lambda
@@ -242,7 +242,7 @@ def ranked_scores(score_file):
 
 
 class Zombie_Player:
-     def __init__(self, chosen_weapon):   
+    def __init__(self, chosen_weapon):   
         """Initialize new zombie and player object."""
         self.zombie = ""
         self.player = ""
@@ -251,12 +251,12 @@ class Zombie_Player:
         self.damage = 0
         self.weapon = chosen_weapon
 
-    def attack(self, self.zombie, self.player):
+    def attack(self):
         while self.zombie_health > 0 and self.player_health > 0:
             zombie_roll = self.zombie.DiceRoll()
             player_roll = self.player.DiceRoll()
-            print(f"{self.zombie} rolled a {zombie_roll}. {self.player} rolled 
-                a {player_roll}.")
+            print(f"{self.zombie} rolled a {zombie_roll}. {self.player} rolled "
+                "a {player_roll}.")
             if zombie_roll > player_roll:
                 self.damage = int(zombie_roll) - int(player_roll)              
                 print(f'{self.player} took {self.damage} damage.')
@@ -271,7 +271,7 @@ class Zombie_Player:
             score(player_score, 'True')
             print(f"You have beaten the Zombie!")
             player_input = input("Would you like to skip your supply run? Type"
-               " False for no or True for yes: ")
+                " False for no or True for yes: ")
             round_fct(round_num, player_input)
         elif self.player.health <= 0:
             p_score = score(player_score, 'False')
@@ -284,19 +284,21 @@ class BossZombie(Zombie_Player):
     def __init__(self):
         self.boss_zombie = ""
 
-    def __repr__(self):       # put __repr__ before super()?
-    """Returns a formal representation of damage taken by the player from the special attack."""
-    return (
-        f"{self.player} took {roll1} damage from the first attack.\n"
-        f"{self.player} took {roll2} damage from the second attack.\n"
-        f"{self.player} took {roll3} damage from the third attack.\n"
-        f"{self.player} took a combined total of {self.special_dmg} damage from the boss zombie attack!"
-    )
+    def __repr__(self):   
+        """Returns a formal representation of damage taken by the player from 
+            the special attack."""
+        return (
+            f"{self.player} took {roll1} damage from the first attack.\n"
+            f"{self.player} took {roll2} damage from the second attack.\n"
+            f"{self.player} took {roll3} damage from the third attack.\n"
+            f"{self.player} took a combined total of {self.special_dmg} damage " 
+                "from the boss zombie attack!"
+            )   
     
-    def attack(self, self.boss_zombie, self.player):
-            roll1 = DiceRoll()    
-            roll2 = DiceRoll()
-            roll3 = DiceRoll()
+    def attack(self):
+            roll1 = Dice.roll()    
+            roll2 = Dice.roll()
+            roll3 = Dice.roll()
             total_dmg = int(roll1) + int(roll2) + int(roll3)
             decrease_health(self.player, total_dmg)
             __repr__(self)
