@@ -242,10 +242,10 @@ def ranked_scores(score_file):
 
 
 class Zombie_Player:
-    def __init__(self, chosen_weapon):   
+    def __init__(self, player, zombie, chosen_weapon):   
         """Initialize new zombie and player object."""
-        self.zombie = ""
-        self.player = ""
+        self.zombie = player      # need to determine how this is set.  Need to be passed thru in parameter?
+        self.player = zombie      # need to determine how this is set.  
         self.player_health = 100
         self.zombie_health = 25
         self.damage = 0
@@ -279,31 +279,32 @@ class Zombie_Player:
             ranked_scores(score_file)
 
 
-# super() method
+# super() method + repr
 class BossZombie(Zombie_Player):    
-    def __init__(self):
-        self.boss_zombie = ""
+# take out __init__ because we need to use same attributes as parent class.  Automatically inherited from parent class.
+# boss zombie will just inherit all attributes w/o overriding
+# No need for boss zombie attribute because boss zombie will just be set to regular zombie attribute.  
+# This works because only boss zombie present in last round.
 
     def __repr__(self):   
         """Returns a formal representation of damage taken by the player from 
             the special attack."""
         return (
-            f"{self.player} took {roll1} damage from the first attack.\n"
+            f"{self.player} took {roll1} damage from the first attack.\n"        # roll not defined.
             f"{self.player} took {roll2} damage from the second attack.\n"
             f"{self.player} took {roll3} damage from the third attack.\n"
-            f"{self.player} took a combined total of {self.special_dmg} damage " 
+            f"{self.player} took a combined total of {self.damage} damage " 
                 "from the boss zombie attack!"
             )   
     
     def attack(self):
-            roll1 = Dice.roll()    
-            roll2 = Dice.roll()
-            roll3 = Dice.roll()
-            total_dmg = int(roll1) + int(roll2) + int(roll3)
-            decrease_health(self.player, total_dmg)
-            __repr__(self)
-            print_status_bar(self)
-            super().attack(self.boss_zombie, self.player)
+        roll1 = Dice.roll()    
+        roll2 = Dice.roll()
+        roll3 = Dice.roll()
+        total_dmg = int(roll1) + int(roll2) + int(roll3)
+        decrease_health(self.player, total_dmg)
+        print(repr(self))
+        print_status_bar(self)
+        super().attack()
 
-
-def main()
+def main():
