@@ -181,28 +181,28 @@ def pandasInventory(Zombie_Player, round_num):
 
 # f-strings
 def score(player_score, true_false):
-	"""Keeps track of the player's score upon completion of the round.
+    """Keeps track of the player's score upon completion of the round.
 
-	Args:
-		player_score (int): The player's score before the round starts
+    Args:
+        player_score (int): The player's score before the round starts
         true_false (str): A string representing true if the player defeats the
             zombie and false if they die
-	
-	Side effects:
-		Prints information to the terminal during a round of Zombie Rolls.
-	
-	Returns:
-		new_score (int): The player's score after the completion of the round.
-	"""
+
+    Side effects:
+        Prints information to the terminal during a round of Zombie Rolls.
+
+    Returns:
+        new_score (int): The player's score after the completion of the round.
+    """
     survives_round = 25
     dies_to_zomb = 50
-	if true_false == 'True':
+    if true_false == 'True':
         new_score = player_score + survives_round
         print(f"You earned {survives_round} points for defeating the zombie!")
     if true_false == 'False':
-		new_score = player_score - dies_to_zomb
-		print(f"You lost {dies_to_zomb} for dying to the zombie!")
-	return new_score
+        new_score = player_score - dies_to_zomb
+        print(f"You lost {dies_to_zomb} for dying to the zombie!")
+    return new_score
 
 
 # with statements
@@ -218,27 +218,27 @@ def high_score(Zombie_Player, new_score, score_file):
 		Modifies a file that high scores are kept in.
 	"""
 	with open(score_file, 'a') as f:
-		f.write(f'{player_name}:{new_score}\n')
+		f.write(f'{self.player}:{new_score}\n')
 
 
 # custom list sorting using lambda
 def ranked_scores(score_file):
-	"""Sort the high score file and returns top 5 overall scores.
+    """Sort the high score file and returns top 5 overall scores.
 
-	Args:
-		score_file (str): File path for the high score file.
+    Args:
+        score_file (str): File path for the high score file.
 
-	Side effects:
-		Prints information to the terminal
-	"""
-	high_score_dict = {}
-	with open(score_file, 'r', encoding='utf-8') as f:
-		for line in f:
-			name, score=line.split(':')
-			high_score_dict[name]=int(score)
-		ranked_dict=(sorted(high_score_dict.items(), key=lambda x:x[1], 
-			reverse=True)[:5])
-		print(ranked_dict)
+    Side effects:
+        Prints information to the terminal
+    """
+    high_score_dict = {}
+    with open(score_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            name, score=line.split(':')
+            high_score_dict[name]=int(score)
+        ranked_dict=(sorted(high_score_dict.items(), key=lambda x:x[1], 
+            reverse=True)[:5])
+        print(ranked_dict)
 
 
 class Zombie_Player:
@@ -246,8 +246,8 @@ class Zombie_Player:
         """Initialize new zombie and player object."""
         self.zombie = ""
         self.player = ""
-        self.player_health = {health.function.self.player.max_health}
-        self.zombie_health = {health.function.self.zombie.max_health}
+        self.player_health = 100
+        self.zombie_health = 25
         self.damage = 0
         self.weapon = chosen_weapon
 
