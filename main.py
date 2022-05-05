@@ -245,7 +245,7 @@ class Zombie_Player:
     def __init__(self, player, zombie, chosen_weapon):   
         """Initialize new zombie and player object."""
         self.zombie = player      # need to determine how this is set.  Need to be passed thru in parameter?
-        self.player = zombie      # need to determine how this is set.  
+        self.player = zombie      # need to determine how this is set.  Set to boss zombie in last round.
         self.player_health = 100
         self.zombie_health = 25
         self.damage = 0
@@ -262,11 +262,13 @@ class Zombie_Player:
                 print(f'{self.player} took {self.damage} damage.')
                 decrease_health(self.player, self.damage)
                 print_status_bar(self)
+                input("Press Enter to continue...")
             elif zombie_roll <= player_roll:
                 self.damage = int(self.weapon) #the damage of the weapon that the player chooses to use           
                 print(f'{self.zombie} took {self.damage} damage.')
                 decrease_health(self.zombie, self.damage)
                 print_status_bar(self)
+                input("Press Enter to continue...")
         if self.zombie.health <= 0:
             score(player_score, 'True')
             print(f"You have beaten the Zombie!")
@@ -290,18 +292,18 @@ class BossZombie(Zombie_Player):
         """Returns a formal representation of damage taken by the player from 
             the special attack."""
         return (
-            f"{self.player} took {roll1} damage from the first attack.\n"        # roll not defined.
-            f"{self.player} took {roll2} damage from the second attack.\n"
-            f"{self.player} took {roll3} damage from the third attack.\n"
+            f"{self.player} took {self.roll1} damage from the first attack.\n"        # roll not defined.
+            f"{self.player} took {self.roll2} damage from the second attack.\n"
+            f"{self.player} took {self.roll3} damage from the third attack.\n"
             f"{self.player} took a combined total of {self.damage} damage " 
                 "from the boss zombie attack!"
             )   
     
     def attack(self):
-        roll1 = Dice.roll()    
-        roll2 = Dice.roll()
-        roll3 = Dice.roll()
-        total_dmg = int(roll1) + int(roll2) + int(roll3)
+        self.roll1 = Dice.roll()    
+        self.roll2 = Dice.roll()
+        self.roll3 = Dice.roll()
+        total_dmg = int(self.roll1) + int(self.roll2) + int(self.roll3)
         decrease_health(self.player, total_dmg)
         print(repr(self))
         print_status_bar(self)
