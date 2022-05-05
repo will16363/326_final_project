@@ -307,6 +307,7 @@ class BossZombie(Zombie_Player):
         decrease_health(self.player, total_dmg)
         print(repr(self))
         print_status_bar(self)
+        input("Press Enter to continue...")
         super().attack()
 
 def main():
