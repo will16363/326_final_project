@@ -72,28 +72,28 @@ def round_fct(round_num, skip_supply="False"):
         return round_num
 
 
-def print_status_bar(Zombie_Player):
-    if Zombie_Player.player_health == 100:
+def print_status_bar(ZombiePlayer):
+    if ZombiePlayer.player_health == 100:
         print("100% [==========]")                             
-    elif Zombie_Player.player_health < 100 and Zombie_Player.player_health >= 90:
+    elif ZombiePlayer.player_health < 100 and ZombiePlayer.player_health >= 90:
         print("90% [========= ]")
-    elif Zombie_Player.player_health < 90 and Zombie_Player.player_health >= 80:
+    elif ZombiePlayer.player_health < 90 and ZombiePlayer.player_health >= 80:
         print("80% [========  ]")
-    elif Zombie_Player.player_health < 80 and Zombie_Player.player_health >= 70:
+    elif ZombiePlayer.player_health < 80 and ZombiePlayer.player_health >= 70:
         print("70% [=======   ]")
-    elif Zombie_Player.player_health < 70 and Zombie_Player.player_health >= 60:
+    elif ZombiePlayer.player_health < 70 and ZombiePlayer.player_health >= 60:
         print("60% [======    ]")
-    elif Zombie_Player.player_health < 60 and Zombie_Player.player_health >= 50:
+    elif ZombiePlayer.player_health < 60 and ZombiePlayer.player_health >= 50:
         print("50% [=====     ]")
-    elif Zombie_Player.health < 50 and Zombie_Player.player_health >= 40:
+    elif ZombiePlayer.health < 50 and ZombiePlayer.player_health >= 40:
        print("40% [====      ]")
-    elif Zombie_Player.player_health < 40 and Zombie_Player.player_health >= 30:
+    elif ZombiePlayer.player_health < 40 and ZombiePlayer.player_health >= 30:
         print("30% [===       ]")
-    elif Zombie_Player.player_health < 30 and Zombie_Player.player_health >= 20:
+    elif ZombiePlayer.player_health < 30 and ZombiePlayer.player_health >= 20:
         print("20% [==        ]")
-    elif Zombie_Player.player_health < 20 and Zombie_Player.player_health >= 10:
+    elif ZombiePlayer.player_health < 20 and ZombiePlayer.player_health >= 10:
         print("10% [=         ]")
-    elif Zombie_Player.player_health < 10 and Zombie_Player.player_health >= 0:
+    elif ZombiePlayer.player_health < 10 and ZombiePlayer.player_health >= 0:
         print("0% [          ]")
 
 
@@ -106,14 +106,14 @@ def decrease_health(Zombie_Player, damage):
         Zombie_Player.zombie_health = 0
         
 
-def increase_health(Zombie_Player, heal):
-    if Zombie_Player.player_health + heal >= 100:
-        Zombie_Player.player_health = 100
+def increase_health(ZombiePlayer, heal):
+    if ZombiePlayer.player_health + heal >= 100:
+        ZombiePlayer.player_health = 100
     else:
-        Zombie_Player.player_health += heal
+        ZombiePlayer.player_health += heal
 
 
-def game_over(Zombie_Player, round_num):                
+def game_over(ZombiePlayer, round_num):                
     """Determines when the game of Zombie Rolls is officially over. The game is 
        considered over if the player has no health left or has defeated the 
        final zombie at round 13.
@@ -126,7 +126,7 @@ def game_over(Zombie_Player, round_num):
         game_status (bool): The status of the game, True if the game is over, 
             otherwise False.
     """
-    return Zombie_Player.player_health <= 0 or round_num == 13
+    return ZombiePlayer.player_health <= 0 or round_num == 13
 
 
 def use_supply(Zombie_Player, item):
@@ -171,8 +171,8 @@ def gather_supplies(Zombie_Player, Dice):
         player_supplies.append({'gloves':30})
 
 # pandas dataframe
-def pandasInventory(Zombie_Player, round_num):
-    inventory = {"Player Health":Zombie_Player.health, "Current Round": round_num, 
+def pandasInventory(ZombiePlayer, round_num):
+    inventory = {"Player Health":ZombiePlayer.health, "Current Round": round_num, 
              "Weapon": player_weapons, "Items": player_supplies}
     pandasInv=pd.DataFrame.from_dict(inventory, orient='index')
     pandasInv=pandasInv.transpose()
@@ -206,7 +206,7 @@ def score(player_score, true_false):
 
 
 # with statements
-def high_score(Zombie_Player, new_score, score_file):
+def high_score(ZombiePlayer, new_score, score_file):
     """Writes the player's score to a high score file.
 
     Args:
@@ -218,7 +218,7 @@ def high_score(Zombie_Player, new_score, score_file):
         Modifies a file that high scores are kept in.
     """
     with open(score_file, 'a') as f:
-        f.write(f'{Zombie_Player.player}:{new_score}\n')
+        f.write(f'{ZombiePlayer.player}:{new_score}\n')
 
 
 # custom list sorting using lambda
@@ -241,7 +241,7 @@ def ranked_scores(score_file):
         print(ranked_dict)
 
 
-class Zombie_Player:
+class ZombiePlayer:
     def __init__(self, player, zombie, chosen_weapon):   
         """Initialize new zombie and player object."""
         self.zombie = player      # need to determine how this is set.  Need to be passed thru in parameter?
@@ -282,7 +282,7 @@ class Zombie_Player:
 
 
 # super() method + repr
-class BossZombie(Zombie_Player):    
+class BossZombie(ZombiePlayer):    
 # take out __init__ because we need to use same attributes as parent class.  Automatically inherited from parent class.
 # boss zombie will just inherit all attributes w/o overriding
 # No need for boss zombie attribute because boss zombie will just be set to regular zombie attribute.  
