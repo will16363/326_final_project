@@ -30,7 +30,7 @@ and ranked_scores functions
 Created the print_status_bar, increase_health, decrease_health, use_supply, and gather_supplies functions
 
 ### Takuya Kameyama 
-Created the ZombiePlayer and BossZombie classs and all of their methods
+Created the ZombiePlayer and BossZombie classes and all of their methods
 
 ### Patrice Shumate 
 Created the main and parse_args funtions
