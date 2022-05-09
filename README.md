@@ -22,13 +22,18 @@ our game.
 
 
 # Who did what
-William Jones - Was the main driver during team meetings. Created the play_music, round_fct, game_over, 
-                score, high_score, and ranked_scores functions
+### William Jones 
+Was the main driver during team meetings. Created the play_music, round_fct, game_over, score, high_score, 
+and ranked_scores functions
 
-Tsion Demissie - Created the print_status_bar, increase_health, decrease_health, use_supply, and gather_supplies functions
+### Tsion Demissie 
+Created the print_status_bar, increase_health, decrease_health, use_supply, and gather_supplies functions
 
-Takuya Kameyama - Created the ZombiePlayer and BossZombie classs and all of their methods
+### Takuya Kameyama 
+Created the ZombiePlayer and BossZombie classs and all of their methods
 
-Patrice Shumate - Created the main and parse_args funtions
+### Patrice Shumate 
+Created the main and parse_args funtions
 
-John Lehner - Created the pandas_inventory function as well as the Dice class and its methods
+### John Lehner 
+Created the pandas_inventory function as well as the Dice class and its methods
