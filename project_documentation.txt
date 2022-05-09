@@ -1,7 +1,8 @@
 Our game, Zombie Rolls can be run using using the command line and entering 'python3 main.py'. 
-Our music and high score files can be found in the reposoitory which are important to the functionality 
+Our music and high score files can be found in the repository which are important to the functionality 
 of the game. Besides from those, you will not need anything in order to run our game.
 
+---Who did what---
 William Jones - Was the main driver during team meetings. Created the play_music, round_fct, game_over, 
                 score, high_score, and ranked_scores functions
 Tsion Demissie - Created the print_status_bar, increase_health, decrease_health, use_supply, and gather_supplies functions
