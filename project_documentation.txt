@@ -1,3 +1,4 @@
+---How to run our game---
 Our game, Zombie Rolls can be run using using the command line and entering 'python3 main.py'. 
 Our music and high score files can be found in the repository which are important to the functionality 
 of the game. Besides from those, you will not need anything in order to run our game.
