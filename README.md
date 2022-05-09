@@ -3,12 +3,15 @@ Group INST326's Final Project for INST326 at the University of Maryland.
 
 
 # Files in our Repository
-main.py - This is our game's Python script. Use this to run the game
+### main.py 
+This is our game's Python script. Use this to run the game
 
-music_file.mp3 - This is our game's music file. This is needed to play music throughout the duration of the game. 
-                 This music is non-copyrighted as well
+### music_file.mp3 
+This is our game's music file. This is needed to play music throughout the duration of the game. 
+This music is non-copyrighted as well
 
-score.txt - This is our game's high_score file. This houses each player's name and score and is written to and read from
+### score.txt 
+This is our game's high_score file. This houses each player's name and score and is written to and read from
 
 
 # How to run our game
