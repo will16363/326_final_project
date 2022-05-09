@@ -34,17 +34,17 @@ you made it in the game and is then written to the score file. The top five over
 
 # Who did what
 ### William Jones 
-Was the main driver during team meetings. Created the play_music, round_fct, game_over, score, high_score, 
-and ranked_scores functions
+Was the main driver during team meetings. Created the play_music, round_fct (optional parameters), game_over, score (f-strings), high_score (with statements), 
+and ranked_scores functions (custom list sorting with lambda functions)
 
 ### Tsion Demissie 
 Created the print_status_bar, increase_health, decrease_health, use_supply, and gather_supplies functions
 
 ### Takuya Kameyama 
-Created the ZombiePlayer and BossZombie classes and all of their methods
+Created the ZombiePlayer and BossZombie classes and all of their methods (super method and __repr__)
 
 ### Patrice Shumate 
-Created the main and parse_args funtions
+Created the main and parse_args funtions (ArgumentParser class)
 
 ### John Lehner 
-Created the pandas_inventory function as well as the Dice class and its methods
+Created the pandas_inventory function (pandas dataframe) as well as the Dice class and its methods (set operations and sequence unpacking)
