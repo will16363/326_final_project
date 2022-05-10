@@ -242,16 +242,31 @@ def ranked_scores(score_file):
 
 
 class ZombiePlayer:
+    """One round of action for zombie and player.
+    
+    Attributes:
+        zombie (str): name of zombie.
+        player (str): name of player.
+        player_health (int): health of player.
+        zombie_health (int): health of zombie.
+        damage (int): damage to be taken by zombie or player.
+        weapon (str): name of weapon selected by player.
+    """    
     def __init__(self, player, zombie, chosen_weapon):   
         """Initialize new zombie and player object."""
-        self.zombie = player      # need to determine how this is set.  Need to be passed thru in parameter?
-        self.player = zombie      # need to determine how this is set.  Set to boss zombie in last round.
+        self.zombie = player      
+        self.player = zombie      
         self.player_health = 100
         self.zombie_health = 25
         self.damage = 0
         self.weapon = chosen_weapon
 
     def attack(self):
+        """Attack action for both player and zombie.
+        
+        Side effects:
+            prints statements on the terminal.
+        """
         while self.zombie_health > 0 and self.player_health > 0:
             zombie_roll = self.zombie.DiceRoll()
             player_roll = self.player.DiceRoll()
@@ -282,24 +297,42 @@ class ZombiePlayer:
 
 
 # super() method + repr
-class BossZombie(ZombiePlayer):    
-# take out __init__ because we need to use same attributes as parent class.  Automatically inherited from parent class.
-# boss zombie will just inherit all attributes w/o overriding
-# No need for boss zombie attribute because boss zombie will just be set to regular zombie attribute.  
-# This works because only boss zombie present in last round.
-
+class BossZombie(ZombiePlayer):
+    """One round of action for boss zombie.
+    
+    Attributes:
+        self.roll1 (int): 1st damage from boss zombie's special attack.
+        self.roll2 (int): 2nd damage from boss zombie's special attack.
+        self.roll3 (int): 3rd damage from boss zombie's special attack.
+    """
+    def __init__(self, player, zombie, chosen_weapon):
+        """Initialize new boss zombie object.
+        
+        Args:
+            player (str): name of player.
+            zombie (str): name of zombie.
+            chosen_weapon (str): name of weapon selected by player.
+        """
+        super().__init__(player, zombie, chosen_weapon)
+        self.roll1 = 0
+        self.roll2 = 0
+        self.roll3 = 0
     def __repr__(self):   
         """Returns a formal representation of damage taken by the player from 
             the special attack."""
         return (
-            f"{self.player} took {self.roll1} damage from the first attack.\n"        # roll not defined.
-            f"{self.player} took {self.roll2} damage from the second attack.\n"
-            f"{self.player} took {self.roll3} damage from the third attack.\n"
-            f"{self.player} took a combined total of {self.damage} damage " 
-                "from the boss zombie attack!"
+            f"1st: {self.roll1} damage dealt to {self.player}.\n"        
+            f"2nd: {self.roll2} damage dealt to {self.player}.\n"
+            f"3rd: {self.roll3} damage dealt to {self.player}.\n"
+            f"Total damage: {self.damage}." 
             )   
     
     def attack(self):
+        """Special attack action of boss zombie followed by attack method of parent class.
+        
+        Side effects:
+            prints statements and repr on terminal.
+        """
         self.roll1 = Dice.roll()    
         self.roll2 = Dice.roll()
         self.roll3 = Dice.roll()
