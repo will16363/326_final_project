@@ -16,14 +16,28 @@ music_file = "music_file.mp3"
 
 
 class Dice():
-    #set operations
+    '''A dice object having 6 sides
+    
+    Attributes:
+    sides (set): A set containing the 6 sides of the dice'''
     def __init__(self, sides):
+        """Initializes the dice class
+        Args:
+            sides (set): The number of sides on the dice
+            
+        Side effects:
+            updates the value of the sides attribute
+            """
         self.sides= sides
         sides=()
         sides.update(6)
      
-    #Sequence unpacking   
+   
     def roll(self):
+        """Takes two random sides of the dice and returns the sum.
+        
+        Returns: The sum of the two sides
+        """
         sideValue=(1, 2, 3, 4, 5, 6)
         side1=sideValue[0]
         side6=sideValue[5]
@@ -172,6 +186,15 @@ def gather_supplies(Zombie_Player, Dice):
 
 # pandas dataframe
 def pandasInventory(ZombiePlayer, round_num):
+    """A viewable representation of the weapons and items a player has
+    as well as the current round and player health
+    
+    Args:
+        ZombiePlayer (class): The zombie and player class
+        roun_num (int): The current round of the game.
+    
+    Returns: The pandas dataframe
+    """
     inventory = {"Player Health":ZombiePlayer.health, "Current Round": round_num, 
              "Weapon": player_weapons, "Items": player_supplies}
     pandasInv=pd.DataFrame.from_dict(inventory, orient='index')
