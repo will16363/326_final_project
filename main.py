@@ -1,12 +1,11 @@
-
 import random
 from playsound import playsound
 import glob
 import pandas as pd
 from unittest import result
 import sys
-
 from babylonian import parse_args
+
 
 weapons = [{"pistol":20, 'knife':10, 'axe':10, 'baseball bat': 10, 
             'golf club':10, 'shotgun':30}]
@@ -36,15 +35,15 @@ class Dice():
         return result
 
 
-# #def play_music(path):
-# 	"""This function plays music during the game.
-# 	Args:
-# 		path (str): Path to the music file.
-# 	Side effects:
-# 		Plays music throughout the game.
-# 	"""
-# 	for song in glob.glob(path):
-# 		playsound(song)
+def play_music(path):
+	"""This function plays music during the game.
+	Args:
+		path (str): Path to the music file.
+	Side effects:
+		Plays music throughout the game.
+	"""
+	for song in glob.glob(path):
+		playsound(song)
 
 
 # optional parameters
@@ -110,6 +109,7 @@ def increase_health(ZombiePlayer, heal):
         ZombiePlayer.player_health += heal
 #^^^^put these two in the zombie class so you can ZombiePlayer.decrease_health(pass in dmag or healing)
 
+
 def game_over(ZombiePlayer, round_num):                
     """Determines when the game of Zombie Rolls is officially over. The game is 
        considered over if the player has no health left or has defeated the 
@@ -165,6 +165,7 @@ def gather_supplies(Zombie_Player, Dice):
         player_weapons.append({'shotgun':30})
     elif Dice.roll() == 12:
         player_supplies.append({'gloves':30})
+
 
 # pandas dataframe
 def pandasInventory(ZombiePlayer, round_num):
@@ -306,6 +307,7 @@ class BossZombie(ZombiePlayer):
         self.roll1 = 0
         self.roll2 = 0
         self.roll3 = 0
+    
     def __repr__(self):   
         """Returns a formal representation of damage taken by the player from 
             the special attack."""
