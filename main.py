@@ -1,9 +1,12 @@
+
 import random
 from playsound import playsound
 import glob
 import pandas as pd
 from unittest import result
+import sys
 
+from babylonian import parse_args
 
 weapons = [{"pistol":20, 'knife':10, 'axe':10, 'baseball bat': 10, 
             'golf club':10, 'shotgun':30}]
@@ -16,28 +19,14 @@ music_file = "music_file.mp3"
 
 
 class Dice():
-    '''A dice object having 6 sides
-    
-    Attributes:
-    sides (set): A set containing the 6 sides of the dice'''
+    #set operations
     def __init__(self, sides):
-        """Initializes the dice class
-        Args:
-            sides (set): The number of sides on the dice
-            
-        Side effects:
-            updates the value of the sides attribute
-            """
         self.sides= sides
         sides=()
         sides.update(6)
      
-   
+    #Sequence unpacking   
     def roll(self):
-        """Takes two random sides of the dice and returns the sum.
-        
-        Returns: The sum of the two sides
-        """
         sideValue=(1, 2, 3, 4, 5, 6)
         side1=sideValue[0]
         side6=sideValue[5]
@@ -47,46 +36,40 @@ class Dice():
         return result
 
 
-def play_music(path):
-	"""This function plays music during the game.
-
-	Args:
-		path (str): Path to the music file.
-
-	Side effects:
-		Plays music throughout the game.
-	"""
-	for song in glob.glob(path):
-		playsound(song)
+# #def play_music(path):
+# 	"""This function plays music during the game.
+# 	Args:
+# 		path (str): Path to the music file.
+# 	Side effects:
+# 		Plays music throughout the game.
+# 	"""
+# 	for song in glob.glob(path):
+# 		playsound(song)
 
 
 # optional parameters
 def round_fct(round_num, skip_supply="False"):
     """Keeps track of the round within a game of Zombie Rolls.
-
     Args:
     	round_number (int): The current round number
         skip_supply (str, optional): Allows the player to skip the supply run 
                 round and skips straight to the Zombie fight. Defaults to False.
-
     Side effects: 
         Prints information to the terminal.
-
     Returns:
         round_num (int): The number correspoding to the round in the game.
     """
+    round_num += round_num + 1
     if skip_supply == "True":
-        round_num += round_num + 1
         print(f"You have skipped your supply run. Now prepare for the "
               "Zombie fight!")
         return round_num
     else:
-        round_num += round_num + 1
         print("You may now gather supplies!")
-        return round_num
+        return ("round" + round_num)
 
 
-def print_status_bar(ZombiePlayer):
+def print_status_bar(ZombiePlayer): #needs to represent two of the things from list 6D
     if ZombiePlayer.player_health == 100:
         print("100% [==========]")                             
     elif ZombiePlayer.player_health < 100 and ZombiePlayer.player_health >= 90:
@@ -125,7 +108,7 @@ def increase_health(ZombiePlayer, heal):
         ZombiePlayer.player_health = 100
     else:
         ZombiePlayer.player_health += heal
-
+#^^^^put these two in the zombie class so you can ZombiePlayer.decrease_health(pass in dmag or healing)
 
 def game_over(ZombiePlayer, round_num):                
     """Determines when the game of Zombie Rolls is officially over. The game is 
@@ -135,7 +118,6 @@ def game_over(ZombiePlayer, round_num):
     Args:
         health (int): The health of the player expressed as an integer
         round_num (int): The round number expressed as an integer
-
     Returns:
         game_status (bool): The status of the game, True if the game is over, 
             otherwise False.
@@ -186,15 +168,6 @@ def gather_supplies(Zombie_Player, Dice):
 
 # pandas dataframe
 def pandasInventory(ZombiePlayer, round_num):
-    """A viewable representation of the weapons and items a player has
-    as well as the current round and player health
-    
-    Args:
-        ZombiePlayer (class): The zombie and player class
-        roun_num (int): The current round of the game.
-    
-    Returns: The pandas dataframe
-    """
     inventory = {"Player Health":ZombiePlayer.health, "Current Round": round_num, 
              "Weapon": player_weapons, "Items": player_supplies}
     pandasInv=pd.DataFrame.from_dict(inventory, orient='index')
@@ -205,15 +178,12 @@ def pandasInventory(ZombiePlayer, round_num):
 # f-strings
 def score(player_score, true_false):
     """Keeps track of the player's score upon completion of the round.
-
     Args:
         player_score (int): The player's score before the round starts
         true_false (str): A string representing true if the player defeats the
             zombie and false if they die
-
     Side effects:
         Prints information to the terminal during a round of Zombie Rolls.
-
     Returns:
         new_score (int): The player's score after the completion of the round.
     """
@@ -231,12 +201,10 @@ def score(player_score, true_false):
 # with statements
 def high_score(ZombiePlayer, new_score, score_file):
     """Writes the player's score to a high score file.
-
     Args:
         new_score (int): Score of the player at the end of the game.
         player_name (str): Name of the player (maybe use self.name?)
         score_file (str): File path for the high score file.
-
     Side effects:
         Modifies a file that high scores are kept in.
     """
@@ -247,10 +215,8 @@ def high_score(ZombiePlayer, new_score, score_file):
 # custom list sorting using lambda
 def ranked_scores(score_file):
     """Sort the high score file and returns top 5 overall scores.
-
     Args:
         score_file (str): File path for the high score file.
-
     Side effects:
         Prints information to the terminal
     """
@@ -366,4 +332,28 @@ class BossZombie(ZombiePlayer):
         input("Press Enter to continue...")
         super().attack()
 
-def main():
+
+def main(): #do this in chronologicl order how the game will play out 
+    #what needs to happen, then what needs to happen before that thing can happen
+    #play_music(music_file)  
+    print("Welcome to zombie rolls!")  
+    round_num=0
+    
+    while round_num!= -1:
+        round_fct(skip_supply= input("Would you like to skip this round? True or False?"))
+    gather_supplies()
+    game_over()
+    score()
+    high_score()
+ 
+
+def parse_args(arglist):    
+    parser = ArgumentParser()
+    parser.add_argument()
+    parser.add_argument()
+    return parser.parse_args(arglist)  
+
+if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
+    main()
+        
