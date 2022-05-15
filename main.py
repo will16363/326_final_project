@@ -336,6 +336,8 @@ class BossZombie(ZombiePlayer):
 def main(): #do this in chronologicl order how the game will play out 
     #what needs to happen, then what needs to happen before that thing can happen
     #play_music(music_file)  
+    #figure out where im going to put the list comphrensions  EXPR FOR ITERVAR IN ITERABLE 
+    
     print("Welcome to zombie rolls!")  
     round_num=0
     
@@ -347,9 +349,9 @@ def main(): #do this in chronologicl order how the game will play out
     high_score()
  
 
-def parse_args(arglist):    
+def parse_args(arglist):#only for command line args(user inputted args)
     parser = ArgumentParser()
-    parser.add_argument()
+    parser.add_argument("name"="Sam" help= "players name")
     parser.add_argument()
     return parser.parse_args(arglist)  
 
