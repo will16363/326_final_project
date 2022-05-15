@@ -1,6 +1,6 @@
 Def print_status_bar (self):
 	If self.player.health == 100:
-    Return “100% [==========]” 
+    Return “100% [==========    ]” 
 Elif self.player.health == 90:
   	    Return “90% [=========  ]”
 	Elif self.player.health == 80:
