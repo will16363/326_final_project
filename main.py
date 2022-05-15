@@ -122,19 +122,19 @@ def game_over(ZombiePlayer, round_num):
 
 
 # needs doctrings
-def use_supply(Zombie_Player, item):
+def use_supply(ZombiePlayer, item):
     if item == 'water': 
-        increase_health(Zombie_Player, 40)
+        ZombiePlayer.increase_health(ZombiePlayer, 40)
     elif item == 'shoes': 
-        increase_health(Zombie_Player, 30)
+        ZombiePlayer.increase_health(ZombiePlayer, 30)
     elif item == 'food': 
-        increase_health(Zombie_Player, 40)
+        ZombiePlayer.increase_health(ZombiePlayer, 40)
     elif item == 'medical supplies': 
-        increase_health(Zombie_Player, 40)
+        ZombiePlayer.increase_health(ZombiePlayer, 40)
     elif item == 'lighter': 
-        increase_health(Zombie_Player, 30)
+        ZombiePlayer.increase_health(ZombiePlayer, 30)
     elif item == 'gloves': 
-        increase_health(Zombie_Player, 30)
+        ZombiePlayer.increase_health(ZombiePlayer, 30)
 
 
 # needs doctrings
