@@ -325,7 +325,8 @@ class BossZombie(ZombiePlayer):
             )   
     
     def attack(self):
-        """Special attack action of boss zombie followed by attack method of parent class.
+        """Special attack action of boss zombie followed by attack method of 
+            parent class.
         
         Side effects:
             prints statements and repr on terminal.
