@@ -39,6 +39,7 @@ class Dice():
         rollvalue.append(result)
         return result
 
+    # data visualization
     def roll_track():
         d = {"Roll Number":[i for i in range(100)], "Roll Value": rollvalue}
         rollplot=pd.DataFrame.from_dict(d, orient='index')
