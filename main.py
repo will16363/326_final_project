@@ -5,6 +5,9 @@ import pandas as pd
 from unittest import result
 import sys
 from babylonian import parse_args
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 
 weapons = [{"pistol":20, 'knife':10, 'axe':10, 'baseball bat': 10, 
@@ -13,6 +16,7 @@ supplies = [{"water":40, 'shoes':30, 'food':40, 'medical supplies': 40,
             'lighter':30, 'gloves':30}]
 player_weapons = []
 player_supplies = []
+rollvalue=[]
 score_file = 'score.txt'
 music_file = "music_file.mp3"
 
@@ -32,7 +36,15 @@ class Dice():
         result1=random.randint(side1, side6)
         result2=random.randint(side1, side6)
         result = result1+result2
+        rollvalue.append(result)
         return result
+
+    # data visualization
+    def roll_track():
+        d = {"Roll Number":[i for i in range(100)], "Roll Value": rollvalue}
+        rollplot=pd.DataFrame.from_dict(d, orient='index')
+        rollplot=rollplot.transpose()
+        return rollplot.plot.scatter('Roll Number', y = 'Roll Value')
 
 
 def play_music(path):
@@ -231,8 +243,8 @@ class ZombiePlayer:
     """    
     def __init__(self, player, zombie, chosen_weapon):   
         """Initialize new zombie and player object."""
-        self.zombie = player      
-        self.player = zombie      
+        self.zombie = zombie      
+        self.player = player      
         self.player_health = 100
         self.zombie_health = 25
         self.damage = 0
@@ -252,13 +264,13 @@ class ZombiePlayer:
             if zombie_roll > player_roll:
                 self.damage = int(zombie_roll) - int(player_roll)              
                 print(f'{self.player} took {self.damage} damage.')
-                decrease_health(self.player, self.damage)
+                self.decrease_health(self.player, self.damage)
                 print_status_bar(self)
                 input("Press Enter to continue...")
             elif zombie_roll <= player_roll:
                 self.damage = int(self.weapon) #the damage of the weapon that the player chooses to use           
                 print(f'{self.zombie} took {self.damage} damage.')
-                decrease_health(self.zombie, self.damage)
+                self.decrease_health(self.zombie, self.damage)
                 print_status_bar(self)
                 input("Press Enter to continue...")
         if self.zombie.health <= 0:
@@ -282,13 +294,12 @@ class ZombiePlayer:
             Zombie_Player.zombie_health = 0
         
 
-# needs doctrings
+    # needs doctrings
     def increase_health(ZombiePlayer, heal):
         if ZombiePlayer.player_health + heal >= 100:
             ZombiePlayer.player_health = 100
         else:
             ZombiePlayer.player_health += heal
-#^^^^put these two in the zombie class so you can ZombiePlayer.decrease_health(pass in dmag or healing)
 
 
 # super() method + repr
@@ -339,6 +350,7 @@ class BossZombie(ZombiePlayer):
         print_status_bar(self)
         input("Press Enter to continue...")
         super().attack()
+        super().decrease_health()
 
 
 def main(): #do this in chronologicl order how the game will play out 
