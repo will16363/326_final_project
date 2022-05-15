@@ -5,6 +5,9 @@ import pandas as pd
 from unittest import result
 import sys
 from babylonian import parse_args
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 
 weapons = [{"pistol":20, 'knife':10, 'axe':10, 'baseball bat': 10, 
@@ -13,6 +16,7 @@ supplies = [{"water":40, 'shoes':30, 'food':40, 'medical supplies': 40,
             'lighter':30, 'gloves':30}]
 player_weapons = []
 player_supplies = []
+rollvalue=[]
 score_file = 'score.txt'
 music_file = "music_file.mp3"
 
@@ -32,7 +36,14 @@ class Dice():
         result1=random.randint(side1, side6)
         result2=random.randint(side1, side6)
         result = result1+result2
+        rollvalue.append(result)
         return result
+
+    def roll_track():
+        d = {"Roll Number":[i for i in range(100)], "Roll Value": rollvalue}
+        rollplot=pd.DataFrame.from_dict(d, orient='index')
+        rollplot=rollplot.transpose()
+        return rollplot.plot.scatter('Roll Number', y = 'Roll Value')
 
 
 def play_music(path):
