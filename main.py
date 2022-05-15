@@ -294,13 +294,12 @@ class ZombiePlayer:
             Zombie_Player.zombie_health = 0
         
 
-# needs doctrings
+    # needs doctrings
     def increase_health(ZombiePlayer, heal):
         if ZombiePlayer.player_health + heal >= 100:
             ZombiePlayer.player_health = 100
         else:
             ZombiePlayer.player_health += heal
-#^^^^put these two in the zombie class so you can ZombiePlayer.decrease_health(pass in dmag or healing)
 
 
 # super() method + repr
