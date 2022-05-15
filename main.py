@@ -16,7 +16,7 @@ player_supplies = []
 score_file = 'score.txt'
 music_file = "music_file.mp3"
 
-
+# needs doctrings
 class Dice():
     #set operations
     def __init__(self, sides):
@@ -68,6 +68,7 @@ def round_fct(round_num, skip_supply="False"):
         return ("round" + round_num)
 
 
+# needs doctrings
 def print_status_bar(ZombiePlayer): #needs to represent two of the things from list 6D
     if ZombiePlayer.player_health == 100:
         print("100% [==========]")                             
@@ -93,6 +94,7 @@ def print_status_bar(ZombiePlayer): #needs to represent two of the things from l
         print("0% [          ]")
 
 
+# needs doctrings
 def decrease_health(Zombie_Player, damage):
     if Zombie_Player.player_health - damage <= 0:
         game_over()
@@ -102,6 +104,7 @@ def decrease_health(Zombie_Player, damage):
         Zombie_Player.zombie_health = 0
         
 
+# needs doctrings
 def increase_health(ZombiePlayer, heal):
     if ZombiePlayer.player_health + heal >= 100:
         ZombiePlayer.player_health = 100
@@ -125,6 +128,7 @@ def game_over(ZombiePlayer, round_num):
     return ZombiePlayer.player_health <= 0 or round_num == 13
 
 
+# needs doctrings
 def use_supply(Zombie_Player, item):
     if item == 'water': 
         increase_health(Zombie_Player, 40)
@@ -140,6 +144,7 @@ def use_supply(Zombie_Player, item):
         increase_health(Zombie_Player, 30)
 
 
+# needs doctrings
 def gather_supplies(Zombie_Player, Dice):
     if Dice.roll() == 1:
         player_weapons.append({'water':0})
@@ -167,6 +172,7 @@ def gather_supplies(Zombie_Player, Dice):
         player_supplies.append({'gloves':30})
 
 
+# needs doctrings
 # pandas dataframe
 def pandasInventory(ZombiePlayer, round_num):
     inventory = {"Player Health":ZombiePlayer.health, "Current Round": round_num, 
