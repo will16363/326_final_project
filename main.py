@@ -291,6 +291,24 @@ class ZombiePlayer:
             high_score(self.player, p_score, score_file)
             ranked_scores(score_file)
 
+    # needs doctrings
+    def decrease_health(Zombie_Player, damage):
+        if Zombie_Player.player_health - damage <= 0:
+            game_over()
+        else:
+            Zombie_Player.player.health -= damage
+        if Zombie_Player.zombie_health - damage <= 0:
+            Zombie_Player.zombie_health = 0
+        
+
+# needs doctrings
+    def increase_health(ZombiePlayer, heal):
+        if ZombiePlayer.player_health + heal >= 100:
+            ZombiePlayer.player_health = 100
+        else:
+            ZombiePlayer.player_health += heal
+#^^^^put these two in the zombie class so you can ZombiePlayer.decrease_health(pass in dmag or healing)
+
 
 # super() method + repr
 class BossZombie(ZombiePlayer):
