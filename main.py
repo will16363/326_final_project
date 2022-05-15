@@ -240,7 +240,7 @@ class ZombiePlayer:
         damage (int): damage to be taken by zombie or player.
         weapon (str): name of weapon selected by player.
         self.zombie_roll (int): result of dice roll; default set to 0.
-        self.player_health (int): result of dice roll; default set to 0.
+        self.player_roll (int): result of dice roll; default set to 0.
     """    
     def __init__(self, player, zombie, chosen_weapon):   
         """Initialize new zombie and player object."""
