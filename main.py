@@ -1,12 +1,11 @@
-
 import random
 from playsound import playsound
 import glob
 import pandas as pd
 from unittest import result
 import sys
-
 from babylonian import parse_args
+
 
 weapons = [{"pistol":20, 'knife':10, 'axe':10, 'baseball bat': 10, 
             'golf club':10, 'shotgun':30}]
@@ -17,7 +16,7 @@ player_supplies = []
 score_file = 'score.txt'
 music_file = "music_file.mp3"
 
-
+# needs doctrings
 class Dice():
     #set operations
     def __init__(self, sides):
@@ -36,15 +35,15 @@ class Dice():
         return result
 
 
-# #def play_music(path):
-# 	"""This function plays music during the game.
-# 	Args:
-# 		path (str): Path to the music file.
-# 	Side effects:
-# 		Plays music throughout the game.
-# 	"""
-# 	for song in glob.glob(path):
-# 		playsound(song)
+def play_music(path):
+	"""This function plays music during the game.
+	Args:
+		path (str): Path to the music file.
+	Side effects:
+		Plays music throughout the game.
+	"""
+	for song in glob.glob(path):
+		playsound(song)
 
 
 # optional parameters
@@ -69,6 +68,7 @@ def round_fct(round_num, skip_supply="False"):
         return ("round" + round_num)
 
 
+# needs doctrings
 def print_status_bar(ZombiePlayer): #needs to represent two of the things from list 6D
     if ZombiePlayer.player_health == 100:
         print("100% [==========]")                             
@@ -94,22 +94,6 @@ def print_status_bar(ZombiePlayer): #needs to represent two of the things from l
         print("0% [          ]")
 
 
-def decrease_health(Zombie_Player, damage):
-    if Zombie_Player.player_health - damage <= 0:
-        game_over()
-    else:
-        Zombie_Player.player.health -= damage
-    if Zombie_Player.zombie_health - damage <= 0:
-        Zombie_Player.zombie_health = 0
-        
-
-def increase_health(ZombiePlayer, heal):
-    if ZombiePlayer.player_health + heal >= 100:
-        ZombiePlayer.player_health = 100
-    else:
-        ZombiePlayer.player_health += heal
-#^^^^put these two in the zombie class so you can ZombiePlayer.decrease_health(pass in dmag or healing)
-
 def game_over(ZombiePlayer, round_num):                
     """Determines when the game of Zombie Rolls is officially over. The game is 
        considered over if the player has no health left or has defeated the 
@@ -125,6 +109,7 @@ def game_over(ZombiePlayer, round_num):
     return ZombiePlayer.player_health <= 0 or round_num == 13
 
 
+# needs doctrings
 def use_supply(Zombie_Player, item):
     if item == 'water': 
         increase_health(Zombie_Player, 40)
@@ -140,6 +125,7 @@ def use_supply(Zombie_Player, item):
         increase_health(Zombie_Player, 30)
 
 
+# needs doctrings
 def gather_supplies(Zombie_Player, Dice):
     if Dice.roll() == 1:
         player_weapons.append({'water':0})
@@ -166,6 +152,8 @@ def gather_supplies(Zombie_Player, Dice):
     elif Dice.roll() == 12:
         player_supplies.append({'gloves':30})
 
+
+# needs doctrings
 # pandas dataframe
 def pandasInventory(ZombiePlayer, round_num):
     inventory = {"Player Health":ZombiePlayer.health, "Current Round": round_num, 
@@ -284,6 +272,24 @@ class ZombiePlayer:
             high_score(self.player, p_score, score_file)
             ranked_scores(score_file)
 
+    # needs doctrings
+    def decrease_health(Zombie_Player, damage):
+        if Zombie_Player.player_health - damage <= 0:
+            game_over()
+        else:
+            Zombie_Player.player.health -= damage
+        if Zombie_Player.zombie_health - damage <= 0:
+            Zombie_Player.zombie_health = 0
+        
+
+# needs doctrings
+    def increase_health(ZombiePlayer, heal):
+        if ZombiePlayer.player_health + heal >= 100:
+            ZombiePlayer.player_health = 100
+        else:
+            ZombiePlayer.player_health += heal
+#^^^^put these two in the zombie class so you can ZombiePlayer.decrease_health(pass in dmag or healing)
+
 
 # super() method + repr
 class BossZombie(ZombiePlayer):
@@ -306,6 +312,7 @@ class BossZombie(ZombiePlayer):
         self.roll1 = 0
         self.roll2 = 0
         self.roll3 = 0
+    
     def __repr__(self):   
         """Returns a formal representation of damage taken by the player from 
             the special attack."""
@@ -317,7 +324,8 @@ class BossZombie(ZombiePlayer):
             )   
     
     def attack(self):
-        """Special attack action of boss zombie followed by attack method of parent class.
+        """Special attack action of boss zombie followed by attack method of 
+            parent class.
         
         Side effects:
             prints statements and repr on terminal.

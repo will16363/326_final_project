@@ -34,7 +34,7 @@ you made it in the game and is then written to the score file. The top five over
 
 # Who did what
 ### William Jones 
-Was the main driver during team meetings. Created the play_music, round_fct (optional parameters), game_over, score (f-strings), high_score (with statements), 
+Created the play_music, round_fct (optional parameters), game_over, score (f-strings), high_score (with statements), 
 and ranked_scores functions (custom list sorting with lambda functions)
 
 ### Tsion Demissie 
