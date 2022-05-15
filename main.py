@@ -345,12 +345,11 @@ class BossZombie(ZombiePlayer):
         self.roll2 = Dice.roll()
         self.roll3 = Dice.roll()
         total_dmg = int(self.roll1) + int(self.roll2) + int(self.roll3)
-        decrease_health(self.player, total_dmg)
+        super().decrease_health(self.player, total_dmg)
         print(repr(self))
         print_status_bar(self)
         input("Press Enter to continue...")
         super().attack()
-        super().decrease_health()
 
 
 def main(): #do this in chronologicl order how the game will play out 
