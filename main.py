@@ -231,6 +231,8 @@ class ZombiePlayer:
         zombie_health (int): health of zombie.
         damage (int): damage to be taken by zombie or player.
         weapon (str): name of weapon selected by player.
+        self.zombie_roll (int): result of dice roll; default set to 0.
+        self.player_roll (int): result of dice roll; default set to 0.
     """    
     def __init__(self, player, zombie, chosen_weapon):   
         """Initialize new zombie and player object."""
@@ -240,6 +242,8 @@ class ZombiePlayer:
         self.zombie_health = 25
         self.damage = 0
         self.weapon = chosen_weapon
+        self.zombie_roll = 0   # need to be set so it can be used for decrease_health conditional statement
+        self.player_roll = 0   # same with this
 
     def attack(self):
         """Attack action for both player and zombie.
@@ -255,34 +259,44 @@ class ZombiePlayer:
             if zombie_roll > player_roll:
                 self.damage = int(zombie_roll) - int(player_roll)              
                 print(f'{self.player} took {self.damage} damage.')
+<<<<<<< HEAD
                 decrease_health(self.player, self.damage)
+=======
+                self.decrease_health(self.damage)  # one argument only
+>>>>>>> 0af40433908dee1884805bd3e6d3dc15231338b6
                 print_status_bar(self)
                 input("Press Enter to continue...")
             elif zombie_roll <= player_roll:
                 self.damage = int(self.weapon) #the damage of the weapon that the player chooses to use           
                 print(f'{self.zombie} took {self.damage} damage.')
+<<<<<<< HEAD
                 decrease_health(self.zombie, self.damage)
+=======
+                self.decrease_health(self.damage) # one argument only
+>>>>>>> 0af40433908dee1884805bd3e6d3dc15231338b6
                 print_status_bar(self)
                 input("Press Enter to continue...")
-        if self.zombie.health <= 0:
+        if self.zombie_health <= 0:
             score(player_score, 'True')
-            print(f"You have beaten the Zombie!")
+            print(f"You have beaten the {self.zombie}!")
             player_input = input("Would you like to skip your supply run? Type"
                 " False for no or True for yes: ")
             round_fct(round_num, player_input)
-        elif self.player.health <= 0:
+        elif self.player_health <= 0:
             p_score = score(player_score, 'False')
             high_score(self.player, p_score, score_file)
             ranked_scores(score_file)
 
     # needs doctrings
     def decrease_health(self, damage):
-        if self.player_health - damage <= 0:
-            game_over()
-        else:
-            self.player.health -= damage
-        if self.zombie_health - damage <= 0:
-            self.zombie_health = 0
+        if self.zombie_roll > self.player_roll:   # need conditional statement, otherwise dmg is caused to both
+            if self.player_health - damage <= 0:
+                game_over()
+            else:
+                self.player_health -= damage
+        elif self.zombie_roll <= self.player_roll:
+            if self.zombie_health - damage <= 0:
+                self.zombie_health = 0
         
 
 # needs doctrings
@@ -339,11 +353,14 @@ class BossZombie(ZombiePlayer):
         Side effects:
             prints statements and repr on terminal.
         """
+        self.zombie_health = 50   #zombie health set to boss health of 50 here?
         self.roll1 = Dice.roll()    
         self.roll2 = Dice.roll()
         self.roll3 = Dice.roll()
-        total_dmg = int(self.roll1) + int(self.roll2) + int(self.roll3)
-        super().decrease_health(self.player, total_dmg)
+        self.zombie_roll = 1     # set this higher than player_roll so that dmg is done to player.
+        self.player_roll = 0
+        self.damage = int(self.roll1) + int(self.roll2) + int(self.roll3) # set to self.damage since it gets reset per action anyways
+        super().decrease_health(self.damage) # only need one argument
         print(repr(self))
         print_status_bar(self)
         input("Press Enter to continue...")
