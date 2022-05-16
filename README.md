@@ -34,11 +34,10 @@ you made it in the game and is then written to the score file. The top five over
 
 # Who did what
 ### William Jones 
-Created the play_music, round_fct (optional parameters), game_over, score (f-strings), high_score (with statements), 
-and ranked_scores functions (custom list sorting with lambda functions)
+Created the play_music, round_fct (optional parameters), game_over, high_score (with statements), and ranked_scores functions (custom list sorting with lambda functions)
 
 ### Tsion Demissie 
-Created the print_status_bar, increase_health, decrease_health, use_supply, and gather_supplies functions
+Created the print_status_bar, increase_health, decrease_health, use_supply, gather_supplies, score (f-strings), and roll_track (data visualization) functions
 
 ### Takuya Kameyama 
 Created the ZombiePlayer and BossZombie classes and all of their methods (super method and __repr__)

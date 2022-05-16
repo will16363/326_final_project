@@ -1,10 +1,13 @@
 import random
-from playsound import playsound
 import glob
 import pandas as pd
-from unittest import result
 import sys
 from babylonian import parse_args
+import matplotlib.pyplot as plt
+import numpy as np
+from playsound import playsound
+from babylonian import parse_args
+from unittest import result
 
 
 weapons = [{"pistol":20, 'knife':10, 'axe':10, 'baseball bat': 10, 
@@ -69,7 +72,7 @@ def round_fct(round_num, skip_supply="False"):
 
 
 # needs doctrings
-def print_status_bar(ZombiePlayer): #needs to represent two of the things from list 6D
+def print_status_bar(ZombiePlayer): 
     if ZombiePlayer.player_health == 100:
         print("100% [==========]")                             
     elif ZombiePlayer.player_health < 100 and ZombiePlayer.player_health >= 90:
@@ -110,19 +113,19 @@ def game_over(ZombiePlayer, round_num):
 
 
 # needs doctrings
-def use_supply(Zombie_Player, item):
+def use_supply(ZombiePlayer, item):
     if item == 'water': 
-        increase_health(Zombie_Player, 40)
+        ZombiePlayer.increase_health(ZombiePlayer, 40)
     elif item == 'shoes': 
-        increase_health(Zombie_Player, 30)
+        ZombiePlayer.increase_health(ZombiePlayer, 30)
     elif item == 'food': 
-        increase_health(Zombie_Player, 40)
+        ZombiePlayer.increase_health(ZombiePlayer, 40)
     elif item == 'medical supplies': 
-        increase_health(Zombie_Player, 40)
+        ZombiePlayer.increase_health(ZombiePlayer, 40)
     elif item == 'lighter': 
-        increase_health(Zombie_Player, 30)
+        ZombiePlayer.increase_health(ZombiePlayer, 30)
     elif item == 'gloves': 
-        increase_health(Zombie_Player, 30)
+        ZombiePlayer.increase_health(ZombiePlayer, 30)
 
 
 # needs doctrings
@@ -273,13 +276,13 @@ class ZombiePlayer:
             ranked_scores(score_file)
 
     # needs doctrings
-    def decrease_health(Zombie_Player, damage):
-        if Zombie_Player.player_health - damage <= 0:
+    def decrease_health(self, damage):
+        if self.player_health - damage <= 0:
             game_over()
         else:
-            Zombie_Player.player.health -= damage
-        if Zombie_Player.zombie_health - damage <= 0:
-            Zombie_Player.zombie_health = 0
+            self.player.health -= damage
+        if self.zombie_health - damage <= 0:
+            self.zombie_health = 0
         
 
 # needs doctrings
@@ -289,6 +292,12 @@ class ZombiePlayer:
         else:
             ZombiePlayer.player_health += heal
 #^^^^put these two in the zombie class so you can ZombiePlayer.decrease_health(pass in dmag or healing)
+    # needs doctrings
+    def increase_health(self, heal):
+        if self.player_health + heal >= 100:
+            self.player_health = 100
+        else:
+            self.player_health += heal
 
 
 # super() method + repr
@@ -334,7 +343,7 @@ class BossZombie(ZombiePlayer):
         self.roll2 = Dice.roll()
         self.roll3 = Dice.roll()
         total_dmg = int(self.roll1) + int(self.roll2) + int(self.roll3)
-        decrease_health(self.player, total_dmg)
+        super().decrease_health(self.player, total_dmg)
         print(repr(self))
         print_status_bar(self)
         input("Press Enter to continue...")
@@ -360,7 +369,7 @@ def main(): #do this in chronologicl order how the game will play out
 
 def parse_args(arglist):#only for command line args(user inputted args)
     parser = ArgumentParser()
-    parser.add_argument("name"="Sam" help= "players name")
+    parser.add_argument(name="Sam" help= "players name")
     parser.add_argument()
     return parser.parse_args(arglist)  
 
