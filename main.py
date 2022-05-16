@@ -19,16 +19,29 @@ rollvalue=[]
 score_file = 'score.txt'
 music_file = "music_file.mp3"
 
-# needs doctrings
+
 class Dice():
+    """A dice object which has 6 sides
+    
+    Attributes:
+        sides (set): the sides of the dice
+    """
     #set operations
     def __init__(self, sides):
+        """Initializes the sides attribute of the dice"""
         self.sides= sides
         sides=()
         sides.update(6)
      
     #Sequence unpacking   
     def roll(self):
+        """Takes the value of two random sides and returns the sum
+        
+        Side effects:
+            appends the resulting sum of the two sides to the roll values list
+            
+        Returns: Returns the sum of the two dice sides
+        """
         sideValue=(1, 2, 3, 4, 5, 6)
         side1=sideValue[0]
         side6=sideValue[5]
@@ -40,6 +53,11 @@ class Dice():
 
     # data visualization
     def roll_track():
+        """Each time the dice is rolled, the summary value is appeneded
+        to a pandas dataframe and plots the roll on a scatterplot
+        
+        Returns: Returns the scatterplot of the dataframe
+        """
         d = {"Roll Number":[i for i in range(100)], "Roll Value": rollvalue}
         rollplot=pd.DataFrame.from_dict(d, orient='index')
         rollplot=rollplot.transpose()
@@ -164,9 +182,17 @@ def gather_supplies(Zombie_Player, Dice):
         player_supplies.append({'gloves':30})
 
 
-# needs doctrings
 # pandas dataframe
 def pandasInventory(ZombiePlayer, round_num):
+    """Dataframe that tracks the players current health, current round, 
+        weapons, and items
+        
+    Args:
+        ZombiePlayer (class): One round of action for zombie and player
+        round_num (int): The round number
+        
+    Returns: the dataframe
+    """
     inventory = {"Player Health":ZombiePlayer.health, "Current Round": round_num, 
              "Weapon": player_weapons, "Items": player_supplies}
     pandasInv=pd.DataFrame.from_dict(inventory, orient='index')
