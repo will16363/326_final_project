@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 from matplotlib import use
 from pytest import Item
 from argparse import ArgumentParser
-from babylonian import parse_args # do we need the babylonian one or can we use the argparse that Aric uses instead?
+# from babylonian import parse_args # do we need the babylonian one or can we use the argparse that Aric uses instead?
 from unittest import result
 
 
@@ -211,8 +211,8 @@ class ZombiePlayer:
         self.zombie_health = 25
         self.damage = 0
         self.weapon = chosen_weapon
-        self.zombie_roll = 0   # need to be set so it can be used for decrease_health conditional statement
-        self.player_roll = 0   # same with this
+        self.zombie_roll = 0   
+        self.player_roll = 0   
 
     def attack(self):
         """Attack action for both player and zombie.
@@ -290,7 +290,6 @@ class ZombiePlayer:
             print("0% [          ]")
 
 
-# super() method + repr
 class BossZombie(ZombiePlayer):
     """One round of action for boss zombie.
     
@@ -311,7 +310,8 @@ class BossZombie(ZombiePlayer):
         self.roll1 = 0
         self.roll2 = 0
         self.roll3 = 0
-    
+
+    # __repr__()    
     def __repr__(self):   
         """Returns a formal representation of damage taken by the player from 
             the special attack."""
@@ -322,6 +322,7 @@ class BossZombie(ZombiePlayer):
             f"Total damage: {self.damage}." 
             )   
     
+    # super() method 
     def attack(self):
         """Special attack action of boss zombie followed by attack method of 
             parent class.
@@ -335,10 +336,10 @@ class BossZombie(ZombiePlayer):
         self.roll3 = Dice.roll()
         self.zombie_roll = 1     # set this higher than player_roll so that dmg is done to player.
         self.player_roll = 0
-        self.damage = int(self.roll1) + int(self.roll2) + int(self.roll3) # set to self.damage since it gets reset per action anyways
-        super().decrease_health(self.damage) # only need one argument
+        self.damage = int(self.roll1) + int(self.roll2) + int(self.roll3)
+        super().decrease_health(self.damage) 
         print(repr(self))
-        print_status_bar(self)
+        super().print_status_bar(self)
         input("Press Enter to continue...")
         super().attack()
 
