@@ -230,14 +230,14 @@ class ZombiePlayer:
                 print(f'{self.player} took {self.damage} damage.')
                 self.decrease_health(self.player, self.damage)
                 self.decrease_health(self.damage)  # one argument only
-                print_status_bar(self)
+                self.print_status_bar(self)
                 input("Press Enter to continue...")
             elif zombie_roll <= player_roll:
                 self.damage = int(self.weapon) #the damage of the weapon that the player chooses to use           
                 print(f'{self.zombie} took {self.damage} damage.')
                 self.decrease_health(self.zombie, self.damage)
                 self.decrease_health(self.damage) # one argument only
-                print_status_bar(self)
+                self.print_status_bar(self)
         if self.zombie_health <= 0:
             player_score = score(player_score, 'True')
             print(f"You have beaten the {self.zombie}!")
