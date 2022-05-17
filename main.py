@@ -330,11 +330,11 @@ class BossZombie(ZombiePlayer):
         Side effects:
             prints statements and repr on terminal.
         """
-        self.zombie_health = 50   #zombie health set to boss health of 50 here?
+        self.boss_zombie_health = 50  
         self.roll1 = Dice.roll()    
         self.roll2 = Dice.roll()
         self.roll3 = Dice.roll()
-        self.zombie_roll = 1     # set this higher than player_roll so that dmg is done to player.
+        self.zombie_roll = 1   
         self.player_roll = 0
         self.damage = int(self.roll1) + int(self.roll2) + int(self.roll3)
         super().decrease_health(self.damage) 
