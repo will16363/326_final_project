@@ -278,7 +278,7 @@ class ZombiePlayer:
             print("60% [======    ]")
         elif self.player_health < 60 and self.player_health >= 50:
             print("50% [=====     ]")
-        elif self.health < 50 and self.player_health >= 40:
+        elif self.player_health < 50 and self.player_health >= 40:
             print("40% [====      ]")
         elif self.player_health < 40 and self.player_health >= 30:
             print("30% [===       ]")
