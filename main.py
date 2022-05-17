@@ -77,11 +77,12 @@ def round_fct(round_num, skip_supply="False"):
     if skip_supply == "True":
         print(f"You have skipped your supply run. Now prepare for the "
               "Zombie fight!")
+        print("round "+ round_num)
         return round_num
     else:
+        print("round "+ round_num)
         print("You may now gather supplies!")
-    print("round "+ round_num)
-    return (round_num)
+        return (round_num)
 
 # needs doctrings
 def print_status_bar(ZombiePlayer): 
@@ -301,7 +302,7 @@ class ZombiePlayer:
     # needs doctrings
     def decrease_health(self, damage):
         if self.zombie_roll > self.player_roll:   # need conditional statement, otherwise dmg is caused to both
-            if self.player_health - damage <= 0:
+            if (self.player_health) - damage <= 0:
                 game_over()
             else:
                 self.player_health -= damage
@@ -310,7 +311,7 @@ class ZombiePlayer:
                 self.zombie_health = 0
         
 
-# needs doctrings
+    # needs doctrings
     def increase_health(ZombiePlayer, heal):
         if ZombiePlayer.player_health + heal >= 100:
             ZombiePlayer.player_health = 100
@@ -323,6 +324,31 @@ class ZombiePlayer:
             self.player_health = 100
         else:
             self.player_health += heal
+
+    # needs doctrings
+    def print_status_bar(self): 
+        if self.player_health == 100:
+            print("100% [==========]")                             
+        elif self.player_health < 100 and self.player_health >= 90:
+            print("90% [========= ]")
+        elif self.player_health < 90 and self.player_health >= 80:
+            print("80% [========  ]")
+        elif self.player_health < 80 and self.player_health >= 70:
+            print("70% [=======   ]")
+        elif self.player_health < 70 and self.player_health >= 60:
+            print("60% [======    ]")
+        elif self.player_health < 60 and self.player_health >= 50:
+            print("50% [=====     ]")
+        elif self.health < 50 and self.player_health >= 40:
+            print("40% [====      ]")
+        elif self.player_health < 40 and self.player_health >= 30:
+            print("30% [===       ]")
+        elif self.player_health < 30 and self.player_health >= 20:
+            print("20% [==        ]")
+        elif self.player_health < 20 and self.player_health >= 10:
+            print("10% [=         ]")
+        elif self.player_health < 10 and self.player_health >= 0:
+            print("0% [          ]")
 
 
 # super() method + repr
