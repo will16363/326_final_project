@@ -102,9 +102,7 @@ def game_over(ZombiePlayer, round_num):
 
 # needs doctrings
 def gather_supplies(ZombiePlayer, Dice):
-    if Dice.roll() == 1:
-        player_weapons.append({'water':0})
-    elif Dice.roll() == 2:
+    if Dice.roll() == 2:
         player_supplies.append({'water':40})
     elif Dice.roll() == 3:
         player_weapons.append({'knife':10})
