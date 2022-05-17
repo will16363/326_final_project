@@ -278,7 +278,7 @@ class ZombiePlayer:
             else:
                 self.player_health -= damage
         elif self.zombie_roll <= self.player_roll:
-            if self.zombie_health - damage <= 0:
+            if (self.zombie_health - damage) <= 0:
                 self.zombie_health = 0
         
     # needs doctrings
