@@ -79,8 +79,25 @@ def round_fct(round_num, skip_supply="False"):
         return ("round" + round_num)
 
 
-# needs doctrings
+
 def print_status_bar(ZombiePlayer): 
+    """ Health function """
+    """def print_status_bar(percent):
+    This function gets the players health and keeps track of it using
+      percentage represented by individual bars
+      ex- = is 10% == is 20%. Each player will gain or lose a bar
+      depending on how they are performing in the game. The status bars add up
+      to 100. There are also weapons and supplies in this game worth different
+      amount of points. So the player's health level will change based on that.
+    Args:
+     This function gets the players health and keeps track of it using
+      percentage represented by individual bars ex- = is 10% == is 20%. Each player
+      will gain or lose a bar depending on how they are
+      performing in the game. The status bars add up
+      to 100.
+      
+    Side effect: prints players health status 
+    """
     if ZombiePlayer.player_health == 100:
         print("100% [==========]")                             
     elif ZombiePlayer.player_health < 100 and ZombiePlayer.player_health >= 90:
@@ -138,6 +155,17 @@ def use_supply(ZombiePlayer, item):
 
 # needs doctrings
 def gather_supplies(Zombie_Player, Dice):
+    """Gathering Supplies """
+    """Get players to roll and gather an based on the number they get item.
+      The player will need to roll two dyes and the supplies
+      the get will be depending on what number the dice rolls on.
+      This logic also applies to the weapons in this game.
+    Args:
+      dice_roll(int): this variable represents the sum of the two
+      dices that the player rolls
+   Side Effects: Player will get a weapon or an supply added to their
+   inventory
+    """
     if Dice.roll() == 1:
         player_weapons.append({'water':0})
     elif Dice.roll() == 2:
@@ -283,8 +311,19 @@ class ZombiePlayer:
             high_score(self.player, p_score, score_file)
             ranked_scores(score_file)
 
-    # needs doctrings
+    
     def decrease_health(self, damage):
+        """decrease health"""
+        """This keeps track of the health lost by each player.
+            There are different types of weapons in this games such as bats
+            and shotgun. With this we will be able to see the amount of 
+            points lost depending on the damage the player took."
+        Args:damage(int): represents the damage the players took due to an attack.
+ 
+        Side Effects: player loses health and if the health falls to 0
+                  the function calls the game_over() function and the player loses. 
+        """
+
         if self.player_health - damage <= 0:
             game_over()
         else:
@@ -295,6 +334,16 @@ class ZombiePlayer:
 
     # needs doctrings
     def increase_health(self, heal):
+        """increase_health"""
+            """This keeps track of the health gained by each player.
+            Player is able to collect supplies throughout the game such as
+            water, food, shoes and so on. When they collect these things this their
+            health points have increased."
+        Args:
+        heal(int): represents how much the player healed based on the supplies they were able to collect.
+        Side Effects: player gains health up to 100
+        """
+
         if self.player_health + heal >= 100:
             self.player_health = 100
         else:
