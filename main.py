@@ -407,6 +407,7 @@ def main():
         if skip_supply != "True":
             gather_supplies(ZombiePlayer,Dice)
             pandasInventory(ZombiePlayer,round_num)
+            # what is item? make sure this is being defined
             use_supply(ZombiePlayer,item)
             ZombiePlayer.attack()
         
