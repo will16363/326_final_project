@@ -1,14 +1,10 @@
 import random
-import glob
-from matplotlib import use
-import pandas as pd
-import sys
-
-from pytest import Item
-from babylonian import parse_args
 import matplotlib.pyplot as plt
 import numpy as np
-from playsound import playsound
+import pandas as pd
+import sys
+from matplotlib import use
+from pytest import Item
 from babylonian import parse_args
 from unittest import result
 
@@ -20,7 +16,6 @@ supplies = [{"water":40, 'shoes':30, 'food':40, 'medical supplies': 40,
 player_weapons = []
 player_supplies = []
 score_file = 'score.txt'
-music_file = "music_file.mp3"
 
 
 class Dice():
@@ -54,27 +49,16 @@ class Dice():
         return result
 
     # data visualization
-    def roll_track():
+    def roll_track(self, result):
         """Each time the dice is rolled, the summary value is appeneded
         to a pandas dataframe and plots the roll on a scatterplot
         
         Returns: Returns the scatterplot of the dataframe
         """
-        d = {"Roll Number":[i for i in range(100)], "Roll Value": rollvalue}
+        d = {"Roll Number":[i for i in range(100)], "Roll Value": result}
         rollplot=pd.DataFrame.from_dict(d, orient='index')
         rollplot=rollplot.transpose()
         return rollplot.plot.scatter('Roll Number', y = 'Roll Value')
-
-
-def play_music(path):
-	"""This function plays music during the game.
-	Args:
-		path (str): Path to the music file.
-	Side effects:
-		Plays music throughout the game.
-	"""
-	for song in glob.glob(path):
-		playsound(song)
 
 
 # optional parameters
