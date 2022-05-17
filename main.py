@@ -100,6 +100,33 @@ def game_over(ZombiePlayer, round_num):
     """
     return ZombiePlayer.player_health <= 0 or round_num == 13
 
+# needs doctrings
+def gather_supplies(ZombiePlayer, Dice):
+    if Dice.roll() == 1:
+        player_weapons.append({'water':0})
+    elif Dice.roll() == 2:
+        player_supplies.append({'water':40})
+    elif Dice.roll() == 3:
+        player_weapons.append({'knife':10})
+    elif Dice.roll() == 4:
+        player_supplies.append({'shoes':30})
+    elif Dice.roll() == 5:
+        player_weapons.append({'axe':10})
+    elif Dice.roll() == 6:
+        player_supplies.append({'food':40})
+    elif Dice.roll() == 7:
+        player_weapons.append({'baseball bat':10})
+    elif Dice.roll() == 8:
+        player_supplies.append({'medical supplies':40})
+    elif Dice.roll() == 9:
+        player_weapons.append({'golf club':10})
+    elif Dice.roll() == 10:
+        player_supplies.append({'lighter':30})
+    elif Dice.roll() == 11:
+        player_weapons.append({'shotgun':30})
+    elif Dice.roll() == 12:
+        player_supplies.append({'gloves':30})
+
 
 # needs doctrings
 def use_supply(ZombiePlayer, item):
