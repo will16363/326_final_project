@@ -1,8 +1,8 @@
 import random
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import sys
+from matplotlib import pyplot as plt
 from matplotlib import use
 from pytest import Item
 from babylonian import parse_args
