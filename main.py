@@ -81,7 +81,7 @@ def round_fct(round_num, skip_supply="False"):
         print("round "+ round_num)
         return round_num
     else:
-        print("round "+ round_num)
+        print(f"round "+ round_num)
         print("You may now gather supplies!")
         return (round_num)
 
