@@ -83,7 +83,6 @@ def round_fct(round_num, skip_supply="False"):
     else:
         print(f"round "+ round_num)
         print("You may now gather supplies!")
-<<<<<<< HEAD
         return ("round" + round_num)
 
 
@@ -128,9 +127,7 @@ def print_status_bar(ZombiePlayer):
         print("10% [=         ]")
     elif ZombiePlayer.player_health < 10 and ZombiePlayer.player_health >= 0:
         print("0% [          ]")
-=======
         return (round_num)
->>>>>>> ede3b3cb92cc4cc98046eca6d43367d1197659aa
 
 
 def game_over(ZombiePlayer, round_num):                
@@ -354,7 +351,6 @@ class ZombiePlayer:
 
     
     def decrease_health(self, damage):
-<<<<<<< HEAD
         """decrease health"""
         """This keeps track of the health lost by each player.
             There are different types of weapons in this games such as bats
@@ -372,16 +368,6 @@ class ZombiePlayer:
             self.player.health -= damage
         if self.zombie_health - damage <= 0:
             self.zombie_health = 0
-=======
-        if self.zombie_roll > self.player_roll:   # need conditional statement, otherwise dmg is caused to both
-            if (self.player_health - damage) <= 0:
-                game_over()
-            else:
-                self.player_health -= damage
-        elif self.zombie_roll <= self.player_roll:
-            if (self.zombie_health - damage) <= 0:
-                self.zombie_health = 0
->>>>>>> ede3b3cb92cc4cc98046eca6d43367d1197659aa
         
     # needs doctrings
     def increase_health(self, heal):
