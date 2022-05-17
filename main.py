@@ -141,34 +141,6 @@ def use_supply(ZombiePlayer, item):
         ZombiePlayer.increase_health(ZombiePlayer, 30)
 
 
-# needs doctrings
-def gather_supplies(ZombiePlayer, Dice):
-    if Dice.roll() == 1:
-        player_weapons.append({'water':0})
-    elif Dice.roll() == 2:
-        player_supplies.append({'water':40})
-    elif Dice.roll() == 3:
-        player_weapons.append({'knife':10})
-    elif Dice.roll() == 4:
-        player_supplies.append({'shoes':30})
-    elif Dice.roll() == 5:
-        player_weapons.append({'axe':10})
-    elif Dice.roll() == 6:
-        player_supplies.append({'food':40})
-    elif Dice.roll() == 7:
-        player_weapons.append({'baseball bat':10})
-    elif Dice.roll() == 8:
-        player_supplies.append({'medical supplies':40})
-    elif Dice.roll() == 9:
-        player_weapons.append({'golf club':10})
-    elif Dice.roll() == 10:
-        player_supplies.append({'lighter':30})
-    elif Dice.roll() == 11:
-        player_weapons.append({'shotgun':30})
-    elif Dice.roll() == 12:
-        player_supplies.append({'gloves':30})
-
-
 # pandas dataframe
 def pandasInventory(ZombiePlayer, round_num):
     """Dataframe that tracks the players current health, current round, 
@@ -290,7 +262,6 @@ class ZombiePlayer:
                 decrease_health(self.zombie, self.damage)
                 self.decrease_health(self.damage) # one argument only
                 print_status_bar(self)
-               
         if self.zombie_health <= 0:
             score(player_score, 'True')
             print(f"You have beaten the {self.zombie}!")
@@ -310,7 +281,6 @@ class ZombiePlayer:
             if self.zombie_health - damage <= 0:
                 self.zombie_health = 0
         
-
     # needs doctrings
     def increase_health(ZombiePlayer, heal):
         if ZombiePlayer.player_health + heal >= 100:
@@ -318,13 +288,6 @@ class ZombiePlayer:
         else:
             ZombiePlayer.player_health += heal
             
-    # needs doctrings
-    def increase_health(self, heal):
-        if self.player_health + heal >= 100:
-            self.player_health = 100
-        else:
-            self.player_health += heal
-
     # needs doctrings
     def print_status_bar(self): 
         if self.player_health == 100:
