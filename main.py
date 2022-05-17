@@ -258,11 +258,11 @@ class ZombiePlayer:
                 self.zombie_health = 0
         
     # needs doctrings
-    def increase_health(ZombiePlayer, heal):
-        if ZombiePlayer.player_health + heal >= 100:
-            ZombiePlayer.player_health = 100
+    def increase_health(self, heal):
+        if self.player_health + heal >= 100:
+            self.player_health = 100
         else:
-            ZombiePlayer.player_health += heal
+            self.player_health += heal
             
     # needs doctrings
     def print_status_bar(self): 
