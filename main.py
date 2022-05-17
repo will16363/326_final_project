@@ -252,28 +252,28 @@ class ZombiePlayer:
             if zombie_roll > player_roll:
                 self.damage = int(zombie_roll) - int(player_roll)              
                 print(f'{self.player} took {self.damage} damage.')
-                decrease_health(self.player, self.damage)
+                self.decrease_health(self.player, self.damage)
                 self.decrease_health(self.damage)  # one argument only
                 print_status_bar(self)
                 input("Press Enter to continue...")
             elif zombie_roll <= player_roll:
                 self.damage = int(self.weapon) #the damage of the weapon that the player chooses to use           
                 print(f'{self.zombie} took {self.damage} damage.')
-                decrease_health(self.zombie, self.damage)
+                self.decrease_health(self.zombie, self.damage)
                 self.decrease_health(self.damage) # one argument only
                 print_status_bar(self)
         if self.zombie_health <= 0:
-            score(player_score, 'True')
+            player_score = score(player_score, 'True')
             print(f"You have beaten the {self.zombie}!")
         elif self.player_health <= 0:
-            p_score = score(player_score, 'False')
-            high_score(self.player, p_score, score_file)
+            player_score = score(player_score, 'False')
+            high_score(self.player, player_score, score_file)
             ranked_scores(score_file)
 
     # needs doctrings
     def decrease_health(self, damage):
         if self.zombie_roll > self.player_roll:   # need conditional statement, otherwise dmg is caused to both
-            if (self.player_health) - damage <= 0:
+            if (self.player_health - damage) <= 0:
                 game_over()
             else:
                 self.player_health -= damage
@@ -374,18 +374,18 @@ def main():
     print("Welcome to zombie rolls!")  
     round_num=0
     player_score=0
-    
-    while round_num < 13:
-        round_fct(round_num,skip_supply= input("Would you like to skip this round? True or False?"))
-        if skip_supply != "True":
-            gather_supplies(ZombiePlayer,Dice)
-            pandasInventory(ZombiePlayer,round_num)
-            # what is item? make sure this is being defined
-            use_supply(ZombiePlayer,item)
-            ZombiePlayer.attack()
-        
-        if skip_supply == "True":
-            ZombiePlayer.attack()
+    while game_over() == False:
+        while round_num < 13:
+            round_fct(round_num,skip_supply= input("Would you like to skip this round? True or False?"))
+            if skip_supply != "True":
+                gather_supplies(ZombiePlayer,Dice)
+                pandasInventory(ZombiePlayer,round_num)
+                # what is item? make sure this is being defined
+                use_supply(ZombiePlayer,item)
+                ZombiePlayer.attack()
+            
+            if skip_supply == "True":
+                ZombiePlayer.attack()
     
 
 def parse_args(arglist):#only for command line args(user inputted args)
