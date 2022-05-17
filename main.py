@@ -85,31 +85,6 @@ def round_fct(round_num, skip_supply="False"):
         print("You may now gather supplies!")
         return (round_num)
 
-# needs doctrings
-def print_status_bar(ZombiePlayer): 
-    if ZombiePlayer.player_health == 100:
-        print("100% [==========]")                             
-    elif ZombiePlayer.player_health < 100 and ZombiePlayer.player_health >= 90:
-        print("90% [========= ]")
-    elif ZombiePlayer.player_health < 90 and ZombiePlayer.player_health >= 80:
-        print("80% [========  ]")
-    elif ZombiePlayer.player_health < 80 and ZombiePlayer.player_health >= 70:
-        print("70% [=======   ]")
-    elif ZombiePlayer.player_health < 70 and ZombiePlayer.player_health >= 60:
-        print("60% [======    ]")
-    elif ZombiePlayer.player_health < 60 and ZombiePlayer.player_health >= 50:
-        print("50% [=====     ]")
-    elif ZombiePlayer.health < 50 and ZombiePlayer.player_health >= 40:
-       print("40% [====      ]")
-    elif ZombiePlayer.player_health < 40 and ZombiePlayer.player_health >= 30:
-        print("30% [===       ]")
-    elif ZombiePlayer.player_health < 30 and ZombiePlayer.player_health >= 20:
-        print("20% [==        ]")
-    elif ZombiePlayer.player_health < 20 and ZombiePlayer.player_health >= 10:
-        print("10% [=         ]")
-    elif ZombiePlayer.player_health < 10 and ZombiePlayer.player_health >= 0:
-        print("0% [          ]")
-
 
 def game_over(ZombiePlayer, round_num):                
     """Determines when the game of Zombie Rolls is officially over. The game is 
