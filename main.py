@@ -1,7 +1,10 @@
 import random
 import glob
+from matplotlib import use
 import pandas as pd
 import sys
+
+from pytest import Item
 from babylonian import parse_args
 import matplotlib.pyplot as plt
 import numpy as np
@@ -19,16 +22,29 @@ player_supplies = []
 score_file = 'score.txt'
 music_file = "music_file.mp3"
 
-# needs doctrings
+
 class Dice():
+    """A dice object which has 6 sides
+    
+    Attributes:
+        sides (set): the sides of the dice
+    """
     #set operations
     def __init__(self, sides):
+        """Initializes the sides attribute of the dice"""
         self.sides= sides
         sides=()
         sides.update(6)
      
     #Sequence unpacking   
     def roll(self):
+        """Takes the value of two random sides and returns the sum
+        
+        Side effects:
+            appends the resulting sum of the two sides to the roll values list
+            
+        Returns: Returns the sum of the two dice sides
+        """
         sideValue=(1, 2, 3, 4, 5, 6)
         side1=sideValue[0]
         side6=sideValue[5]
@@ -36,6 +52,18 @@ class Dice():
         result2=random.randint(side1, side6)
         result = result1+result2
         return result
+
+    # data visualization
+    def roll_track():
+        """Each time the dice is rolled, the summary value is appeneded
+        to a pandas dataframe and plots the roll on a scatterplot
+        
+        Returns: Returns the scatterplot of the dataframe
+        """
+        d = {"Roll Number":[i for i in range(100)], "Roll Value": rollvalue}
+        rollplot=pd.DataFrame.from_dict(d, orient='index')
+        rollplot=rollplot.transpose()
+        return rollplot.plot.scatter('Roll Number', y = 'Roll Value')
 
 
 def play_music(path):
@@ -68,8 +96,8 @@ def round_fct(round_num, skip_supply="False"):
         return round_num
     else:
         print("You may now gather supplies!")
-        return ("round" + round_num)
-
+    print("round "+ round_num)
+    return (round_num)
 
 # needs doctrings
 def print_status_bar(ZombiePlayer): 
@@ -129,7 +157,7 @@ def use_supply(ZombiePlayer, item):
 
 
 # needs doctrings
-def gather_supplies(Zombie_Player, Dice):
+def gather_supplies(ZombiePlayer, Dice):
     if Dice.roll() == 1:
         player_weapons.append({'water':0})
     elif Dice.roll() == 2:
@@ -156,9 +184,17 @@ def gather_supplies(Zombie_Player, Dice):
         player_supplies.append({'gloves':30})
 
 
-# needs doctrings
 # pandas dataframe
 def pandasInventory(ZombiePlayer, round_num):
+    """Dataframe that tracks the players current health, current round, 
+        weapons, and items
+        
+    Args:
+        ZombiePlayer (class): One round of action for zombie and player
+        round_num (int): The round number
+        
+    Returns: the dataframe
+    """
     inventory = {"Player Health":ZombiePlayer.health, "Current Round": round_num, 
              "Weapon": player_weapons, "Items": player_supplies}
     pandasInv=pd.DataFrame.from_dict(inventory, orient='index')
@@ -259,29 +295,20 @@ class ZombiePlayer:
             if zombie_roll > player_roll:
                 self.damage = int(zombie_roll) - int(player_roll)              
                 print(f'{self.player} took {self.damage} damage.')
-<<<<<<< HEAD
                 decrease_health(self.player, self.damage)
-=======
                 self.decrease_health(self.damage)  # one argument only
->>>>>>> 0af40433908dee1884805bd3e6d3dc15231338b6
                 print_status_bar(self)
                 input("Press Enter to continue...")
             elif zombie_roll <= player_roll:
                 self.damage = int(self.weapon) #the damage of the weapon that the player chooses to use           
                 print(f'{self.zombie} took {self.damage} damage.')
-<<<<<<< HEAD
                 decrease_health(self.zombie, self.damage)
-=======
                 self.decrease_health(self.damage) # one argument only
->>>>>>> 0af40433908dee1884805bd3e6d3dc15231338b6
                 print_status_bar(self)
-                input("Press Enter to continue...")
+               
         if self.zombie_health <= 0:
             score(player_score, 'True')
             print(f"You have beaten the {self.zombie}!")
-            player_input = input("Would you like to skip your supply run? Type"
-                " False for no or True for yes: ")
-            round_fct(round_num, player_input)
         elif self.player_health <= 0:
             p_score = score(player_score, 'False')
             high_score(self.player, p_score, score_file)
@@ -305,7 +332,7 @@ class ZombiePlayer:
             ZombiePlayer.player_health = 100
         else:
             ZombiePlayer.player_health += heal
-#^^^^put these two in the zombie class so you can ZombiePlayer.decrease_health(pass in dmag or healing)
+            
     # needs doctrings
     def increase_health(self, heal):
         if self.player_health + heal >= 100:
@@ -367,22 +394,25 @@ class BossZombie(ZombiePlayer):
         super().attack()
 
 
-def main(): #do this in chronologicl order how the game will play out 
-    #what needs to happen, then what needs to happen before that thing can happen
-    #play_music(music_file)  
+def main(): 
     #figure out where im going to put the list comphrensions 
     # EXPR FOR ITERVAR IN ITERABLE 
     
     print("Welcome to zombie rolls!")  
     round_num=0
+    player_score=0
     
-    while round_num!= -1:
-        round_fct(skip_supply= input("Would you like to skip this round? True or False?"))
-    gather_supplies()
-    game_over()
-    score()
-    high_score()
- 
+    while round_num < 13:
+        round_fct(round_num,skip_supply= input("Would you like to skip this round? True or False?"))
+        if skip_supply != "True":
+            gather_supplies(ZombiePlayer,Dice)
+            pandasInventory(ZombiePlayer,round_num)
+            use_supply(ZombiePlayer,item)
+            ZombiePlayer.attack()
+        
+        if skip_supply == "True":
+            ZombiePlayer.attack()
+    
 
 def parse_args(arglist):#only for command line args(user inputted args)
     parser = ArgumentParser()
