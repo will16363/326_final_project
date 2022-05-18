@@ -215,7 +215,7 @@ def choose_weap(player_weapons):
 def choose_weap(player_weapons):
     weapon = ""
     while any(weapon in ele for ele in player_weapons) != True:
-        weapon = input("Please select a valid weapon: ")
+        weapon = input("Please select a weapon from the weapon's list: ")
         if any(weapon in ele for ele in player_weapons) == True:
             chosen_weapon = [weap[weapon] for weap in player_weapons if weapon in weap]
             weapon_damage = chosen_weapon[0]
