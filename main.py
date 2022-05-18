@@ -185,17 +185,8 @@ def pandasInventory(ZombiePlayer, round_num):
         ZombiePlayer (class): One round of action for zombie and player
         round_num (int): The round number
         
-<<<<<<< HEAD
-    Returns: 
-        The dataframe
-    
-    Side effects:
-        Prints the dataframe so that the player can see what they have in their
-            inventory
-=======
     Side Effects: 
         Prints the dataframe
->>>>>>> 0729f1233a6c515408034169118a30d32d5ffd89
     """
     inventory = {"Player Health": ZombiePlayer.player_health, "Current Round": round_num, 
              "Weapons": player_weapons, "Items": player_supplies}
@@ -215,10 +206,14 @@ def choose_weap(player_weapons):
         weapon_damage (int): The player's chosen weapon's damage expressed as 
             an int
     """
-    weapon = input("Choose your weapon: ")
-    chosen_weapon = [weap[weapon] for weap in player_weapons if weapon in weap]
-    weapon_damage = chosen_weapon[0]
-    return int(weapon_damage)
+def choose_weap(player_weapons):
+    weapon = ""
+    while any(weapon in ele for ele in player_weapons) != True:
+        weapon = input("Please select a valid weapon: ")
+        if any(weapon in ele for ele in player_weapons) == True:
+            chosen_weapon = [weap[weapon] for weap in player_weapons if weapon in weap]
+            weapon_damage = chosen_weapon[0]
+            return int(weapon_damage)
 
 
 # with statements 6
