@@ -10,6 +10,7 @@ from unittest import result
 
 player_weapons = [{"fist": 5}]
 player_supplies = []
+roll_list = []
 score_file = 'score.txt'
 
 
@@ -45,18 +46,23 @@ class Dice():
         result = result1+result2
         return result
 
-    # data visualization
-    def roll_track(self, result):
-        """Each time the dice is rolled, the summary value is appeneded
-            to a pandas dataframe and plots the roll on a scatterplot
-        
-        Returns: 
-            Returns the scatterplot of the dataframe
-        """
-        d = {"Roll Number":[i for i in range(100)], "Roll Value": result}
-        rollplot=pd.DataFrame.from_dict(d, orient='index')
-        rollplot=rollplot.transpose()
-        return rollplot.plot.scatter('Roll Number', y = 'Roll Value')
+# data visualization 3
+def roll_track(roll_list):
+    """Each time the dice is rolled, the summary value is appended
+        to a pandas dataframe and plots the roll on a scatterplot
+    
+    Returns: 
+        Returns the scatterplot of the dataframe
+    """
+    d = {"Roll Number":[i for i in range(100)], "Roll Value": roll_list}
+    rollplot=pd.DataFrame.from_dict(d, orient='index')
+    rollplot=rollplot.transpose()
+    plt.xlabel('Roll Number')
+    plt.ylabel('Roll Value')
+    plt.ylim(0, 12)
+    plt.plot(rollplot)
+    return plt.show()
+
 
 
 def game_over(ZombiePlayer, round_num):                
@@ -75,8 +81,6 @@ def game_over(ZombiePlayer, round_num):
     return ZombiePlayer.player_health <= 0 or round_num < 14
 
 
-
-# needs docstrings
 def gather_supplies(d):
     """Get players to roll and assign an item. The player will need to roll two 
     dyes and the supplies the get will be depending on what number the dice 
@@ -90,6 +94,7 @@ def gather_supplies(d):
             will be printed to the terminal
    """
     roll = d.roll()
+    roll_list.append(roll)
     if roll == 1:
         player_weapons.append({'brass knuckles:25'})
         print("You gathered brass knuckles!")
@@ -128,7 +133,7 @@ def gather_supplies(d):
         print("You gathered gloves!")
 
 
-# f strings 3
+# f strings 4
 def use_supply(ZombiePlayer, item):
     """Heals the player's health depending on what healing item they choose to
         use
@@ -182,7 +187,7 @@ def choose_supply(player_supplies):
             return healing_item
 
 
-# pandas dataframe 4
+# pandas dataframe 5
 def pandasInventory(ZombiePlayer, round_num):
     """Dataframe that tracks the players current health, current round, 
         weapons, and items
@@ -200,7 +205,7 @@ def pandasInventory(ZombiePlayer, round_num):
     print(pandasInv)
 
 
-# list comprehension 5
+# list comprehension 6
 def choose_weap(player_weapons):
     """Prompts the user to choose a weapon from their inventory
 
@@ -221,7 +226,7 @@ def choose_weap(player_weapons):
             return int(weapon_damage)
 
 
-# with statements 6
+# with statements 7
 def high_score(player, new_score, score_file):
     """Writes the player's score to a high score file.
     
@@ -234,10 +239,10 @@ def high_score(player, new_score, score_file):
         Modifies a file that high scores are kept in.
     """
     with open(score_file, 'a') as f:
-        f.write(f'{player}:{new_score}')
+        f.write(f'{player}:{new_score}\n')
 
 
-# custom list sorting using lambda 7
+# custom list sorting using lambda 8
 def ranked_scores(score_file):
     """Sort the high score file and returns top 5 overall scores.
     
@@ -250,8 +255,8 @@ def ranked_scores(score_file):
     high_score_dict = {}
     with open(score_file, 'r', encoding='utf-8') as f:
         for line in f:
-            name, score=line.split(':')
-            high_score_dict[name]=score
+            name, score=line.rstrip().split(':')
+            high_score_dict[name]=int(score)
         ranked_dict=(sorted(high_score_dict.items(), key=lambda x:x[1], 
             reverse=True)[:5])
         print(f"These are the top 5 overall scores: \n {ranked_dict}")
@@ -289,6 +294,8 @@ class ZombiePlayer:
         while self.zombie_health > 0 and self.player_health > 0:
             zombie_roll = Dice.roll(self)
             player_roll = Dice.roll(self)
+            roll_list.append(zombie_roll)
+            roll_list.append(player_roll)
             print(f"{self.zombie} rolled a {zombie_roll}. {self.player} rolled a {player_roll}.")
             if zombie_roll > player_roll:
                 zomb_damage = int(zombie_roll) - int(player_roll)              
@@ -415,7 +422,7 @@ class BossZombie(ZombiePlayer):
         self.roll2 = 0
         self.roll3 = 0
 
-    # __repr__() 8
+    # __repr__() 9
     def __repr__(self):   
         """Returns a formal representation of damage taken by the player from 
             the special attack."""
@@ -426,7 +433,7 @@ class BossZombie(ZombiePlayer):
             f"Total damage: {self.roll1 + self.roll2 + self.roll3}." 
             )   
     
-    # super() method 9
+    # super() method 10
     def attack(self):
         """Special attack action of boss zombie followed by attack method of 
             parent class.
@@ -475,6 +482,7 @@ def main():
             high_score(player, player_score, score_file)
             ranked_scores(score_file)
             round_num += 1
+            roll_track(roll_list)
         elif (round_num % 2) == 0:
             print(f"Round {round_num}")
             d = Dice()
