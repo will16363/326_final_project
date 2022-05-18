@@ -64,7 +64,6 @@ def roll_track(roll_list):
     return plt.show()
 
 
-
 def game_over(ZombiePlayer, round_num):                
     """Determines when the game of Zombie Rolls is officially over. The game is 
        considered over if the player has no health left or has defeated the 
@@ -163,7 +162,6 @@ def use_supply(ZombiePlayer, item):
     elif item == 'gloves': 
         ZombiePlayer.increase_health(30)
         print(f"You used {item} and gained 30 health!")
-
 
 
 def choose_supply(player_supplies):
@@ -312,7 +310,6 @@ class ZombiePlayer:
             high_score(self.player, player_score, score_file)
             ranked_scores(score_file)
 
-   
     def human_decrease_health(self, damage):
         """Decrease the player's health based on the Zombie's dice roll.
 
@@ -328,7 +325,6 @@ class ZombiePlayer:
         else:
             self.player_health -= damage
         
-   
     def increase_health(self, heal):
         """This keeps track of the health gained by each player. Player is able to 
         collect supplies throughout the game such as water, food, shoes and so on. 
@@ -346,7 +342,6 @@ class ZombiePlayer:
         else:
             self.player_health += heal
 
-  
     def zomb_decrease_health(self, damage):
         """This keeps track of the health lost by each player.
         There are different types of weapons in this games such as bats
@@ -364,7 +359,6 @@ class ZombiePlayer:
         else:
             self.zombie_health -= damage
             
-  
     def print_status_bar(self): 
         """This function gets the players health and keeps track of it using
         percentage represented by individual bars ex- = is 10% == is 20%. Each 
