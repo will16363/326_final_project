@@ -309,6 +309,15 @@ class ZombiePlayer:
         
     # needs doctrings
     def increase_health(self, heal):
+    """increase_health"""
+    """This keeps track of the health gained by each player.
+    Player is able to collect supplies throughout the game such as
+    water, food, shoes and so on. When they collect these things this their
+    health points have increased."
+    Args:heal(int): represents how much the player healed based on the supplies they were able to collect.
+   Side Effects: player gains health up to 100
+    """
+        
         if self.player_health + heal >= 100:
             self.player_health = 100
         else:
@@ -316,6 +325,17 @@ class ZombiePlayer:
 
     # needs doctrings
     def zomb_decrease_health(self, damage):
+        """decrease health"""
+    """This keeps track of the health lost by each player.
+    There are different types of weapons in this games such as bats
+    and shotgun. WIth this we will be able to see how much points
+    were lost depending on the tool they used to attack."
+    Args:
+      damage(int): represents the damage the players took due to an attack.
+ 
+   Side Effects: player loses health and if the health is 0 or less
+                  the function calls the game_over() function
+    """
         if self.zombie_health - damage <= 0:
             self.zombie_health = 0
         else:
@@ -323,6 +343,26 @@ class ZombiePlayer:
             
     # needs doctrings
     def print_status_bar(self): 
+    """ Health function """
+    """def print_status_bar(percent):
+    This function gets the players health and keeps track of it using
+      percentage represented by individual bars
+      ex- = is 10% == is 20%. Each player will gain or lose a bar
+      depending on how they are performing in the game. The status bars add up
+      to 100. There are also weapons and supplies in this game worth different
+      amount of points. So the player's health level will change based on that.
+    Args:
+   This function gets the players health and keeps track of it using
+      percentage represented by individual bars ex- = is 10% == is 20%. Each player
+      will gain or lose a bar depending on how they are
+      performing in the game. The status bars add up
+      to 100.
+  
+    def health_function():Keeps track of the players health depending on their performance
+    Returns:
+     
+    Side effect:players health is tracked throughout the game 
+"""
         if self.player_health == 100:
             print("100% [==========]")                             
         elif self.player_health < 100 and self.player_health >= 90:
