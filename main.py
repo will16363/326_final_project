@@ -5,7 +5,6 @@ import sys
 from matplotlib import pyplot as plt
 from matplotlib import use
 from pytest import Item
-from argparse import ArgumentParser
 from unittest import result
 
 
@@ -20,7 +19,7 @@ class Dice():
     Attributes:
         sides (set): the sides of the dice
     """
-    #set operations
+    #set operations 1
     def __init__(self, sides=[0]):
         """Initializes the sides attribute of the dice"""
         self.sides= sides
@@ -28,7 +27,7 @@ class Dice():
         x2={4,5,6}
         sides.append(x1.union(x2))
      
-    #Sequence unpacking   
+    #Sequence unpacking 2
     def roll(self):
         """Takes the value of two random sides and returns the sum
         
@@ -117,26 +116,27 @@ def gather_supplies(d):
         print("You gathered gloves!")
 
 
+# f strings 3
 # needs doctrings
 def use_supply(ZombiePlayer, item):
     if item == 'water': 
         ZombiePlayer.increase_health(40)
-        print("You gained 40 health!")
+        print(f"You used {item} and gained 40 health!")
     elif item == 'shoes': 
         ZombiePlayer.increase_health(30)
-        print("You gained 30 health!")
+        print(f"You used {item} and gained 30 health!")
     elif item == 'food': 
         ZombiePlayer.increase_health(40)
-        print("You gained 40 health!")
+        print(f"You used {item} and gained 40 health!")
     elif item == 'medical supplies': 
         ZombiePlayer.increase_health(40)
-        print("You gained 40 health!")
+        print(f"You used {item} and gained 40 health!")
     elif item == 'lighter': 
         ZombiePlayer.increase_health(30)
-        print("You gained 30 health!")
+        print(f"You used {item} and gained 30 health!")
     elif item == 'gloves': 
         ZombiePlayer.increase_health(30)
-        print("You gained 30 health!")
+        print(f"You used {item} and gained 30 health!")
 
 
 # needs doctrings
@@ -146,7 +146,7 @@ def choose_supply(player_supplies):
     return healing_item
 
 
-# pandas dataframe
+# pandas dataframe 4
 def pandasInventory(ZombiePlayer, round_num):
     """Dataframe that tracks the players current health, current round, 
         weapons, and items
@@ -164,7 +164,7 @@ def pandasInventory(ZombiePlayer, round_num):
     print(pandasInv)
 
 
-# list comprehension
+# list comprehension 5
 # needs docstring
 def choose_weap(player_weapons):
     weapon = input("Choose your weapon: ")
@@ -173,33 +173,7 @@ def choose_weap(player_weapons):
     return int(weapon_damage)
 
 
-# # f-strings
-def score(player_score, true_false):
-    """Keeps track of the player's score upon completion of the round.
-    
-    Args:
-        player_score (int): The player's score before the round starts
-        true_false (str): A string representing true if the player defeats the
-            zombie and false if they die
-    
-    Side effects:
-        Prints information to the terminal during a round of Zombie Rolls.
-    
-    Returns:
-        new_score (int): The player's score after the completion of the round.
-    """
-    if true_false == 'True':
-        player_score += 25
-        print(player_score)
-        print(f"You earned 25 points for defeating the zombie!")
-        return int(player_score)    
-    if true_false == 'False':
-        player_score -= 50
-        print(f"You lost 50 for dying to the zombie!")
-        return int(player_score)
-
-
-# with statements
+# with statements 6
 def high_score(player, new_score, score_file):
     """Writes the player's score to a high score file.
     
@@ -212,10 +186,10 @@ def high_score(player, new_score, score_file):
         Modifies a file that high scores are kept in.
     """
     with open(score_file, 'a') as f:
-        f.write(f'{player}:{new_score}\n')
+        f.write(f'{player}:{new_score}')
 
 
-# custom list sorting using lambda
+# custom list sorting using lambda 7
 def ranked_scores(score_file):
     """Sort the high score file and returns top 5 overall scores.
     
@@ -278,13 +252,11 @@ class ZombiePlayer:
                 self.zomb_decrease_health(item)
                 print(f'{self.zombie} took {item} damage. {self.zombie} has {self.zombie_health} health remaining!')
         if self.zombie_health <= 0:
-            # player_score = score(player_score, 'True')
             self.zombie_health = 25
-            # return player_score
+            return player_score
         elif self.player_health <= 0:
-            player_score = score(player_score, 'False')
             high_score(self.player, player_score, score_file)
-            # ranked_scores(score_file)
+            ranked_scores(score_file)
 
     # needs doctrings
     def human_decrease_health(self, damage):
@@ -354,18 +326,18 @@ class BossZombie(ZombiePlayer):
         self.roll2 = 0
         self.roll3 = 0
 
-    # __repr__()    
+    # __repr__() 8
     def __repr__(self):   
         """Returns a formal representation of damage taken by the player from 
             the special attack."""
         return (
-            f"1st: {self.roll1} damage dealt to {self.player}.\n"        
-            f"2nd: {self.roll2} damage dealt to {self.player}.\n"
-            f"3rd: {self.roll3} damage dealt to {self.player}.\n"
+            f"1st attack: {self.roll1} damage dealt to {self.player}.\n"        
+            f"2nd attack: {self.roll2} damage dealt to {self.player}.\n"
+            f"3rd attack: {self.roll3} damage dealt to {self.player}.\n"
             f"Total damage: {self.roll1 + self.roll2 + self.roll3}." 
             )   
     
-    # super() method 
+    # super() method 9
     def attack(self):
         """Special attack action of boss zombie followed by attack method of 
             parent class.
@@ -382,11 +354,11 @@ class BossZombie(ZombiePlayer):
         super().print_status_bar()
         input("Press c to continue...")
         if self.player_health <=0:
-            True
+            return True
         else:
             self.zombie_health = 0
             print(f"Congratulations, you survived a week in Zombie Rolls and killed the final boss!")
-
+            
 
 def main(): 
     print("Welcome to Zombie Rolls!")  
@@ -402,7 +374,8 @@ def main():
             player_health = game.player_health
             boss = BossZombie(zombie, player, player_health, zombie_health)
             boss.attack()
-            high_score(player, p_score, score_file)
+            player_score += 100
+            high_score(player, player_score, score_file)
             ranked_scores(score_file)
             round_num += 1
         elif (round_num % 2) == 0:
@@ -416,9 +389,9 @@ def main():
             round_num += 1
         else: 
             print(f"Round {round_num}.")
-            p_score = game.attack(item, player_score, score_file)
+            game.attack(item, player_score, score_file)
+            player_score += 25
             round_num += 1
-            player_score = score(player_score, 'True')
 
 
 if __name__ == "__main__":
