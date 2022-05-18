@@ -34,7 +34,8 @@ class Dice():
         Side effects:
             appends the resulting sum of the two sides to the roll values list
             
-        Returns: Returns the sum of the two dice sides
+        Returns: 
+            Returns the sum of the two dice sides
         """
         sideValue=(1, 2, 3, 4, 5, 6)
         side1=sideValue[0]
@@ -77,20 +78,17 @@ def game_over(ZombiePlayer, round_num):
 
 # needs docstrings
 def gather_supplies(d):
-    """Gathering Supplies """
-    """
-    Get players to roll and assign an item.
-      The player will need to roll two dyes and the supplies
-      the get will be depending on what number the dice rolls on.
-      This logic also applies to the weapons in this game.
-  Args:
-      d.roll: this variable represents the sum of the two
-      dices that each player rolls
-      player_supplies.append- adds weapon or supply to inventory
-   Side Effects: Player will get a weapon or an item in their
-   inventory
+    """Get players to roll and assign an item. The player will need to roll two 
+    dyes and the supplies the get will be depending on what number the dice 
+    rolls on. This logic also applies to the weapons in this game.
+  
+    Args:
+        d (dice instance): this variable represents an instance of the dice class
+   
+   Side Effects: 
+        Player will get a weapon or an item in their inventory and a message
+            will be printed to the terminal
    """
-
     roll = d.roll()
     if roll == 1:
         player_weapons.append({'brass knuckles:25'})
@@ -131,8 +129,17 @@ def gather_supplies(d):
 
 
 # f strings 3
-# needs doctrings
 def use_supply(ZombiePlayer, item):
+    """Heals the player's health depending on what healing item they choose to
+        use
+
+    Args:
+        ZombiePlayer (class): The ZombiePlayer class
+        item (str): The item that the player has chosen to heal with
+
+    Side effects:
+        Prints which item the player used to heal and how much health was restored
+    """
     if item == 'water': 
         ZombiePlayer.increase_health(40)
         print(f"You used {item} and gained 40 health!")
@@ -153,8 +160,17 @@ def use_supply(ZombiePlayer, item):
         print(f"You used {item} and gained 30 health!")
 
 
-# needs doctrings
+
 def choose_supply(player_supplies):
+    """Prompts the user to choose an item to heal their health.
+
+    Args:
+        player_supplies (list of dicts): A list of dictionaries that house each
+            healing item that the player has in their inventory
+
+    Returns:
+        healing_item (str): The healing item that the player has chosen to use
+    """
     healing_item = input("Choose an item to use to heal yourself or None if you"
         " have not gathered any items: ")
     return healing_item
@@ -171,6 +187,10 @@ def pandasInventory(ZombiePlayer, round_num):
         
     Returns: 
         The dataframe
+    
+    Side effects:
+        Prints the dataframe so that the player can see what they have in their
+            inventory
     """
     inventory = {"Player Health": ZombiePlayer.player_health, "Current Round": round_num, 
              "Weapons": player_weapons, "Items": player_supplies}
@@ -179,8 +199,17 @@ def pandasInventory(ZombiePlayer, round_num):
 
 
 # list comprehension 5
-# needs docstring
 def choose_weap(player_weapons):
+    """Prompts the user to choose a weapon from their inventory
+
+    Args:
+        player_weapons (list of dicts): A list of dictionaries that house each
+            weapon that the player has in their inventory
+
+    Returns:
+        weapon_damage (int): The player's chosen weapon's damage expressed as 
+            an int
+    """
     weapon = input("Choose your weapon: ")
     chosen_weapon = [weap[weapon] for weap in player_weapons if weapon in weap]
     weapon_damage = chosen_weapon[0]
@@ -272,62 +301,70 @@ class ZombiePlayer:
             high_score(self.player, player_score, score_file)
             ranked_scores(score_file)
 
-    # needs doctrings
+   
     def human_decrease_health(self, damage):
+        """Decrease the player's health based on the Zombie's dice roll.
+
+        Args:
+            damage (int): The difference of the Zombie and player's dice roll
+                expressed as an int
+        
+        Side effects:
+            Decreases player_health variable.
+        """
         if self.player_health - damage <= 0:
             self.player_health = 0
         else:
             self.player_health -= damage
         
-    # needs doctrings
+   
     def increase_health(self, heal):
-    """This keeps track of the health gained by each player. Player is able to 
-    collect supplies throughout the game such as water, food, shoes and so on. 
-    Then they collect these things this their health points have increased.
+        """This keeps track of the health gained by each player. Player is able to 
+        collect supplies throughout the game such as water, food, shoes and so on. 
+        Then they collect these things this their health points have increased.
 
         Args:
-            heal(int): represents how much the player healed based on the 
-                supplies they were able to collect.
+     	    heal(int): represents how much the player healed based on the 
+        	    supplies they were able to collect.
     
         Side Effects: 
-            player gains health up to 100
-    """
-        
+     	    player gains health up to 100
+        """
         if self.player_health + heal >= 100:
             self.player_health = 100
         else:
             self.player_health += heal
 
-    # needs doctrings
+  
     def zomb_decrease_health(self, damage):
-    """This keeps track of the health lost by each player.
-    There are different types of weapons in this games such as bats
-    and shotgun. WIth this we will be able to see how much points
-    were lost depending on the tool they used to attack.
+        """This keeps track of the health lost by each player.
+        There are different types of weapons in this games such as bats
+        and shotgun. WIth this we will be able to see how much points
+        were lost depending on the tool they used to attack.
     
-    Args:
-      damage(int): represents the damage the players took due to an attack.
- 
-    Side Effects: player loses health and if the health is 0 or less
-                  the function calls the game_over() function
-    """
+        Args:
+        damage(int): represents the damage the players took due to an attack.
+    
+        Side Effects: player loses health and if the health is 0 or less
+                    the function calls the game_over() function
+        """
         if self.zombie_health - damage <= 0:
             self.zombie_health = 0
         else:
             self.zombie_health -= damage
             
-    # needs doctrings
+  
     def print_status_bar(self): 
-    """This function gets the players health and keeps track of it using
-      percentage represented by individual bars ex- = is 10% == is 20%. Each 
-      player will gain or lose a bar depending on how they are performing in the 
-      game. The status bars add up to 100. There are also weapons and supplies 
-      in this game worth different amount of points. So the player's health 
-      level will change based on that.
-    
-    Side effects:
-        player's health is printed throughout the game 
-    """
+        """This function gets the players health and keeps track of it using
+        percentage represented by individual bars ex- = is 10% == is 20%. Each 
+        player will gain or lose a bar depending on how they are performing in the 
+        game. The status bars add up to 100. There are also weapons and supplies 
+        in this game worth different amount of points. So the player's health 
+        level will change based on that.
+        
+        Side effects:
+            player's health is printed throughout the game 
+        """
         if self.player_health == 100:
             print("100% [==========]")                             
         elif self.player_health < 100 and self.player_health >= 90:
@@ -408,6 +445,14 @@ class BossZombie(ZombiePlayer):
             
 
 def main(): 
+    """The main driver of a game of Zombie Rolls.
+
+    Side effects:
+        Changes the round_num, player_score, player_health, and zombie_health
+            variables. Creates an instance of the ZombiePlayer class. Modifies 
+            the score file using high_score(). Prints important game information
+            to the terminal.
+    """
     print("Welcome to Zombie Rolls!")  
     player = input("Enter your name: ")
     zombie = 'Zombie'
@@ -443,4 +488,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-        
