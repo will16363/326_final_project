@@ -54,4 +54,5 @@ helped with main().
 # Notes for Professor/TA's:
 In our repository, John is not showing up as a Contributor on the main page but he worked hard and was a big contributor
 to our group. If we open the settings tab in the repository, he is listed as a Collaborator there. The data visualization 
-will open seperately from VS Code in a seperate window once the game is complete.
+will open seperately from VS Code in a seperate window once the game is complete. For the future, we would like to find a
+way to be able to pop off healing items from the player's inventory so that they are not able to be used multiple times.
