@@ -32,20 +32,23 @@ on how far you made it in the game and is then written to the score file. The to
 
 # Who did what
 ### William Jones 
-Was the main driver for the group. Created the game_over, high_score (with statements), ranked_scores functions (custom list sorting with lambda functions), helped create choose_supply/choose_weapon, and helped with main().
+Was the main driver for the group. Created the game_over, high_score (with statements), ranked_scores functions (custom list 
+sorting with lambda functions), helped create choose_supply/choose_weapon, and helped with main().
 
 ### Tsion Demissie 
-Created the print_status_bar, increase_health, decrease_health, use_supply (f-strings), gather_supplies, roll_track (data visualization) functions, and helped with main().
+Created the print_status_bar, increase_health, decrease_health, use_supply (f-strings), gather_supplies, roll_track (data 
+visualization) functions, and helped with main().
 
 ### Takuya Kameyama 
-Created the ZombiePlayer and BossZombie classes and all of their methods (super method and __repr__), helped create choose_supply/choose_weapon, and helped with main().
+Created the ZombiePlayer and BossZombie classes and all of their methods (super method and __repr__), helped create 
+choose_supply/choose_weapon, and helped with main().
 
 ### Patrice Shumate 
 Created the choose_weapon (list comprehension), choose_supply, Dice __init__ (set operations), and helped with main().
 
 ### John Lehner 
-Created the pandas_inventory function (pandas dataframe) as well as the Dice class and its methods (sequence unpacking) and helped
-with main().
+Created the pandas_inventory function (pandas dataframe) as well as the Dice class and its methods (sequence unpacking) and 
+helped with main().
 
 
 # Notes for Professor/TA's:
