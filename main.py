@@ -171,9 +171,15 @@ def choose_supply(player_supplies):
     Returns:
         healing_item (str): The healing item that the player has chosen to use
     """
-    healing_item = input("Choose an item to use to heal yourself or None if you"
-        " have not gathered any items: ")
-    return healing_item
+def choose_supply(player_supplies):
+    healing_item = ""
+    while any(healing_item in ele for ele in player_supplies) != True or healing_item != "None":
+        healing_item = input("Choose an item to use to heal yourself or None if you"
+            " have not gathered any items: ")
+        if any(healing_item in ele for ele in player_supplies) == True:
+            return healing_item
+        elif healing_item == "None":
+            return healing_item
 
 
 # pandas dataframe 4
