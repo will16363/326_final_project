@@ -79,6 +79,20 @@ def game_over(ZombiePlayer, round_num):
 
 # needs docstrings
 def gather_supplies(d):
+    """Gathering Supplies """
+    """
+    Get players to roll and assign an item.
+      The player will need to roll two dyes and the supplies
+      the get will be depending on what number the dice rolls on.
+      This logic also applies to the weapons in this game.
+  Args:
+      d.roll: this variable represents the sum of the two
+      dices that each player rolls
+      player_supplies.append- adds weapon or supply to inventory
+   Side Effects: Player will get a weapon or an item in their
+   inventory
+   """
+
     roll = d.roll()
     if roll == 1:
         player_weapons.append({'brass knuckles:25'})
