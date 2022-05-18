@@ -169,8 +169,8 @@ def pandasInventory(ZombiePlayer, round_num):
         ZombiePlayer (class): One round of action for zombie and player
         round_num (int): The round number
         
-    Returns: 
-        The dataframe
+    Side Effects: 
+        Prints the dataframe
     """
     inventory = {"Player Health": ZombiePlayer.player_health, "Current Round": round_num, 
              "Weapons": player_weapons, "Items": player_supplies}
