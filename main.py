@@ -176,7 +176,6 @@ def choose_supply(player_supplies):
     Returns:
         healing_item (str): The healing item that the player has chosen to use
     """
-def choose_supply(player_supplies):
     healing_item = ""
     while any(healing_item in ele for ele in player_supplies) != True or healing_item != "None":
         healing_item = input("Choose an item to use to heal yourself or None if you"
