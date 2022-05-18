@@ -325,7 +325,7 @@ class ZombiePlayer:
 
     # needs doctrings
     def zomb_decrease_health(self, damage):
-        """decrease health"""
+    """decrease health"""
     """This keeps track of the health lost by each player.
     There are different types of weapons in this games such as bats
     and shotgun. WIth this we will be able to see how much points
