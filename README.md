@@ -32,8 +32,7 @@ on how far you made it in the game and is then written to the score file. The to
 
 # Who did what
 ### William Jones 
-Created the game_over, high_score (with statements), ranked_scores functions (custom list sorting with lambda functions),
-helped create choose_supply/choose_weapon, and helped with main().
+Was the main driver for the group. Created the game_over, high_score (with statements), ranked_scores functions (custom list sorting with lambda functions), helped create choose_supply/choose_weapon, and helped with main().
 
 ### Tsion Demissie 
 Created the print_status_bar, increase_health, decrease_health, use_supply (f-strings), gather_supplies, roll_track (data visualization) functions, and helped with main().
