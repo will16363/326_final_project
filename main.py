@@ -212,7 +212,6 @@ def choose_weap(player_weapons):
         weapon_damage (int): The player's chosen weapon's damage expressed as 
             an int
     """
-def choose_weap(player_weapons):
     weapon = ""
     while any(weapon in ele for ele in player_weapons) != True:
         weapon = input("Please select a weapon from the weapon's list: ")
